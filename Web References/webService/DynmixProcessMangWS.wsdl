@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <schema xmlns:tns="urn:microsoft-dynamics-nav/xmlports/x50004" elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-nav/xmlports/x50004" xmlns="http://www.w3.org/2001/XMLSchema">
+      <complexType name="RecCons">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="cin" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="nom" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="prenom" type="string" />
+          <element minOccurs="1" maxOccurs="1" default="0" name="id" type="int" />
+        </sequence>
+      </complexType>
+      <complexType name="RootCons" mixed="true">
+        <sequence>
+          <element minOccurs="1" maxOccurs="unbounded" name="RecCons" type="tns:RecCons" />
+        </sequence>
+      </complexType>
+      <element name="RootCons" type="tns:RootCons" />
+    </schema>
+    <schema xmlns:tns="urn:microsoft-dynamics-nav/xmlports/x50000" elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-nav/xmlports/x50000" xmlns="http://www.w3.org/2001/XMLSchema">
+      <complexType name="RecG18">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="No" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Name" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Adresse" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Phone" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="LastDateMod" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="Root" mixed="true">
+        <sequence>
+          <element minOccurs="1" maxOccurs="unbounded" name="RecG18" type="tns:RecG18" />
+        </sequence>
+      </complexType>
+      <element name="Root" type="tns:Root" />
+    </schema>
+    <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="ListeConsultant">
+        <complexType>
+          <sequence>
+            <element xmlns:q1="urn:microsoft-dynamics-nav/xmlports/x50004" minOccurs="1" maxOccurs="1" name="consultant" type="q1:RootCons" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ListeConsultant_Result">
+        <complexType>
+          <sequence>
+            <element xmlns:q2="urn:microsoft-dynamics-nav/xmlports/x50004" minOccurs="1" maxOccurs="1" name="consultant" type="q2:RootCons" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ListeClient">
+        <complexType>
+          <sequence>
+            <element xmlns:q3="urn:microsoft-dynamics-nav/xmlports/x50000" minOccurs="1" maxOccurs="1" name="xmlportCust" type="q3:Root" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ListeClient_Result">
+        <complexType>
+          <sequence>
+            <element xmlns:q4="urn:microsoft-dynamics-nav/xmlports/x50000" minOccurs="1" maxOccurs="1" name="xmlportCust" type="q4:Root" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="DeleteConsultant">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="id" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="DeleteConsultant_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+            <element minOccurs="1" maxOccurs="1" name="id" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AddConsultant">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="cin" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="nom" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="prenom" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AddConsultant_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="SelectConsu">
+        <complexType>
+          <sequence>
+            <element xmlns:q5="urn:microsoft-dynamics-nav/xmlports/x50004" minOccurs="1" maxOccurs="1" name="xmlConsult" type="q5:RootCons" />
+            <element minOccurs="1" maxOccurs="1" name="id" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="SelectConsu_Result">
+        <complexType>
+          <sequence>
+            <element xmlns:q6="urn:microsoft-dynamics-nav/xmlports/x50004" minOccurs="1" maxOccurs="1" name="xmlConsult" type="q6:RootCons" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateConsu">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="idConsu" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="nom" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="prenom" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateConsu_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+    </schema>
+  </types>
+  <message name="ListeConsultant">
+    <part name="parameters" element="tns:ListeConsultant" />
+  </message>
+  <message name="ListeConsultant_Result">
+    <part name="parameters" element="tns:ListeConsultant_Result" />
+  </message>
+  <message name="ListeClient">
+    <part name="parameters" element="tns:ListeClient" />
+  </message>
+  <message name="ListeClient_Result">
+    <part name="parameters" element="tns:ListeClient_Result" />
+  </message>
+  <message name="DeleteConsultant">
+    <part name="parameters" element="tns:DeleteConsultant" />
+  </message>
+  <message name="DeleteConsultant_Result">
+    <part name="parameters" element="tns:DeleteConsultant_Result" />
+  </message>
+  <message name="AddConsultant">
+    <part name="parameters" element="tns:AddConsultant" />
+  </message>
+  <message name="AddConsultant_Result">
+    <part name="parameters" element="tns:AddConsultant_Result" />
+  </message>
+  <message name="SelectConsu">
+    <part name="parameters" element="tns:SelectConsu" />
+  </message>
+  <message name="SelectConsu_Result">
+    <part name="parameters" element="tns:SelectConsu_Result" />
+  </message>
+  <message name="UpdateConsu">
+    <part name="parameters" element="tns:UpdateConsu" />
+  </message>
+  <message name="UpdateConsu_Result">
+    <part name="parameters" element="tns:UpdateConsu_Result" />
+  </message>
+  <portType name="DynmixProcessMangWS_Port">
+    <operation name="ListeConsultant">
+      <input name="ListeConsultant" message="tns:ListeConsultant" />
+      <output name="ListeConsultant_Result" message="tns:ListeConsultant_Result" />
+    </operation>
+    <operation name="ListeClient">
+      <input name="ListeClient" message="tns:ListeClient" />
+      <output name="ListeClient_Result" message="tns:ListeClient_Result" />
+    </operation>
+    <operation name="DeleteConsultant">
+      <input name="DeleteConsultant" message="tns:DeleteConsultant" />
+      <output name="DeleteConsultant_Result" message="tns:DeleteConsultant_Result" />
+    </operation>
+    <operation name="AddConsultant">
+      <input name="AddConsultant" message="tns:AddConsultant" />
+      <output name="AddConsultant_Result" message="tns:AddConsultant_Result" />
+    </operation>
+    <operation name="SelectConsu">
+      <input name="SelectConsu" message="tns:SelectConsu" />
+      <output name="SelectConsu_Result" message="tns:SelectConsu_Result" />
+    </operation>
+    <operation name="UpdateConsu">
+      <input name="UpdateConsu" message="tns:UpdateConsu" />
+      <output name="UpdateConsu_Result" message="tns:UpdateConsu_Result" />
+    </operation>
+  </portType>
+  <binding name="DynmixProcessMangWS_Binding" type="tns:DynmixProcessMangWS_Port">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="ListeConsultant">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeConsultant" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ListeConsultant">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ListeConsultant_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ListeClient">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeClient" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ListeClient">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ListeClient_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="DeleteConsultant">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:DeleteConsultant" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="DeleteConsultant">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="DeleteConsultant_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="AddConsultant">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddConsultant" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="AddConsultant">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="AddConsultant_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="SelectConsu">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:SelectConsu" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="SelectConsu">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="SelectConsu_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UpdateConsu">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:UpdateConsu" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UpdateConsu">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UpdateConsu_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="DynmixProcessMangWS">
+    <port name="DynmixProcessMangWS_Port" binding="tns:DynmixProcessMangWS_Binding">
+      <address location="http://192.168.100.100:20047/DynamixProjet/WS/Dynamix-Project/Codeunit/DynmixProcessMangWS" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>
