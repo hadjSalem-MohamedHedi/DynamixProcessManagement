@@ -1,0 +1,159 @@
+    .customer {
+        width: 100%;
+        margin-bottom: 7%!important;
+        display: flex;
+        .ProfilRespo {
+            width: 30%;
+            float: left;
+            background: #fff!important;
+            border: 2px solid #eee;
+            padding: 0px!important;
+            margin: 2%;
+            .header {
+                background-image: url('../../assets/background/user-bg.jpg');
+                min-height: 100px;
+                img {
+                    width: 80px;
+                    margin: 1%;
+                    position: absolute;
+                    height: 80px;
+                    border-radius: 50%;
+                    border: 2px solid #ccc;
+                    -webkit-border-radius: 50%;
+                    -moz-border-radius: 50%;
+                    -ms-border-radius: 50%;
+                    -o-border-radius: 50%;
+                    margin-top: 65px;
+                }
+            }
+            .body {
+                h5 {
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    text-align: right;
+                    color: #123;
+                }
+                .info {
+                    margin-top: 5%;
+                    padding: 5%;
+                    h6 {
+                        color: #0097a7 !important;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+        .detailTask {
+            width: 65%;
+            float: right;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            margin: 2%;
+            .btn-accept {
+                border: 0;
+                background-color: #228be6;
+                color: #f8f9fa;
+                width: 200px;
+                border-bottom: 5px solid #0962b1;
+                font-weight: 500;
+                border-radius: 5px;
+                padding-top: 0.7rem;
+                padding-bottom: 0.7rem;
+                font-size: 1.25rem;
+                text-align: center;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                -ms-border-radius: 5px;
+                -o-border-radius: 5px;
+            }
+            .btn-decliner {
+                border: 0;
+                background-color: #e92f2f;
+                color: #f8f9fa;
+                width: 200px;
+                border-bottom: 5px solid #a51a1a;
+                font-weight: 500;
+                border-radius: 5px;
+                padding-top: 0.7rem;
+                padding-bottom: 0.7rem;
+                font-size: 1.25rem;
+                text-align: center;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                -ms-border-radius: 5px;
+                -o-border-radius: 5px;
+                float: right;
+            }
+            #annuler {
+                display: none;
+            }
+            .contenue {
+                padding: 3%;
+                border-bottom: 1px solid #e0e0e0;
+                .btn-link {
+                    font-weight: 700;
+                    text-decoration: none;
+                    color: #228be6
+                }
+            }
+            .etablir {
+                background: #e5e5e5;
+                padding: 10%;
+                display: none;
+            }
+            .tas-rep {
+                background: url('../../assets/background/back-rep-task.PNG');
+                height: 150px;
+                padding-top: 10%;
+            }
+            .contenue-header {
+                background-color: #00bcd4 !important;
+                img {
+                    height: 70px;
+                    border-radius: 50%;
+                    -webkit-border-radius: 50%;
+                    -moz-border-radius: 50%;
+                    -ms-border-radius: 50%;
+                    -o-border-radius: 50%;
+                    border: 1px solid #0097a7;
+                }
+                #soc {
+                    font-size: 1.5rem;
+                    color: #fff;
+                    font-weight: 700;
+                    letter-spacing: 2px;
+                }
+            }
+        }
+    }
+
+    .dynamix {
+        display: none;
+        width: 100%;
+        margin-top: 5%;
+    }
+
+    #annuleraccept {
+        display: none;
+    }
+    /* On screens that are 992px or less, set the background color to blue */
+
+    @media screen and (max-width: 700px) {
+        .customer {
+            display: initial;
+            width: 75%;
+            margin: auto;
+        }
+        .ProfilRespo,
+        .detailTask {
+            width: 90%!important;
+            margin: auto;
+            margin-left: 50%;
+        }
+        .btn-accept,
+        .btn-decliner {
+            width: 125px!important;
+            font-size: 15px;
+            margin-top: 9%;
+        }
+    }

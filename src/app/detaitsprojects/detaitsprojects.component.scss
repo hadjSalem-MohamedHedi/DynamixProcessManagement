@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css?family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Changa&display=swap');
+.body_home {
+    .nav_home {
+        width: 87%;
+        background: #f1f3f5;
+        margin: auto;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        .justify-content-center {
+            border-bottom: 2px solid #eee;
+        }
+        .nav-item {
+            padding: 1%;
+            font-weight: 500;
+            color: #ccc;
+            transition: ease-in 0.2s;
+            -webkit-transition: ease-in 0.2s;
+            -moz-transition: ease-in 0.2s;
+            -ms-transition: ease-in 0.2s;
+            -o-transition: ease-in 0.2s;
+            font-size: xx-large;
+        }
+        .active {
+            color: #123;
+            font-weight: bold;
+        }
+        .nav-item:hover {
+            border-top: 5px solid #25a9d9;
+            color: #123;
+            transition: ease-in 0.1s;
+            -webkit-transition: ease-in 0.1s;
+            -moz-transition: ease-in 0.1s;
+            -ms-transition: ease-in 0.1s;
+            -o-transition: ease-in 0.1s;
+        }
+    }
+    .contenue {
+        width: 87%;
+        margin: auto;
+        background: #f1f3f5;
+        padding: 2%;
+        font-weight: 400;
+        #dashboard {
+            display: none;
+            .besoin {
+                background-attachment: #ddd;
+                padding: 2%;
+                border: 2px solid #ccc;
+                transition: ease-in 0.1s;
+                -webkit-border-radius: 7px;
+                -moz-border-radius: 7px;
+                -ms-border-radius: 7px;
+                -o-border-radius: 7px;
+                -webkit-transition: ease-in 0.1s;
+                -moz-transition: ease-in 0.1s;
+                -ms-transition: ease-in 0.1s;
+                -o-transition: ease-in 0.1s;
+                margin: 2%;
+                h5 {
+                    text-align: center;
+                    font-weight: 700;
+                    font-size: 3em;
+                    color: #d82c2e;
+                }
+                h6 {
+                    font-weight: 700;
+                    font-size: 1em;
+                    text-align: center;
+                    color: #123;
+                    font-family: 'Bangers', cursive;
+                }
+                h3 {
+                    font-family: 'Changa', sans-serif;
+                    font-weight: 500;
+                    color: #000;
+                }
+                #desc-besoin,
+                #hide {
+                    display: none;
+                }
+            }
+            .besoin:hover {
+                background: #fff;
+                border: 2px solid #d82c2e;
+            }
+        }
+        #plan {
+            display: none;
+            .ressource {
+                background-attachment: #ddd;
+                padding: 2%;
+                border: 2px solid #ccc;
+                transition: ease-in 0.1s;
+                -webkit-border-radius: 7px;
+                -moz-border-radius: 7px;
+                -ms-border-radius: 7px;
+                -o-border-radius: 7px;
+                -webkit-transition: ease-in 0.1s;
+                -moz-transition: ease-in 0.1s;
+                -ms-transition: ease-in 0.1s;
+                -o-transition: ease-in 0.1s;
+                margin: 2%;
+                h5 {
+                    text-align: center;
+                    font-weight: 700;
+                    font-size: 3em;
+                    color: #d82c2e;
+                }
+                h6 {
+                    font-weight: 700;
+                    font-size: 1.5em;
+                    letter-spacing: 2px;
+                    text-align: center;
+                    color: #123;
+                    font-family: 'Bangers', cursive;
+                }
+                h3 {
+                    font-family: 'Changa', sans-serif;
+                    font-weight: 700;
+                    font-size: 14px;
+                    border-bottom: 2px dashed #d82c2e;
+                    text-align: center;
+                    color: #000;
+                }
+                #desc-besoin,
+                #hide {
+                    color: #d82c2e;
+                    font-weight: 500;
+                }
+            }
+            .besoin:hover {
+                background: #fff;
+                border: 2px solid #d82c2e;
+            }
+        }
+    }
+    #today {
+        display: none;
+    }
+    #journal {
+        display: none;
+        .release {
+            background-attachment: #ddd;
+            padding: 2%;
+            border: 2px solid #ccc;
+            transition: ease-in 0.1s;
+            -webkit-border-radius: 7px;
+            -moz-border-radius: 7px;
+            -ms-border-radius: 7px;
+            -o-border-radius: 7px;
+            -webkit-transition: ease-in 0.1s;
+            -moz-transition: ease-in 0.1s;
+            -ms-transition: ease-in 0.1s;
+            -o-transition: ease-in 0.1s;
+            margin: 2%;
+            h5 {
+                text-align: center;
+                font-weight: 700;
+                font-size: 3em;
+                color: #d82c2e;
+            }
+            h6 {
+                font-weight: 700;
+                font-size: 1.5em;
+                letter-spacing: 2px;
+                text-align: center;
+                color: #123;
+                font-family: 'Bangers', cursive;
+            }
+            h3 {
+                font-family: 'Changa', sans-serif;
+                font-weight: 700;
+                font-size: 14px;
+                border-bottom: 2px dashed #d82c2e;
+                text-align: center;
+                color: #000;
+            }
+            #desc-besoin,
+            #hide {
+                color: #d82c2e;
+                font-weight: 500;
+            }
+        }
+        .besoin:hover {
+            background: #fff;
+            border: 2px solid #d82c2e;
+        }
+    }
+}

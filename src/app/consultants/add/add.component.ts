@@ -1,0 +1,46 @@
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-add',
+  templateUrl: './add.component.html',
+  styleUrls: ['./add.component.scss']
+})
+export class AddComponent implements OnInit {
+  private AddCons = environment.apiUrl + 'AddConsultant/';
+  response: any;
+
+  nom: string;
+  id: string;
+  prenom: string;
+  cin: string;
+
+  data ={
+    nom :'',
+    prenom:'',
+    cin:'',
+    id:''
+  }
+  constructor(private httpClient: HttpClient,public router:Router) { }
+
+  ngOnInit() {
+  }
+
+
+  InsertCons(){
+    this.nom=this.data.nom;
+    this.prenom=this.data.prenom;
+    this.id=this.data.id;
+    this.cin=this.data.cin;
+    this.httpClient.get(this.AddCons+this.id+"/"+this.cin+"/"+this.nom+"/"+this.prenom)
+      .subscribe((response) => {
+        this.response = response;
+        });
+        this.router.navigate(['/Consultants']);
+
+}
+
+}

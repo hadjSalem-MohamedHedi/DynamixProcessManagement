@@ -1,0 +1,71 @@
+<div class="body_home">
+    <div class="nav_home">
+        <ul class="nav justify-content-center">
+
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/Consultants"> <i class="fas fa-undo-alt"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="Dashboard">Profil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="Plan">Password</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="Today">curriculum vitae </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="Journal">Image</a>
+            </li>
+        </ul>
+    </div>
+    <div *ngFor="let response of response">
+        <h1 scope="row "> {{response.nom}} , {{response.prenom}}</h1>
+    </div>
+    <div class="contenue">
+
+        <div id="dashboard">
+            <div *ngFor="let response of response">
+                <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <h6>CIN : </h6>
+                            <input type="text " class="form-control" value="{{response.cin}}" id="cin" formControlName="cin" disabled>
+                        </div>
+
+                        <div class="col-sm-5">
+                            <h6>ID : </h6>
+                            <input type="text " class="form-control" value="{{response.id}}" id="id" formControlName="id" disabled>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <h6>Nom : </h6>
+                            <input type="text " class="form-control" id="nom" formControlName="nom" placeholder="{{response.nom}}" required minlength="3">
+                        </div>
+
+                        <div class="col-sm-5">
+                            <h6>Prénom : </h6>
+                            <input type="text " class="form-control" placeholder="{{response.prenom}}" id="prenom" formControlName="prenom" required minlength="3">
+                        </div>
+                    </div>
+                    <button type="submit" [disabled]='!employeeForm.valid'>update</button>
+                </form>
+                <div>
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <div id="plan">plan</div>
+        <div id="today">today</div>
+        <div id="journal">journal</div>
+    </div>
+
+</div>

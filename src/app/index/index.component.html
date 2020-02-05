@@ -1,0 +1,38 @@
+<div class="body">
+
+    <div class="header">
+        <app-navbar></app-navbar>
+    </div>
+
+    <div class="contenue">
+
+        <div class="barre-right">
+            <nav class="navbar-primary">
+                <a class="btn-expand-collapse">
+                    <a href="#"><img src="../../assets/img/avatar/SOS.PNG" /><span class="nav-label">  Réclamation</span></a>
+                </a>
+                <ul class="navbar-primary-menu">
+                    <li>
+                        <a routerLink="/HomeDirec"><i class="fas fa-grip-horizontal"></i><span class="nav-label"> Home</span></a>
+                        <a routerLink="/Dashboard"><i class="fas fa-chart-line"></i><span class="nav-label"> Statistique</span></a>
+                        <a routerLink="/Customer"><i class="fas fa-users-cog"></i><span class="nav-label"> Clients</span></a>
+                        <a routerLink="/Consultants"><i class="far fa-address-card"></i><span class="nav-label"> Consultants</span></a>
+                        <a routerLink="/Project"><i class="fas fa-project-diagram"></i><span class="nav-label"> Projets</span></a>
+                        <a routerLink="/Administration"><i class="fas fa-archway"></i><span class="nav-label"> Administration</span></a>
+                        <a routerLink="/Claims"><i class="fas fa-book-reader"></i><span class="nav-label"> Réclammations</span></a>
+                        <a routerLink="/Task"><i class="fas fa-tasks"></i><span class="nav-label"> Taches</span></a>
+                        <a routerLink="/TableDyn"><i class="fas fa-thumbtack"></i><span class="nav-label"> Tableau dynamix</span></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+
+        <div class="body-contenue">
+            <router-outlet></router-outlet>
+
+        </div>
+
+    </div>
+
+</div>

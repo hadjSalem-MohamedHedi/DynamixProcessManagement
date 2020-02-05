@@ -1,0 +1,31 @@
+.bg-light {
+    background: #25a9d9!important;
+    position: fixed;
+    color: #fff;
+    width: 100%!important;
+    .user {
+        margin-left: 15px;
+        margin-right: 10px;
+    }
+    .badge-light {
+        background-color: #FFFFFF;
+        font-size: 10px;
+        text-align: center;
+        color: #e15258;
+        padding: 4px;
+        border-radius: 3px;
+        margin-left: 15px;
+        margin-right: 10px;
+    }
+}
+
+.navbar-brand {
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.navbar-brand:hover {
+    color: #fff;
+}

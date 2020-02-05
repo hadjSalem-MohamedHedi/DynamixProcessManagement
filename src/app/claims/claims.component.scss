@@ -1,0 +1,41 @@
+.container {
+    padding: 2%;
+    .img-circle {
+        border-radius: 50%;
+        height: 35px;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+    }
+    .card-footer {
+        padding: 0;
+        border: 0;
+    }
+    .left {
+        width: 50%;
+        float: left;
+        padding: 3%;
+        text-align: center;
+        color: #ccc;
+        font-weight: 300;
+    }
+    .right {
+        color: #ccc;
+        font-weight: 300;
+        width: 50%;
+        float: right;
+        padding: 3%;
+        text-align: center;
+    }
+    .right:hover,
+    .left:hover {
+        color: #fff;
+        font-weight: 700;
+        transition: ease-in-out 0.1s;
+        -webkit-transition: ease-in-out 0.1s;
+        -moz-transition: ease-in-out 0.1s;
+        -ms-transition: ease-in-out 0.1s;
+        -o-transition: ease-in-out 0.1s;
+    }
+}

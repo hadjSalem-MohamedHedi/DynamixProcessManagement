@@ -1,0 +1,46 @@
+<div class="container">
+    <h1>Dynamix'S Consultants</h1>
+    <h6>Vous pouvez maintenant réinitialiser votre liste des consultants</h6>
+    <a type="button" class="btn btn-outline-success" routerLink="/AddConsultants"> <i class="fas fa-user-plus"></i> Ajouter Consultants</a>
+
+    <table class="table table-hover table-striped table-xl-responsive">
+        <thead class="thead-light">
+            <tr>
+                <th># N°</th>
+                <th>CIN</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Birth date</th>
+                <th>Ville</th>
+                <th>Numéro</th>
+                <th>curriculum vitae</th>
+                <th></th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let response of response">
+                <th scope="row">{{response.id}}</th>
+                <td>{{response.cin}}</td>
+                <td><a routerLink="/UpdateConsultant/{{response.id}}">{{response.nom}}</a> </td>
+                <td>{{response.prenom}}</td>
+                <td>28/10/1994</td>
+                <td>Bizerte</td>
+                <td>98 139 126</td>
+                <td><button type="button" class="btn btn-outline-primary"><i class="fas fa-download"></i> Download</button></td>
+                <td>
+                    <button class="btn btn-danger" mwlConfirmationPopover [popoverTitle]="test" [popoverMessage]="test" placement="top" (confirm)="onDelete(response.id)" (cancel)=" cancelClicked=true ">
+
+                       <i class="fas fa-user-minus "></i>
+                       Delete
+                      </button></td>
+                <td><button type="button " class="btn btn-info" routerLink="/UpdateConsultant/{{response.id}}"><i class="fas fa-user-cog "></i> Update</button></td>
+
+            </tr>
+
+
+        </tbody>
+    </table>
+
+</div>
