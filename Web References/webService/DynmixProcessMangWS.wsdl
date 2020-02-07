@@ -84,6 +84,8 @@
             <element minOccurs="1" maxOccurs="1" name="cin" type="string" />
             <element minOccurs="1" maxOccurs="1" name="nom" type="string" />
             <element minOccurs="1" maxOccurs="1" name="prenom" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="email" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="role" type="string" />
           </sequence>
         </complexType>
       </element>

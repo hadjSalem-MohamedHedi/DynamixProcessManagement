@@ -189,28 +189,32 @@ namespace DPM_Api_VBETA.webService {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddConsultant", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="AddConsultant_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public bool AddConsultant(string cin, string nom, string prenom) {
+        public bool AddConsultant(string cin, string nom, string prenom, string email, string role) {
             object[] results = this.Invoke("AddConsultant", new object[] {
                         cin,
                         nom,
-                        prenom});
+                        prenom,
+                        email,
+                        role});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void AddConsultantAsync(string cin, string nom, string prenom) {
-            this.AddConsultantAsync(cin, nom, prenom, null);
+        public void AddConsultantAsync(string cin, string nom, string prenom, string email, string role) {
+            this.AddConsultantAsync(cin, nom, prenom, email, role, null);
         }
         
         /// <remarks/>
-        public void AddConsultantAsync(string cin, string nom, string prenom, object userState) {
+        public void AddConsultantAsync(string cin, string nom, string prenom, string email, string role, object userState) {
             if ((this.AddConsultantOperationCompleted == null)) {
                 this.AddConsultantOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddConsultantOperationCompleted);
             }
             this.InvokeAsync("AddConsultant", new object[] {
                         cin,
                         nom,
-                        prenom}, this.AddConsultantOperationCompleted, userState);
+                        prenom,
+                        email,
+                        role}, this.AddConsultantOperationCompleted, userState);
         }
         
         private void OnAddConsultantOperationCompleted(object arg) {

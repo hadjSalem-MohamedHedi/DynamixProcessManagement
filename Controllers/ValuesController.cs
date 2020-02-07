@@ -159,10 +159,10 @@ namespace DPM_Api_VBETA.Controllers
 
 
         [HttpGet]
-        [Route("AddConsultant/{cin}/{nom}/{prenom}")]
-        public HttpResponseMessage AddConsultant(string cin,string nom,string prenom)
+        [Route("AddConsultant/{cin}/{nom}/{prenom}/{email}/{Role}")]
+        public HttpResponseMessage AddConsultant(string cin,string nom,string prenom,string email,string Role)
         {
-
+            Boolean res;
 
             try
             {
@@ -172,9 +172,10 @@ namespace DPM_Api_VBETA.Controllers
                 //string text = services.ListeConsultant(ref Consultant); 
 
                 var response = new HttpResponseMessage(HttpStatusCode.OK);
-                services.AddConsultant(cin,nom,prenom);
-
-                response.Content = new StringContent(allJson);
+                if (services.AddConsultant(cin, nom, prenom,email,Role))
+                {  res = true; }
+                else { res = false; }
+                response.Content = new StringContent(res.ToString());
                 //responce.Content= new str
                 return response;
             }
