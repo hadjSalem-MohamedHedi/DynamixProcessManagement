@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "Dpm-Fr",
+      "public": "dist/Dpm-Fr",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

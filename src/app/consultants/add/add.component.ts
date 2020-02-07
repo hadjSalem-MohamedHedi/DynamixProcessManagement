@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-add',
@@ -24,7 +26,7 @@ export class AddComponent implements OnInit {
     cin:'',
     id:''
   }
-  constructor(private httpClient: HttpClient,public router:Router) { }
+  constructor(private httpClient: HttpClient,public router: Router , private toastr: ToastrService) { }
 
   ngOnInit() {
   }
@@ -35,11 +37,14 @@ export class AddComponent implements OnInit {
     this.prenom=this.data.prenom;
     this.id=this.data.id;
     this.cin=this.data.cin;
+
     this.httpClient.get(this.AddCons+this.id+"/"+this.cin+"/"+this.nom+"/"+this.prenom)
       .subscribe((response) => {
         this.response = response;
         });
-        this.router.navigate(['/Consultants']);
+
+        this.toastr.success('Ajoue du Consultant avec success !!',' success ');
+       this.router.navigate(['/Consultants']);
 
 }
 

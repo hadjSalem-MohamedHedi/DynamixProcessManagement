@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "dynamicprocessmanagement": {
+      "hosting": {
+        "Dpm-Fr": [
+          "dynamicprocessmanagement"
+        ]
+      }
+    }
+  }
+}

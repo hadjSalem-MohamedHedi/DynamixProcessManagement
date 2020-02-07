@@ -1,8 +1,20 @@
-<p>add works!</p>
+<div class="row">
+    <div class="col-sm-5">
+        <h6>Cin : </h6>
+        <input type="text" class="form-control" placeholder="cin" name="cin" [(ngModel)]="data.cin">
+    </div>
 
-<input type="text" class="form-control" placeholder="cin" name="cin" [(ngModel)]="data.cin">
+    <div class="col-sm-5">
+        <h6>Nom : </h6>
+        <input type="text" class="form-control" placeholder="nom" name="nom" [(ngModel)]="data.nom">
+    </div>
 
-<input type="text" class="form-control" placeholder="nom" name="nom" [(ngModel)]="data.nom">
+    <div class="col-sm-5">
+        <h6>Prénom : </h6>
+        <input type="text" class="form-control" placeholder="prenom" name="prenom" [(ngModel)]="data.prenom">
+    </div>
+    <div class="col-sm-5">
+        <button class="btn btn-outline-success" (click)="InsertCons()">ADD</button>
+    </div>
 
-<input type="text" class="form-control" placeholder="prenom" name="prenom" [(ngModel)]="data.prenom">
-<button class="btn btn-outline-success" (click)="InsertCons()">ADD</button>
+</div>

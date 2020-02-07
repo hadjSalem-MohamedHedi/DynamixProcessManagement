@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+import { Router } from '@angular/router';
 
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,7 +13,16 @@ import * as $ from 'jquery';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+
+  mail: string = '';
+  pswd: string= '';
+  euror: string= '';
+
+
+  constructor(public fire: AngularFireAuth , public router: Router) {
+    let status = localStorage.getItem('isLoggedIn');
+
+  }
 
   ngOnInit() {
     $(document).ready(function(){
@@ -33,5 +47,27 @@ export class LoginComponent implements OnInit {
     });
 
   }
+
+  Login(){
+    this.fire.auth.signInWithEmailAndPassword(this.mail,this.pswd)
+    .then(user=>{
+      console.log(this.mail,this.pswd)
+
+      this.fire.authState.subscribe(auth=>{
+        if(auth){
+          localStorage.setItem('isLoggedIn', 'true');
+          this.router.navigate(['/Customer']);
+        }
+       });
+
+
+    }).catch(error =>{
+      console.error(error);
+      this.euror = "Password ou Email Invalide";
+      console.log('no auth ');
+    })
+
+  }
+
 
 }

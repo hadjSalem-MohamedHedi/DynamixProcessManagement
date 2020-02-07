@@ -1,2 +1,2 @@
-<app-index></app-index>
-<!-- <router-outlet></router-outlet> -->
+<app-login *ngIf="!isLoggedIn"></app-login>
+<app-index *ngIf="isLoggedIn"></app-index>

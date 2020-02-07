@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-consultants',
   templateUrl: './consultants.component.html',
@@ -30,7 +32,7 @@ export class ConsultantsComponent implements OnInit {
     cin:'',
     id:''
   }
-  constructor(private httpClient: HttpClient,public router:Router) { }
+  constructor(private httpClient: HttpClient,public router: Router, private toastr: ToastrService ) { }
 
 
   ngOnInit() {
@@ -69,7 +71,10 @@ export class ConsultantsComponent implements OnInit {
     .subscribe((response) => {
       this.response = response;
       });
+      this.toastr.success('Suppression du Consultant avec success !!',' success ');
       this.router.navigate(['/Consultants']);
+      //location.reload();
+
 
   }
 

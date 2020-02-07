@@ -5,6 +5,16 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:51754/api/DPM/'
+  apiUrl: 'http://localhost:51754/api/DPM/',
+  firebase :{
+    apiKey: "AIzaSyBJDxx9Rr9eVWpTZCgJaUF4r7zpzBqsXM0",
+    authDomain: "dynamicprocessmanagement.firebaseapp.com",
+    databaseURL: "https://dynamicprocessmanagement.firebaseio.com",
+    projectId: "dynamicprocessmanagement",
+    storageBucket: "dynamicprocessmanagement.appspot.com",
+    messagingSenderId: "32594850973",
+    appId: "1:32594850973:web:0fd2588410eadcaada9074",
+    measurementId: "G-W7T1CRHJSP"
+  }
 
 };

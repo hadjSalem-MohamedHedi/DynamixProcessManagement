@@ -1,9 +1,20 @@
+import { ToastrModule } from 'ngx-toastr';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule , ErrorHandler } from '@angular/core';
 import { RouterModule,Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+
+
+
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { environment } from '../environments/environment';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { PersonneService } from './services/personne.service';
 
@@ -32,9 +43,10 @@ import { SignInComponent } from './users/sign-in/sign-in.component';
 import { SignUpComponent } from './users/sign-up/sign-up.component';
 import { AddComponent } from './consultants/add/add.component';
 import { UpdateComponent } from './consultants/update/update.component';
+import { CompteComponent } from './compte/compte.component';
 
 
-const routes:Routes=[
+const routes: Routes=[
   {path: '', redirectTo: 'Customer',pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'navbar',component:NavbarComponent},
@@ -46,6 +58,11 @@ const routes:Routes=[
   {path: 'Consultants',component:ConsultantsComponent},
   {path: 'AddConsultants',component:AddComponent},
   {path: 'UpdateConsultant/:id',component:UpdateComponent},
+
+
+  {path: 'Compte',component:CompteComponent},
+
+
 
   {path: 'Customer',component:CustomerComponent},
   {path: 'Project',component:ProjectComponent},
@@ -84,6 +101,7 @@ const routes:Routes=[
     SignUpComponent,
     AddComponent,
     UpdateComponent,
+    CompteComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,8 +109,19 @@ const routes:Routes=[
     AppRoutingModule,
     FormsModule ,
     ReactiveFormsModule,
-    ConfirmationPopoverModule.forRoot({confirmButtonType :'danger'}),
-    RouterModule.forRoot(routes)
+
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+
+
+
+    ConfirmationPopoverModule.forRoot({confirmButtonType : 'danger'}),
+    RouterModule.forRoot(routes),
+    ToastrModule.forRoot({
+      timeOut : 5000,
+      positionClass : 'toast-top-right',
+      preventDuplicates : false
+    }),
   ],
   providers: [PersonneService],
   bootstrap: [AppComponent]

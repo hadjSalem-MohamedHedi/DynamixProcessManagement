@@ -1,7 +1,7 @@
 <div class="body">
 
     <div class="header">
-        <app-navbar></app-navbar>
+        <app-navbar *ngIf="!isLoggedIn"></app-navbar>
     </div>
 
     <div class="contenue">
@@ -21,6 +21,7 @@
                         <a routerLink="/Administration"><i class="fas fa-archway"></i><span class="nav-label"> Administration</span></a>
                         <a routerLink="/Claims"><i class="fas fa-book-reader"></i><span class="nav-label"> Réclammations</span></a>
                         <a routerLink="/Task"><i class="fas fa-tasks"></i><span class="nav-label"> Taches</span></a>
+                        <a routerLink="/Compte"><i class="fas fa-award"></i><span class="nav-label"> Compte</span></a>
                         <a routerLink="/TableDyn"><i class="fas fa-thumbtack"></i><span class="nav-label"> Tableau dynamix</span></a>
                     </li>
                 </ul>
