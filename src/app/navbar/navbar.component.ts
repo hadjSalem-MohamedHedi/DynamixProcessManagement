@@ -23,11 +23,11 @@ export class NavbarComponent implements OnInit {
   logaout(){
     this.afAuth.auth.signOut();
     localStorage.setItem('isLoggedIn','false')
-    localStorage.setItem('uid','')
-    localStorage.setItem('isLoggedIn','false')
-    localStorage.setItem('mail','')
-    localStorage.setItem('myuid','')
     this.router.navigate(['/login'])
+    localStorage.removeItem('isLoggedIn');
+
+    location.reload();
+
   }
 
 }

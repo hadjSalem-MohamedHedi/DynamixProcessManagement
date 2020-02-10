@@ -6,7 +6,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { HttpClient } from '@angular/common/http';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { environment } from '../../environments/environment';
-
+import { AngularFireDatabase , AngularFireList} from 'angularfire2/database';
 import 'firebase/database';
 @Component({
   selector: 'app-compte',
@@ -15,6 +15,9 @@ import 'firebase/database';
 })
 export class CompteComponent implements OnInit {
   private AddCons = environment.apiUrl + 'AddConsultant/';
+  itemList: AngularFireList<any>;
+  itemArray = [] ;
+
   response: any;
   euror: string= '';
 
@@ -27,29 +30,44 @@ export class CompteComponent implements OnInit {
   cin: string;
   role: string;
 
+  myrole :string;
+  myemail :string;
 
 
-  constructor(public fire: AngularFireAuth , public router: Router , private httpClient: HttpClient , private toastr: ToastrService) {
-   }
+  constructor(public fire: AngularFireAuth , public router: Router , private httpClient: HttpClient , private toastr: ToastrService , public db: AngularFireDatabase ) {
+    this.itemList = db.list('Consultants');
+
+  }
 
   ngOnInit() {
+    this.myemail = localStorage.getItem('myemail')
+
+     this.itemList.snapshotChanges().subscribe(actions=>{
+      actions.forEach(action=>{
+       let y =action.payload.toJSON()
+       this.itemArray.push(y as ListItemClass)
+
+     })
+    })
   }
 
 
   Registre(){
 
-  console.log(this.nom);
-  console.log(this.prenom);
-  console.log(this.id);
-  console.log(this.cin);
+
 
     this.httpClient.get(this.AddCons+this.id+"/"+this.cin+"/"+this.nom+"/"+this.prenom+"/"+this.email+"/"+this.role)
       .subscribe((response) => {
         this.response = response;
         });
      // this.toastr.success('Ajoue du Consultant avec success !!', 'NavX ');
+     this.itemList.push({
+      nom :this.nom,
+      prenom :this.prenom,
+      email :this.email,
+      role:this.role,
 
-
+    })
 
     this.fire.auth.createUserWithEmailAndPassword(this.email , this.password)
     .then(user=>{
@@ -63,4 +81,11 @@ export class CompteComponent implements OnInit {
     })
   }
 
+
+
+
+}
+export class ListItemClass{
+  email: string;
+  role: string;
 }

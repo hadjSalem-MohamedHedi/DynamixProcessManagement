@@ -10,11 +10,10 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 
-import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule , AngularFireList} from 'angularfire2/database';
 
 import { PersonneService } from './services/personne.service';
 
@@ -47,7 +46,6 @@ import { CompteComponent } from './compte/compte.component';
 
 
 const routes: Routes=[
-  {path: '', redirectTo: 'Customer',pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'navbar',component:NavbarComponent},
   {path: 'HomeUser',component:HomeUserComponent},
@@ -112,6 +110,7 @@ const routes: Routes=[
 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+    AngularFireDatabaseModule, // imports firebase/storage only needed for storage features
 
 
 

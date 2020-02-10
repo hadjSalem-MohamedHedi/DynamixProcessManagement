@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
+
 import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+
+
 import { Router } from '@angular/router';
 
-import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -15,8 +18,7 @@ export class AppComponent {
   title = 'Dpm-Fr';
   private isLoggedIn: boolean=true;
   user: Observable<firebase.User>;
-  myuid:string;
-userkey:any
+
 private email: string;
   constructor(public afAuth: AngularFireAuth ,  public router: Router) {
 
@@ -31,11 +33,12 @@ private email: string;
       if (user) {
         this.isLoggedIn=true
         localStorage.setItem('isLoggedIn','true')
+        console.log("user connecter ");
 
       }
       else {
       this.isLoggedIn=false
-      localStorage.setItem('isLoggedIn','false')
+      console.log("user non connecter ");
 
     }
     });

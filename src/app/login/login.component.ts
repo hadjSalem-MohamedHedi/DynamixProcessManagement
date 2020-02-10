@@ -3,9 +3,7 @@ import * as $ from 'jquery';
 import { Router } from '@angular/router';
 
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -56,6 +54,8 @@ export class LoginComponent implements OnInit {
       this.fire.authState.subscribe(auth=>{
         if(auth){
           localStorage.setItem('isLoggedIn', 'true');
+          localStorage.setItem('myemail', this.mail);
+          location.reload();
           this.router.navigate(['/Customer']);
         }
        });

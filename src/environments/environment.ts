@@ -6,6 +6,7 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:51754/api/DPM/',
+
   firebase :{
     apiKey: "AIzaSyBJDxx9Rr9eVWpTZCgJaUF4r7zpzBqsXM0",
     authDomain: "dynamicprocessmanagement.firebaseapp.com",

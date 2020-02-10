@@ -11,8 +11,8 @@
                 <a class="btn-expand-collapse">
                     <a href="#"><img src="../../assets/img/avatar/SOS.PNG" /><span class="nav-label">  Réclamation</span></a>
                 </a>
-                <ul class="navbar-primary-menu">
-                    <li>
+                <ul class="navbar-primary-menu" *ngFor="let item of itemArray">
+                    <li *ngIf="item.email === myemail">
                         <a routerLink="/HomeDirec"><i class="fas fa-grip-horizontal"></i><span class="nav-label"> Home</span></a>
                         <a routerLink="/Dashboard"><i class="fas fa-chart-line"></i><span class="nav-label"> Statistique</span></a>
                         <a routerLink="/Customer"><i class="fas fa-users-cog"></i><span class="nav-label"> Clients</span></a>
@@ -21,7 +21,7 @@
                         <a routerLink="/Administration"><i class="fas fa-archway"></i><span class="nav-label"> Administration</span></a>
                         <a routerLink="/Claims"><i class="fas fa-book-reader"></i><span class="nav-label"> Réclammations</span></a>
                         <a routerLink="/Task"><i class="fas fa-tasks"></i><span class="nav-label"> Taches</span></a>
-                        <a routerLink="/Compte"><i class="fas fa-award"></i><span class="nav-label"> Compte</span></a>
+                        <a *ngIf="item.role === 'Direction' " routerLink="/Compte"><i class="fas fa-award"></i><span class="nav-label"> Compte</span></a>
                         <a routerLink="/TableDyn"><i class="fas fa-thumbtack"></i><span class="nav-label"> Tableau dynamix</span></a>
                     </li>
                 </ul>
@@ -31,7 +31,12 @@
 
         <div class="body-contenue">
             <router-outlet></router-outlet>
-
+            <div *ngFor="let item of itemArray">
+                <div *ngIf="item.email === myemail">
+                    <div *ngIf="item.role === 'Direction' "></div>
+                    <div>{{item.role}}</div>
+                </div>
+            </div>
         </div>
 
     </div>
