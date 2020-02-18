@@ -1,0 +1,86 @@
+<div class="container conge">
+
+    <div class="header">
+        <h6>Demande Conge</h6>
+    </div>
+    <div class="body">
+
+        <span *ngFor="let response of response">
+            <div class="alert alert-success" role="alert" *ngIf="response.res === 'true'">
+                <strong>Well done!</strong> votre demande à été envoyé .
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="response.res === 'false'">
+                <strong>Oh snap!</strong> Modifiez certaines choses et essayez de rendre à nouveau.
+            </div>
+        </span>
+
+        <span *ngFor="let item of itemArray">
+            <span *ngIf="item.email === myemail">
+<form [formGroup]="CongeForm" (ngSubmit)="onSubmit()">
+        <div *ngFor="let getuser of getuser">         
+            <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Cin :</span>
+    </div>
+    <input type="text" class="form-control" placeholder="{{getuser.cin}} " required formControlName="cin">
+</div>
+</div>
+<hr>
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text">Nom & Prénom </span>
+    </div>
+    <input type="text" class="form-control" placeholder=" {{item.nom}} {{item.prenom}}" required formControlName="nom">
+</div>
+
+<hr>
+
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text">Type de congé</span>
+    </div>
+    <select required class="form-control btn-info" formControlName="motif">
+            <option value="Maladie">Maladie</option>
+            <option value="Conge Repos">Conge Repos</option>
+            <option value="Décés">Décés</option>
+            <option value="Congé annuel">Congé annuel</option>
+            <option value="Congé maternité">Congé maternité</option>
+            <option value="Activités judiciaires">Activités judiciaires</option>
+            <option value="Congé paternal">Congé paternal</option>
+            <option value="Autre">Autre</option>
+
+          </select>
+
+</div>
+
+<hr>
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text">Date : </span>
+    </div>
+    <input type="date" class="form-control" formControlName="datedeb" required>
+</div>
+<hr>
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text">au  : </span>
+    </div>
+    <input type="date" class="form-control" formControlName="datefin" required>
+</div>
+<hr>
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text">Nombre de jours: </span>
+    </div>
+    <input type="number" class="form-control" formControlName="nbjours" required>
+</div>
+<hr>
+
+<button type="submit" class="btn btn-outline-info btn-block" [disabled]='!CongeForm.valid'>Confirmer</button>
+
+</form>
+</span>
+
+</span>
+</div>
+</div>

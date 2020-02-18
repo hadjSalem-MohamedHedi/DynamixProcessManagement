@@ -1,0 +1,19 @@
+.container {
+    padding: 0
+}
+
+.conge {
+    background: #fff;
+    width: 65%;
+    border: 1px solid #ccc;
+    margin: auto;
+    .header {
+        padding: 2%;
+        background: #00bcd4;
+        color: aliceblue;
+        font-weight: 500;
+    }
+    .body {
+        padding: 5%;
+    }
+}

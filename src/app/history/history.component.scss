@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Changa&display=swap');
+#resetbtn {
+    background: #fa6ba2;
+    color: #ffffff;
+    outline: 0;
+    display: inline-block;
+    text-align: center;
+    padding: .5rem 2rem;
+    font-size: 13px;
+    border: 1px solid transparent;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 2%;
+}
+
+#time {
+    font-family: 'Changa', sans-serif;
+    font-weight: 500;
+    color: #000;
+}

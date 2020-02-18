@@ -14,7 +14,68 @@
         <input type="text" class="form-control" placeholder="prenom" name="prenom" [(ngModel)]="data.prenom">
     </div>
     <div class="col-sm-5">
-        <button class="btn btn-outline-success" (click)="InsertCons()">ADD</button>
+        <h6>Date de naissance : </h6>
+        <input type="date" class="form-control form-control btn-outline-info" placeholder="Date de naissance " name="datenais" [(ngModel)]="data.datenais">
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-sm-5">
+        <h6>E-mail : </h6>
+        <input type="text" class="form-control" placeholder="email" name="email" [(ngModel)]="data.email">
+    </div>
+
+    <div class="col-sm-5">
+        <h6>Role Dans Dpm : </h6>
+        <select name="role" [(ngModel)]="data.role" class="btn-outline-info form-control">
+        <option value="" selected>Role du compte : </option>
+        <option value="Direction">Direction</option>
+        <option value="Consultant">Consultant</option>
+        <option value="Clients">Clients</option>
+        <option value="Administration">Administration</option>
+        <option value="Visiteur">Visiteur</option>
+      </select>
+    </div>
+
+
+</div>
+<hr>
+<div class="row">
+    <div class="col-sm-5">
+        <h6>N° Téléphone : </h6>
+        <input type="text" class="form-control" placeholder="tel" name="tel" [(ngModel)]="data.tel">
+    </div>
+
+
+
+
+    <div class="col-sm-5">
+        <h6>N° Téléphone en cas d'urgence : </h6>
+        <input type="text" class="form-control" placeholder="N° Téléphone en cas d'urgence :" name="tell" [(ngModel)]="data.tell">
+    </div>
+</div>
+<hr>
+
+<div class="row">
+    <div class="col-sm-5">
+        <h6>Date début Contrat : </h6>
+        <input type="date" class="form-control btn-outline-info" placeholder="datenais" name="datecon" [(ngModel)]="data.datecon">
+    </div>
+
+
+
+    <div class="col-sm-5">
+        <h6>titre : </h6>
+        <input type="text" class="form-control" placeholder="titre" name="titre" [(ngModel)]="data.titre">
+    </div>
+
+
+
+    <div class="col-sm-5">
+        <h6></h6>
+        <button class="btn btn-outline-success" (click)="InsertCons()" id="conftbtn"> <i class="fas fa-check"></i> Confimer </button>
+        <button class="btn btn-outline-primary" id="resetbtn" routerLink="/Consultants"><i class="fas fa-reply-all"></i> Reset</button>
+
     </div>
 
 </div>

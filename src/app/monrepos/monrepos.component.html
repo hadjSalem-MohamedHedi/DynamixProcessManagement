@@ -1,0 +1,78 @@
+<div class="container maliste" *ngIf="!isLoggedIn">
+
+    <div class="shadow-sm p-3 mb-5 bg-light rounded listauto">
+        <img src="../../assets/img/avatar/auto.png" class="img-fluid rounded-circle" />
+        <h4>Liste autorisation</h4>
+        <div id="btnauto">
+            <div *ngFor="let responseCong of responseCong">
+                <button class="btn btn-outline-danger" (click)="maliste(responseCong.cin)"><i class="far fa-eye"></i> Consulter </button>
+            </div>
+        </div>
+        <div class="responseauto">
+            <button class="btn btn-danger" id="fermerauto"><i class="fas fa-low-vision"></i></button>
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th># Date </th>
+                        <th>Du</th>
+                        <th>Au</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let responsemesCongs of responsemesCongs">
+                    <tr *ngIf="responsemesCongs.type === 'Court'">
+                        <td> {{responsemesCongs.datedeb | date:'dd-MM-yyyy'}}</td>
+                        <td> {{responsemesCongs.heuredeb}}</td>
+                        <td> {{responsemesCongs.heurefin}}</td>
+                        <td> {{responsemesCongs.status}}</td>
+                        <td> <i class="fab fa-xing-square"></i></td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+
+            <div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="shadow-sm p-3 mb-5 bg-light rounded listecong">
+        <img src="../../assets/img/avatar/cong.jpg" class="img-fluid rounded-circle" />
+        <h4>Liste congé</h4>
+        <div id="btncong">
+            <div *ngFor="let responseCong of responseCong">
+                <button class="btn btn-outline-danger" (click)="maliste(responseCong.cin)"><i class="far fa-eye"></i> Consulter </button>
+            </div>
+        </div>
+        <div class="responsecong">
+            <button class="btn btn-danger" id="fermercong"><i class="fas fa-low-vision"></i></button>
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th># Nb Jours </th>
+                        <th>Du</th>
+                        <th>Au</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let responsemesCongs of responsemesCongs">
+                    <tr *ngIf="responsemesCongs.type === 'Long'">
+                        <td> {{responsemesCongs.nbjours}}</td>
+                        <td> {{responsemesCongs.datedeb | date:'dd-MM-yyyy'}}</td>
+                        <td> {{responsemesCongs.datefin | date:'dd-MM-yyyy'}}</td>
+                        <td> {{responsemesCongs.status}}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+            <div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

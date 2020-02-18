@@ -24,8 +24,15 @@ export class AddComponent implements OnInit {
     nom :'',
     prenom:'',
     cin:'',
-    id:''
-  }
+    id:'',
+    role :'',
+    email :'',
+    tel:'',
+    tell:'',
+    datenais:'',
+    datecon:'',
+    titre:'',
+     }
   constructor(private httpClient: HttpClient,public router: Router , private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -38,7 +45,7 @@ export class AddComponent implements OnInit {
     this.id=this.data.id;
     this.cin=this.data.cin;
 
-    this.httpClient.get(this.AddCons+this.id+"/"+this.cin+"/"+this.nom+"/"+this.prenom)
+    this.httpClient.get(this.AddCons+this.id+"/"+this.cin+"/"+this.nom+"/"+this.prenom+"/"+this.data.datenais+"/"+this.data.email+"/"+this.data.role+"/"+this.data.tel+"/"+this.data.tell+"/"+this.data.titre+"/"+this.data.datecon)
       .subscribe((response) => {
         this.response = response;
         });

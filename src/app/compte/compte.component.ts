@@ -16,6 +16,7 @@ import 'firebase/database';
 export class CompteComponent implements OnInit {
   private AddCons = environment.apiUrl + 'AddConsultant/';
   itemList: AngularFireList<any>;
+  itemList1: AngularFireList<any>;
   itemArray = [] ;
 
   response: any;
@@ -35,7 +36,8 @@ export class CompteComponent implements OnInit {
 
 
   constructor(public fire: AngularFireAuth , public router: Router , private httpClient: HttpClient , private toastr: ToastrService , public db: AngularFireDatabase ) {
-    this.itemList = db.list('Consultants');
+    this.itemList = db.list('Comptes');
+    this.itemList1 = db.list('Comptes');
 
   }
 

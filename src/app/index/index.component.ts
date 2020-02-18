@@ -12,7 +12,7 @@ export class IndexComponent implements OnInit {
   itemArray = [] ;
   myemail: string;
   constructor(public db: AngularFireDatabase ) {
-    this.itemList = db.list('Consultants');
+    this.itemList = db.list('Comptes');
   }
 
   ngOnInit() {
@@ -53,4 +53,6 @@ export class IndexComponent implements OnInit {
 export class ListItemClass{
   email: string;
   role: string;
+  nom: string;
+  prenom: string;
 }

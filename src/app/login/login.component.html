@@ -11,7 +11,7 @@
                 <div class="form-group">
                     <img src="../../assets/img/Dynamix/logo-dynamix.png" height="100px" />
                 </div>
-                <h5 id="forgetpasswordid"> {{euror}}</h5>
+                <h5> {{euror}}</h5>
 
                 <div class="form-group">
                     <input type="text" class="form-control" id="" placeholder="E-mail address" name="email" [(ngModel)]="mail">
@@ -30,10 +30,11 @@
             </form>
             <form id="reset-form">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="" placeholder="E-mail address">
+                    <h5>{{eurorReset}}</h5>
+                    <input type="text" class="form-control" id="" placeholder="E-mail address" name="mailReset" [(ngModel)]="mailReset">
                 </div>
                 <div class="form-group">
-                    <button type="button" class="btn btn-outline-primary" id="resetbtn">Send Reset Instructions</button>
+                    <button type="button" class="btn btn-outline-primary" id="resetbtn" (click)="resetPassword()">Send Reset Instructions</button>
                 </div>
                 <button type="button" class="btn btn-outline-primary" id="loginbtn2">Login</button>
 

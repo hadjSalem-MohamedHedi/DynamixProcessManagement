@@ -6,7 +6,7 @@
                 <a class="nav-link" routerLink="/Consultants"> <i class="fas fa-undo-alt"></i></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="Dashboard">Profil</a>
+                <a class="nav-link" id="Dashboard">Informations</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="Plan">Password</a>
@@ -38,7 +38,14 @@
                             <input type="text " class="form-control" value="{{response.id}}" id="id" formControlName="id" disabled>
                         </div>
                     </div>
+                    <hr>
 
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <h6>email : </h6>
+                            <input type="text " class="form-control" value="{{response.email}}" id="id" formControlName="email" disabled>
+                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="col-sm-5">
@@ -51,7 +58,43 @@
                             <input type="text " class="form-control" placeholder="{{response.prenom}}" id="prenom" formControlName="prenom" required minlength="3">
                         </div>
                     </div>
-                    <button type="submit" [disabled]='!employeeForm.valid'>update</button>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <h6>telephone : </h6>
+                            <input type="text " class="form-control" placeholder="{{response.tele}}" id="tele" formControlName="tele" required minlength="3">
+                        </div>
+
+                        <div class="col-sm-5">
+                            <h6>N° Urgence : </h6>
+                            <input type="text " class="form-control" placeholder="{{response.tele2}}" id="tele2" formControlName="tele2" required minlength="3">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <h6>Role Dans Dpm : </h6>
+                            <select name="role" id="role" formControlName="role" class="btn-outline-info form-control">
+                                    <option value="" selected>Role du compte : </option>
+                                    <option value="Direction">Direction</option>
+                                    <option value="Consultant">Consultant</option>
+                                    <option value="Clients">Clients</option>
+                                    <option value="Administration">Administration</option>
+                                    <option value="Visiteur">Visiteur</option>
+                                  </select>
+                        </div>
+                        <div class="col-sm-5">
+                            <h6>Titre : </h6>
+                            <input type="text " class="form-control" placeholder="{{response.titre}}" id="titre" formControlName="titre" required minlength="3">
+                        </div>
+
+
+
+
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary" id="conftbtn" [disabled]='!employeeForm.valid'><i class="far fa-edit"></i> Update</button>
+                    <button class="btn btn-outline-primary" id="resettbtn" routerLink="/Consultants"><i class="fas fa-reply-all"></i> Reset</button>
+
                 </form>
                 <div>
 
@@ -64,7 +107,22 @@
 
 
         <div id="plan">plan</div>
-        <div id="today">today</div>
+
+        <div id="today" class="cvupdate">
+
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile" formControlName="path">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+                <input type="text" name="pathcv" [(ngModel)]="data2.pathcv">
+                <button type="submit" class="btn btn-outline-primary" id="conftbtn" (click)="updatecv()"><i class="far fa-edit"></i> Update</button>
+
+            </div>
+
+
+
+        </div>
+
+
         <div id="journal">journal</div>
     </div>
 

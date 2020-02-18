@@ -1,0 +1,27 @@
+    .maliste {
+        padding: 3%;
+        text-align: center;
+        width: 100%;
+        margin: auto;
+        .listauto {
+            width: 40%;
+            float: left;
+            padding: 1%;
+            background: #fff!important;
+            border: 1px solid #eee;
+            transition: ease-in 0, 5s;
+            .responseauto {
+                display: none;
+            }
+        }
+        .listecong {
+            width: 40%;
+            float: right;
+            padding: 1%;
+            background: #fff!important;
+            border: 1px solid #eee;
+            .responsecong {
+                display: none;
+            }
+        }
+    }

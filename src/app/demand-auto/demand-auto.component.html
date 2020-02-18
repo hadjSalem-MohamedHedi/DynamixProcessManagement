@@ -1,0 +1,90 @@
+<div class="container conge">
+
+    <div class="header">
+        <h6>Demande Autorisation</h6>
+    </div>
+    <div class="body">
+
+        <span *ngFor="let response of response">
+                <div class="alert alert-success" role="alert" *ngIf="response.res === 'true'">
+                    <strong>Well done!</strong> votre demande à été envoyé .
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="response.res === 'false'">
+                    <strong>Oh snap!</strong> Modifiez certaines choses et essayez de rendre à nouveau.
+                </div>
+            </span>
+
+        <span *ngFor="let item of itemArray">
+                <span *ngIf="item.email === myemail">
+    <form [formGroup]="CongeForm" (ngSubmit)="onSubmit()">
+            <div *ngFor="let getuser of getuser">         
+                <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Cin :</span>
+    </div>
+    <input type="text" class="form-control" placeholder="{{getuser.cin}} " required formControlName="cin">
+</div>
+</div>
+<hr>
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text">Nom & Prénom </span>
+    </div>
+    <input type="text" class="form-control" placeholder=" {{item.nom}} {{item.prenom}}" required formControlName="nom">
+</div>
+
+<hr>
+
+
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text">Date : </span>
+    </div>
+    <input type="date" class="form-control" formControlName="date" required>
+</div>
+<hr>
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text">du  : </span>
+    </div>
+    <select name="pets" id="pet-select" class="form-control" formControlName="heuredu" required>
+            <option value="">--Please choose an option--</option>
+            <option value="8 H">8 H</option>
+            <option value="9 H">9 H</option>
+            <option value="10 H">10 H</option>
+            <option value="11 H">11 H</option>
+            <option value="14 H">14 H</option>
+            <option value="15 H">15 H</option>
+            <option value="16 H">16 H</option>
+            <option value="17 H">17 H</option>
+    </select>
+</div>
+<hr>
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text">au  : </span>
+    </div>
+    <select name="pets" id="pet-select" class="form-control" formControlName="heureau" required>
+            <option value="">--Please choose an option--</option>
+            <option value="8 H">8 H</option>
+            <option value="9 H">9 H</option>
+            <option value="10 H">10 H</option>
+            <option value="11 H">11 H</option>
+            <option value="12 H">12 H</option>
+            <option value="14 H">14 H</option>
+            <option value="15 H">15 H</option>
+            <option value="16 H">16 H</option>
+            <option value="17 H">17 H</option>
+            <option value="18 H">18 H</option>
+    </select>
+</div>
+<hr>
+
+<button type="submit" class="btn btn-outline-info btn-block" [disabled]='!CongeForm.valid'>Confirmer</button>
+
+</form>
+</span>
+
+</span>
+</div>
+</div>

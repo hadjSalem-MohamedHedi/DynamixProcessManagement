@@ -43,6 +43,27 @@ import { SignUpComponent } from './users/sign-up/sign-up.component';
 import { AddComponent } from './consultants/add/add.component';
 import { UpdateComponent } from './consultants/update/update.component';
 import { CompteComponent } from './compte/compte.component';
+import { HomeAdminComponent } from './home-admin/home-admin.component';
+import { StatAdminComponent } from './stat-admin/stat-admin.component';
+import { PresenceComponent } from './presence/presence.component';
+import { NoteDeFarisComponent } from './note-de-faris/note-de-faris.component';
+import { CongesComponent } from './conges/conges.component';
+import { AutorisationComponent } from './autorisation/autorisation.component';
+import { MaladieComponent } from './maladie/maladie.component';
+import { HomeCustoComponent } from './home-custo/home-custo.component';
+import { DashCustComponent } from './dash-cust/dash-cust.component';
+import { CreateTaskComponent } from './create-task/create-task.component';
+import { ProjectCustoComponent } from './project-custo/project-custo.component';
+import { UserStoryComponent } from './user-story/user-story.component';
+import { HomeConsComponent } from './home-cons/home-cons.component';
+import { DashConsComponent } from './dash-cons/dash-cons.component';
+import { MesTachesComponent } from './mes-taches/mes-taches.component';
+import { DemandCongComponent } from './demand-cong/demand-cong.component';
+import { DemandAutoComponent } from './demand-auto/demand-auto.component';
+import { PartieProjComponent } from './partie-proj/partie-proj.component';
+import { AccountComponent } from './account/account.component';
+import { HistoryComponent } from './history/history.component';
+import { MonreposComponent } from './monrepos/monrepos.component';
 
 
 const routes: Routes=[
@@ -51,26 +72,61 @@ const routes: Routes=[
   {path: 'HomeUser',component:HomeUserComponent},
   {path: 'Index',component:IndexComponent},
   {path: 'Navbarright',component:NavbarrightComponent},
-  {path: 'HomeDirec',component:HomeDirecComponent},
+  {path: 'Claims',component:ClaimsComponent},
+  {path: 'Account',component:AccountComponent},
+  {path: 'History',component:HistoryComponent},
+  {path: 'Monrepos',component:MonreposComponent},
 
+  
+
+        //*****    Path Direction   ******* ///
+
+  {path: 'HomeDirec',component:HomeDirecComponent},
   {path: 'Consultants',component:ConsultantsComponent},
   {path: 'AddConsultants',component:AddComponent},
   {path: 'UpdateConsultant/:id',component:UpdateComponent},
-
-
   {path: 'Compte',component:CompteComponent},
-
-
-
   {path: 'Customer',component:CustomerComponent},
   {path: 'Project',component:ProjectComponent},
   {path: 'Administration',component:AdministrationComponent},
-  {path: 'Claims',component:ClaimsComponent},
   {path: 'Task',component:TaskComponent},
   {path: 'TableDyn',component:TableDynComponent},
   {path: 'Dashboard',component:DashboardComponent},
   {path: 'DetailsTask/{id}',component:DetailsTaskComponent},
   {path: 'Detaitsprojects/{id}',component:DetaitsprojectsComponent},
+
+
+
+        //*****    Path Administration   ******* ///
+  {path: 'HomeAdmin',component:HomeAdminComponent},
+  {path: 'StatAdmin',component:StatAdminComponent},
+  {path: 'Presence',component:PresenceComponent},
+  {path: 'NoteDeFaris',component:NoteDeFarisComponent},
+  {path: 'Conges',component:CongesComponent},
+  {path: 'Autorisation',component:AutorisationComponent},
+  {path: 'Maladie',component:MaladieComponent},
+
+
+
+
+          //*****    Path Customer   ******* ///
+          {path: 'HomeCusto',component:HomeCustoComponent},
+          {path: 'DashCons',component:DashCustComponent},
+          {path: 'CreateTask',component:CreateTaskComponent},
+          {path: 'ProjectCusto',component:ProjectCustoComponent},
+          {path: 'UserStory',component:UserStoryComponent},
+
+
+
+          //*****    Path Consultants   ******* ///
+          {path: 'HomeCons',component:HomeConsComponent},
+          {path: 'DashCons',component:DashConsComponent},
+          {path: 'MesTaches',component:MesTachesComponent},
+          {path: 'DemandCong',component:DemandCongComponent},
+          {path: 'DemandAuto',component:DemandAutoComponent},
+          {path: 'PartieProj',component:PartieProjComponent},
+
+          
 ]
 
 @NgModule({
@@ -100,6 +156,27 @@ const routes: Routes=[
     AddComponent,
     UpdateComponent,
     CompteComponent,
+    HomeAdminComponent,
+    StatAdminComponent,
+    PresenceComponent,
+    NoteDeFarisComponent,
+    CongesComponent,
+    AutorisationComponent,
+    MaladieComponent,
+    HomeCustoComponent,
+    DashCustComponent,
+    CreateTaskComponent,
+    ProjectCustoComponent,
+    UserStoryComponent,
+    HomeConsComponent,
+    DashConsComponent,
+    MesTachesComponent,
+    DemandCongComponent,
+    DemandAutoComponent,
+    PartieProjComponent,
+    AccountComponent,
+    HistoryComponent,
+    MonreposComponent,
   ],
   imports: [
     BrowserModule,

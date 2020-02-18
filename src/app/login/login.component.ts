@@ -15,10 +15,12 @@ export class LoginComponent implements OnInit {
   mail: string = '';
   pswd: string= '';
   euror: string= '';
+  eurorReset: string= '';
+  mailReset: string = '';
 
+  
 
   constructor(public fire: AngularFireAuth , public router: Router) {
-    let status = localStorage.getItem('isLoggedIn');
 
   }
 
@@ -67,6 +69,20 @@ export class LoginComponent implements OnInit {
       console.log('no auth ');
     })
 
+  }
+
+
+  resetPassword(){
+    this.fire.auth.sendPasswordResetEmail(this.mailReset).then(function() {
+  // Email sent.
+  console.log('Email sent. ')
+  this.eurorReset ="Merci de consulter votre adresse mail pour réinitialiser votre mot de passe";
+
+    }).catch(function(error) {
+  // An error happened.cons
+  console.log('error');
+  this.eurorReset = "une erreur survenue" ;
+      });
   }
 
 

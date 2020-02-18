@@ -1,5 +1,4 @@
 <div class="body">
-
     <div class="header">
         <app-navbar *ngIf="!isLoggedIn"></app-navbar>
     </div>
@@ -8,21 +7,54 @@
 
         <div class="barre-right">
             <nav class="navbar-primary">
-                <a class="btn-expand-collapse">
-                    <a href="#"><img src="../../assets/img/avatar/SOS.PNG" /><span class="nav-label">  Réclamation</span></a>
-                </a>
+                <a class="btn-expand-collapse" routerLink="/TableDyn"><i class="fas fa-thumbtack"></i><span class="nav-label"> Tableau dynamix</span></a>
+
                 <ul class="navbar-primary-menu" *ngFor="let item of itemArray">
                     <li *ngIf="item.email === myemail">
-                        <a routerLink="/HomeDirec"><i class="fas fa-grip-horizontal"></i><span class="nav-label"> Home</span></a>
-                        <a routerLink="/Dashboard"><i class="fas fa-chart-line"></i><span class="nav-label"> Statistique</span></a>
-                        <a routerLink="/Customer"><i class="fas fa-users-cog"></i><span class="nav-label"> Clients</span></a>
-                        <a routerLink="/Consultants"><i class="far fa-address-card"></i><span class="nav-label"> Consultants</span></a>
-                        <a routerLink="/Project"><i class="fas fa-project-diagram"></i><span class="nav-label"> Projets</span></a>
-                        <a routerLink="/Administration"><i class="fas fa-archway"></i><span class="nav-label"> Administration</span></a>
-                        <a routerLink="/Claims"><i class="fas fa-book-reader"></i><span class="nav-label"> Réclammations</span></a>
-                        <a routerLink="/Task"><i class="fas fa-tasks"></i><span class="nav-label"> Taches</span></a>
+
+                        <a routerLink="/HomeDirec" *ngIf="item.role === 'Direction' "><i class="fas fa-home"></i><span class="nav-label"> Home</span></a>
+                        <a routerLink="/Dashboard" *ngIf="item.role === 'Direction' "><i class="fas fa-chart-line"></i><span class="nav-label"> Statistique</span></a>
+                        <a routerLink="/Customer" *ngIf="item.role === 'Direction' "><i class="fas fa-users-cog"></i><span class="nav-label"> Clients</span></a>
+                        <a routerLink="/Consultants" *ngIf="item.role === 'Direction' "><i class="far fa-address-card"></i><span class="nav-label"> Consultants</span></a>
+                        <a routerLink="/Project" *ngIf="item.role === 'Direction' "><i class="fas fa-project-diagram"></i><span class="nav-label"> Projets</span></a>
+                        <a routerLink="/Administration" *ngIf="item.role === 'Direction' "><i class="fas fa-archway"></i><span class="nav-label"> Administration</span></a>
+                        <a routerLink="/Claims" *ngIf="item.role === 'Direction' "><i class="fas fa-exclamation-triangle"></i><span class="nav-label"> Réclammations</span></a>
+                        <a routerLink="/Task" *ngIf="item.role === 'Direction' "><i class="fas fa-tasks"></i><span class="nav-label"> Taches</span></a>
                         <a *ngIf="item.role === 'Direction' " routerLink="/Compte"><i class="fas fa-award"></i><span class="nav-label"> Compte</span></a>
-                        <a routerLink="/TableDyn"><i class="fas fa-thumbtack"></i><span class="nav-label"> Tableau dynamix</span></a>
+
+
+
+                        <a routerLink="/HomeCons" *ngIf="item.role === 'Consultant' "><i class="fas fa-home"></i><span class="nav-label"> Home</span></a>
+                        <a routerLink="/DashCons" *ngIf="item.role === 'Consultant' "><i class="fas fa-tachometer-alt"></i><span class="nav-label"> Mes Statiques</span></a>
+                        <a routerLink="/MesTaches" *ngIf="item.role === 'Consultant' "><i class="fas fa-tasks"></i><span class="nav-label">Mes Taches</span></a>
+                        <a routerLink="/PartieProj" *ngIf="item.role === 'Consultant' "><i class="fas fa-pencil-ruler"></i><span class="nav-label">Projets - Requettes</span></a>
+                        <a routerLink="/DemandCong" *ngIf="item.role === 'Consultant' "><i class="fas fa-glass-cheers"></i><span class="nav-label"> Demande Congées</span></a>
+                        <a routerLink="/DemandAuto" *ngIf="item.role === 'Consultant' "><i class="fab fa-autoprefixer"></i><span class="nav-label"> Autorisation</span></a>
+                        <a routerLink="/Claims" *ngIf="item.role === 'Consultant' "><i class="fas fa-exclamation-triangle"></i><span class="nav-label"> Réclammations</span></a>
+
+
+
+
+                        <a routerLink="/HomeCusto" *ngIf="item.role === 'Clients' "><i class="fas fa-home"></i><span class="nav-label"> Home</span></a>
+                        <a routerLink="/DashCust" *ngIf="item.role === 'Clients' "><i class="fas fa-tachometer-alt"></i><span class="nav-label"> Mes Statiques</span></a>
+                        <a routerLink="/CreateTask" *ngIf="item.role === 'Clients' "><i class="fas fa-tasks"></i><span class="nav-label">Créer Taches</span></a>
+                        <a routerLink="/ProjectCusto" *ngIf="item.role === 'Clients' "><i class="fas fa-project-diagram"></i><span class="nav-label">Mes projets</span></a>
+                        <a routerLink="/UserStory" *ngIf="item.role === 'Clients' "><i class="fas fa-history"></i><span class="nav-label"> User Story </span></a>
+                        <a routerLink="/Claims" *ngIf="item.role === 'Clients' "><i class="fas fa-exclamation-triangle"></i><span class="nav-label"> Réclammations</span></a>
+
+
+
+
+                        <a routerLink="/HomeAdmin" *ngIf="item.role === 'Administration' "><i class="fas fa-home"></i><span class="nav-label"> Home</span></a>
+                        <a routerLink="/StatAdmin" *ngIf="item.role === 'Administration' "><i class="fas fa-chart-line"></i><span class="nav-label"> Statistique</span></a>
+                        <a routerLink="/Presence" *ngIf="item.role === 'Administration' "><i class="fas fa-clipboard"></i><span class="nav-label"> Présence</span></a>
+                        <a routerLink="/NoteDeFaris" *ngIf="item.role === 'Administration' "><i class="fas fa-comment-dollar"></i><span class="nav-label"> Note de faris</span></a>
+                        <a routerLink="/Conges" *ngIf="item.role === 'Administration' "><i class="fas fa-glass-cheers"></i><span class="nav-label"> Congées</span></a>
+                        <a routerLink="/Autorisation" *ngIf="item.role === 'Administration' "><i class="fab fa-autoprefixer"></i><span class="nav-label"> Autorisation</span></a>
+                        <a routerLink="/Maladie" *ngIf="item.role === 'Administration' "><i class="fas fa-file-medical"></i><span class="nav-label"> Maladie</span></a>
+                        <a routerLink="/Claims" *ngIf="item.role === 'Administration' "><i class="fas fa-exclamation-triangle"></i><span class="nav-label"> Réclammations</span></a>
+
+
                     </li>
                 </ul>
             </nav>
@@ -31,12 +63,7 @@
 
         <div class="body-contenue">
             <router-outlet></router-outlet>
-            <div *ngFor="let item of itemArray">
-                <div *ngIf="item.email === myemail">
-                    <div *ngIf="item.role === 'Direction' "></div>
-                    <div>{{item.role}}</div>
-                </div>
-            </div>
+
         </div>
 
     </div>

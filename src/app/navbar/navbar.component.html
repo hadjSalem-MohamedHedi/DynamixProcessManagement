@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#"><i class="fas fa-cube"></i> Dynamix </a>
+    <a class="navbar-brand" href="#"><img src="../../assets/img/Dynamix/logo-dynamix.png" height="30px"> Dynamix </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -8,11 +8,52 @@
         <ul class="navbar-nav mr-auto">
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <span class="img-avatar"><img src="../../assets/img/avatar/avatar_smile.png" height="25px"></span>
-            <span class="user">mohamed hedi</span>
-            <a class="user" (click)="logaout()">LogOut</a>
-            <span class="badge badge-light">7 / 10</span>
-            <span class="icon-notif" style="color:#123"> <i class="fas fa-bell"></i></span>
-        </form>
+            <span *ngFor="let item of itemArray">
+                        <span *ngIf="item.email === myemail">
+
+
+                                <div class="dropdown open">
+                                        <button class="btn dropbtn dropdown-toggle" type="button" id="dropdownMenu5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         
+                        <span class="img-avatar" *ngIf="item.role === 'Consultant' ">
+                        <img src="../../assets/img/avatar/consultant.png" height="25px">
+                       </span>
+
+            <span class="img-avatar" *ngIf="item.role === 'Direction' ">
+            <img src="../../assets/img/avatar/direct.png" height="25px">
+             </span>
+
+            <span class="img-avatar" *ngIf="item.role === 'Clients' ">
+            <img src="../../assets/img/avatar/po.jpg" height="25px">
+              </span>
+
+            <span class="img-avatar" *ngIf="item.role === 'Administration' ">
+                    <img src="../../assets/img/avatar/administration.png" height="25px">
+                      </span> {{item.nom}} , {{item.prenom}}
+            </button>
+
+            <div class="dropdown-menu">
+                <button class="dropdown-item" disabled>{{item.role}}</button>
+                <div class="dropdown-divider"></div>
+
+                <a class="dropdown-item" routerLink="/History"><i class="fas fa-history"></i>  Historique personnel</a>
+                <a class="dropdown-item" routerLink="/Monrepos"><i class="far fa-laugh-beam"></i> Repos </a>
+                <a class="dropdown-item" routerLink="/Account"><i class="fas fa-tools"></i> Paramètres</a>
+                <a class="dropdown-item" (click)="logaout()"><i class="fas fa-sign-out-alt"></i> Se déconnecter</a>
+            </div>
+    </div>
+
+    </span>
+    </span>
+
+
+    <div>
+        <div>
+            <div></div>
+        </div>
+    </div>
+    <span class="badge badge-light">7 / 10</span>
+    <span class="icon-notif" style="color:#fff"> <i class="fas fa-bell"></i></span>
+    </form>
     </div>
 </nav>

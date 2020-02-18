@@ -12,28 +12,37 @@ import {FormGroup , FormControl} from '@angular/forms'
 })
 export class UpdateComponent implements OnInit {
 
-employeeForm: FormGroup;
+  employeeForm: FormGroup;
+  concv: FormGroup;
 
   id:any;
   private UpdCons = environment.apiUrl + 'SelectConsu/';
   private UpddateCons = environment.apiUrl + 'UpdateConsu/';
+  private Upddatecv = environment.apiUrl + 'updatecv/';
 
   consultant: Consultant[];
   consultants=[];
   itemArray=[];
 
   msj: '';
+  path: '';
   response: any;
 
   nom: string;
   prenom: string;
   cin: string;
-
+  data2 ={
+      pathcv: ''
+  }
   data ={
     nom :'',
-    prenom:'mohaPrenomTest',
+    prenom:'',
     cin:'',
-    id:''
+    id:'',
+    tele : '',
+    tele2 :'',
+    role : '',
+    titre : '',
   }
 
   constructor(private httpClient: HttpClient,public route:ActivatedRoute,public router:Router) {
@@ -85,8 +94,18 @@ employeeForm: FormGroup;
       nom : new FormControl(),
       prenom : new FormControl(),
       cin : new FormControl(),
-      id : new FormControl()
+      id : new FormControl(),
+      tele : new FormControl(),
+      tele2 : new FormControl(),
+      role : new FormControl(),
+      titre : new FormControl(),
     })
+
+    this.concv=new FormGroup({
+      path : new FormControl(),
+      
+    })
+
     this.httpClient.get<Consultant[]>(this.UpdCons + this.id.id)
     .subscribe((response) => {
       this.response = response;
@@ -101,14 +120,35 @@ employeeForm: FormGroup;
   onSubmit(){
     this.data.nom=this.employeeForm.controls['nom'].value;
     this.data.prenom=this.employeeForm.controls['prenom'].value;
+    this.data.tele=this.employeeForm.controls['tele'].value;
+    this.data.tele2=this.employeeForm.controls['tele2'].value;
+    this.data.role=this.employeeForm.controls['role'].value;
+    this.data.titre=this.employeeForm.controls['titre'].value;
 
-    this.httpClient.get(this.UpddateCons+this.id.id+"/"+this.data.nom+"/"+this.data.prenom)
+    this.httpClient.get(this.UpddateCons+this.id.id+"/"+this.data.nom+"/"+this.data.prenom+"/"+this.data.tele+"/"+this.data.tele2+"/"+this.data.role+"/"+this.data.titre)
       .subscribe((response) => {
         this.response = response;
         });
         this.router.navigate(['/Consultants']);
   }
 
+
+
+  updatecv(){
+    console.log('path : '+this.data2.pathcv)
+    this.httpClient.get(this.Upddatecv + +this.id.id+"/"+this.data2.pathcv)
+    .subscribe((response) => {
+      this.response = response;
+      });
+      this.router.navigate(['/Consultants']);
+
+    
+  }
+
+
+
+
+ 
 }
 export class ListItemClass{
   $key:string;

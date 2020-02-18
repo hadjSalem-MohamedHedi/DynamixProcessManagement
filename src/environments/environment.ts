@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:51754/api/DPM/',
+  apiUrl: 'http://41.230.21.20:8080/api/DPM/',
 
   firebase :{
     apiKey: "AIzaSyBJDxx9Rr9eVWpTZCgJaUF4r7zpzBqsXM0",

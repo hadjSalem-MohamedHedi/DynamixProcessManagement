@@ -16,7 +16,7 @@ import { Observable } from 'rxjs';
 export class AppComponent {
 
   title = 'Dpm-Fr';
-  private isLoggedIn: boolean=true;
+  private isLoggedIn: boolean=false;
   user: Observable<firebase.User>;
 
 private email: string;

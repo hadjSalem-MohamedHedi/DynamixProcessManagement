@@ -1,0 +1,135 @@
+<div class="container">
+    <span *ngFor="let item of itemArray">
+                <span *ngIf="item.email === myemail">
+    <div class="menu">
+        <ul>
+            <li id="btnprofi">Information personnelle</li>
+            <li id="btnpass">Changer de mot de passe</li>
+            <li id="btncomp" *ngIf="item.role != 'Clients' ">Mes compétence</li>
+            <li id="btnimg">Modifier image Profile</li>
+            <li id="btncv"  *ngIf="item.role != 'Clients' ">Curriculum vitae</li>
+
+        </ul>
+    </div>
+
+    <div class="contenue">
+       
+        <div id="profile">
+            
+                            <form>
+                                    <div class="form-group row">
+                                      <label for="inputEmail3" class="col-sm-2 col-form-label">Nom :</label>
+                                      <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputEmail3" value="{{item.nom}}">
+                                      </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                            <label for="inputEmail3" class="col-sm-2 col-form-label">Prénom :</label>
+                                            <div class="col-sm-10">
+                                              <input type="text" class="form-control" id="inputEmail3" value="{{item.prenom}}">
+                                            </div>
+                                          </div>
+
+
+                                          <div class="form-group row">
+                                                <label for="inputEmail3" class="col-sm-2 col-form-label">Téléphone :</label>
+                                                <div class="col-sm-10">
+                                                  <input type="text" class="form-control" id="inputEmail3" placeholder="telephone">
+                                                </div>
+                                              </div>
+          
+                                          <div class="form-group row">
+                                                <label for="inputEmail3" class="col-sm-2 col-form-label">Date de naissance :</label>
+                                                <div class="col-sm-10">
+                                                  <input type="date" class="form-control" id="inputEmail3" >
+                                                </div>
+                                              </div>
+                                    <div class="form-group row">
+                                      <div class="col-sm-10 offset-sm-2">
+                                        <button type="submit" class="btn btn-outline-primary btn-block">Sign in</button>
+                                      </div>
+                                    </div>
+                                  </form>
+                                  
+                            
+              
+        </div>
+
+
+        <div id="password">
+                <div class="form-group row">
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="inputEmail3" value="{{item.email}}" disabled>
+                        </div>
+                        <div class="col-sm-10 offset-sm-2">
+                                <button type="button" class="btn btn-outline-primary" id="resetbtn" (click)="resetPassword()">Send Reset Instructions</button>
+                            </div>
+
+
+                      </div>
+        </div>
+
+
+        <div id="competence">
+                    <h5>vos compétences que vous avez saisie :</h5>
+                    <span id="comp">Nav 2018 <i class="fas fa-check"></i></span>
+
+    <!-- Button trigger modal -->
+    <hr>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCentered" style="float: right;">
+        Ajouter des compétences
+    </button>
+</div>
+
+
+<div id="image">
+    <div class="custom-file">
+        <input type="file" class="custom-file-input" id="customFile">
+        <label class="custom-file-label" for="customFile">Choose file jpg , png ....</label>
+    </div>
+    <button type="submit" class="btn btn-outline-primary btn-block" style="margin-top: 2%;">Confirmer</button>
+
+
+
+</div>
+
+
+<div id="cv">
+    <div class="custom-file">
+        <input type="file" class="custom-file-input" id="customFile">
+        <label class="custom-file-label" for="customFile">Choose file pdf </label>
+    </div>
+    <button type="submit" class="btn btn-outline-primary btn-block" style="margin-top: 2%;">Confirmer</button>
+
+
+</div>
+
+
+</div>
+</span>
+</span>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCentered" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenteredLabel">Ajouter des compétences</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputEmail3" placeholder="Conpétences">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
