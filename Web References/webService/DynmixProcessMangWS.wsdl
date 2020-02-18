@@ -7,7 +7,19 @@
           <element minOccurs="1" maxOccurs="1" name="cin" type="string" />
           <element minOccurs="1" maxOccurs="1" name="nom" type="string" />
           <element minOccurs="1" maxOccurs="1" name="prenom" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Role" type="string" />
           <element minOccurs="1" maxOccurs="1" default="0" name="id" type="int" />
+          <element minOccurs="1" maxOccurs="1" name="email" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="role" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="datenais" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="telephone" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="telephoneurg" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="titre" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="datedeb" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="image" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="cur_vit" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="presence" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="derdat" type="string" />
         </sequence>
       </complexType>
       <complexType name="RootCons" mixed="true">
@@ -33,6 +45,29 @@
         </sequence>
       </complexType>
       <element name="Root" type="tns:Root" />
+    </schema>
+    <schema xmlns:tns="urn:microsoft-dynamics-nav/xmlports/x50005" elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-nav/xmlports/x50005" xmlns="http://www.w3.org/2001/XMLSchema">
+      <complexType name="RecCong">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" default="0" name="id" type="int" />
+          <element minOccurs="1" maxOccurs="1" name="nom" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="motif" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="datedeb" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="datefin" type="string" />
+          <element minOccurs="1" maxOccurs="1" default="0" name="nbjour" type="int" />
+          <element minOccurs="1" maxOccurs="1" name="type" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="status" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="heuredeb" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="heurefin" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="cin" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="RootCong" mixed="true">
+        <sequence>
+          <element minOccurs="1" maxOccurs="unbounded" name="RecCong" type="tns:RecCong" />
+        </sequence>
+      </complexType>
+      <element name="RootCong" type="tns:RootCong" />
     </schema>
     <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS" xmlns="http://www.w3.org/2001/XMLSchema">
       <element name="ListeConsultant">
@@ -84,8 +119,13 @@
             <element minOccurs="1" maxOccurs="1" name="cin" type="string" />
             <element minOccurs="1" maxOccurs="1" name="nom" type="string" />
             <element minOccurs="1" maxOccurs="1" name="prenom" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="date_nais" type="date" />
             <element minOccurs="1" maxOccurs="1" name="email" type="string" />
             <element minOccurs="1" maxOccurs="1" name="role" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="tele" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="tele_urg" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="titre" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="date_deb" type="date" />
           </sequence>
         </complexType>
       </element>
@@ -117,10 +157,159 @@
             <element minOccurs="1" maxOccurs="1" name="idConsu" type="int" />
             <element minOccurs="1" maxOccurs="1" name="nom" type="string" />
             <element minOccurs="1" maxOccurs="1" name="prenom" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="telephone" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="telurg" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="role" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="titre" type="string" />
           </sequence>
         </complexType>
       </element>
       <element name="UpdateConsu_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetConsultant">
+        <complexType>
+          <sequence>
+            <element xmlns:q7="urn:microsoft-dynamics-nav/xmlports/x50004" minOccurs="1" maxOccurs="1" name="consultant" type="q7:RootCons" />
+            <element minOccurs="1" maxOccurs="1" name="mail" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetConsultant_Result">
+        <complexType>
+          <sequence>
+            <element xmlns:q8="urn:microsoft-dynamics-nav/xmlports/x50004" minOccurs="1" maxOccurs="1" name="consultant" type="q8:RootCons" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateCv">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="idCon" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="path" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateCv_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AddPres">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="cin" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="date" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="status" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AddPres_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ListeConsultantPresence">
+        <complexType>
+          <sequence>
+            <element xmlns:q9="urn:microsoft-dynamics-nav/xmlports/x50004" minOccurs="1" maxOccurs="1" name="consultant" type="q9:RootCons" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ListeConsultantPresence_Result">
+        <complexType>
+          <sequence>
+            <element xmlns:q10="urn:microsoft-dynamics-nav/xmlports/x50004" minOccurs="1" maxOccurs="1" name="consultant" type="q10:RootCons" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AddConge">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="nomPrenom" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="motif" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="datedeb" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="datefin" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="nbjours" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="type" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="status" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="cin" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AddConge_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ListeConge">
+        <complexType>
+          <sequence>
+            <element xmlns:q11="urn:microsoft-dynamics-nav/xmlports/x50005" minOccurs="1" maxOccurs="1" name="conge" type="q11:RootCong" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ListeConge_Result">
+        <complexType>
+          <sequence>
+            <element xmlns:q12="urn:microsoft-dynamics-nav/xmlports/x50005" minOccurs="1" maxOccurs="1" name="conge" type="q12:RootCong" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RepCong">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="id" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="status" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RepCong_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="Mesconges">
+        <complexType>
+          <sequence>
+            <element xmlns:q13="urn:microsoft-dynamics-nav/xmlports/x50005" minOccurs="1" maxOccurs="1" name="conge" type="q13:RootCong" />
+            <element minOccurs="1" maxOccurs="1" name="cin" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="Mesconges_Result">
+        <complexType>
+          <sequence>
+            <element xmlns:q14="urn:microsoft-dynamics-nav/xmlports/x50005" minOccurs="1" maxOccurs="1" name="conge" type="q14:RootCong" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AddAuto">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="cin" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="nom" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="date" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="heuredu" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="heureau" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="type" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="status" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AddAuto_Result">
         <complexType>
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
@@ -165,6 +354,60 @@
   <message name="UpdateConsu_Result">
     <part name="parameters" element="tns:UpdateConsu_Result" />
   </message>
+  <message name="GetConsultant">
+    <part name="parameters" element="tns:GetConsultant" />
+  </message>
+  <message name="GetConsultant_Result">
+    <part name="parameters" element="tns:GetConsultant_Result" />
+  </message>
+  <message name="UpdateCv">
+    <part name="parameters" element="tns:UpdateCv" />
+  </message>
+  <message name="UpdateCv_Result">
+    <part name="parameters" element="tns:UpdateCv_Result" />
+  </message>
+  <message name="AddPres">
+    <part name="parameters" element="tns:AddPres" />
+  </message>
+  <message name="AddPres_Result">
+    <part name="parameters" element="tns:AddPres_Result" />
+  </message>
+  <message name="ListeConsultantPresence">
+    <part name="parameters" element="tns:ListeConsultantPresence" />
+  </message>
+  <message name="ListeConsultantPresence_Result">
+    <part name="parameters" element="tns:ListeConsultantPresence_Result" />
+  </message>
+  <message name="AddConge">
+    <part name="parameters" element="tns:AddConge" />
+  </message>
+  <message name="AddConge_Result">
+    <part name="parameters" element="tns:AddConge_Result" />
+  </message>
+  <message name="ListeConge">
+    <part name="parameters" element="tns:ListeConge" />
+  </message>
+  <message name="ListeConge_Result">
+    <part name="parameters" element="tns:ListeConge_Result" />
+  </message>
+  <message name="RepCong">
+    <part name="parameters" element="tns:RepCong" />
+  </message>
+  <message name="RepCong_Result">
+    <part name="parameters" element="tns:RepCong_Result" />
+  </message>
+  <message name="Mesconges">
+    <part name="parameters" element="tns:Mesconges" />
+  </message>
+  <message name="Mesconges_Result">
+    <part name="parameters" element="tns:Mesconges_Result" />
+  </message>
+  <message name="AddAuto">
+    <part name="parameters" element="tns:AddAuto" />
+  </message>
+  <message name="AddAuto_Result">
+    <part name="parameters" element="tns:AddAuto_Result" />
+  </message>
   <portType name="DynmixProcessMangWS_Port">
     <operation name="ListeConsultant">
       <input name="ListeConsultant" message="tns:ListeConsultant" />
@@ -189,6 +432,42 @@
     <operation name="UpdateConsu">
       <input name="UpdateConsu" message="tns:UpdateConsu" />
       <output name="UpdateConsu_Result" message="tns:UpdateConsu_Result" />
+    </operation>
+    <operation name="GetConsultant">
+      <input name="GetConsultant" message="tns:GetConsultant" />
+      <output name="GetConsultant_Result" message="tns:GetConsultant_Result" />
+    </operation>
+    <operation name="UpdateCv">
+      <input name="UpdateCv" message="tns:UpdateCv" />
+      <output name="UpdateCv_Result" message="tns:UpdateCv_Result" />
+    </operation>
+    <operation name="AddPres">
+      <input name="AddPres" message="tns:AddPres" />
+      <output name="AddPres_Result" message="tns:AddPres_Result" />
+    </operation>
+    <operation name="ListeConsultantPresence">
+      <input name="ListeConsultantPresence" message="tns:ListeConsultantPresence" />
+      <output name="ListeConsultantPresence_Result" message="tns:ListeConsultantPresence_Result" />
+    </operation>
+    <operation name="AddConge">
+      <input name="AddConge" message="tns:AddConge" />
+      <output name="AddConge_Result" message="tns:AddConge_Result" />
+    </operation>
+    <operation name="ListeConge">
+      <input name="ListeConge" message="tns:ListeConge" />
+      <output name="ListeConge_Result" message="tns:ListeConge_Result" />
+    </operation>
+    <operation name="RepCong">
+      <input name="RepCong" message="tns:RepCong" />
+      <output name="RepCong_Result" message="tns:RepCong_Result" />
+    </operation>
+    <operation name="Mesconges">
+      <input name="Mesconges" message="tns:Mesconges" />
+      <output name="Mesconges_Result" message="tns:Mesconges_Result" />
+    </operation>
+    <operation name="AddAuto">
+      <input name="AddAuto" message="tns:AddAuto" />
+      <output name="AddAuto_Result" message="tns:AddAuto_Result" />
     </operation>
   </portType>
   <binding name="DynmixProcessMangWS_Binding" type="tns:DynmixProcessMangWS_Port">
@@ -244,6 +523,87 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="UpdateConsu_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetConsultant">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:GetConsultant" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetConsultant">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetConsultant_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UpdateCv">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:UpdateCv" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UpdateCv">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UpdateCv_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="AddPres">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddPres" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="AddPres">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="AddPres_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ListeConsultantPresence">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeConsultantPresence" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ListeConsultantPresence">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ListeConsultantPresence_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="AddConge">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddConge" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="AddConge">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="AddConge_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ListeConge">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeConge" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ListeConge">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ListeConge_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="RepCong">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:RepCong" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="RepCong">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="RepCong_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="Mesconges">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:Mesconges" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="Mesconges">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="Mesconges_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="AddAuto">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddAuto" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="AddAuto">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="AddAuto_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

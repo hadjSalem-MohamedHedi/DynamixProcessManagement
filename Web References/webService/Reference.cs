@@ -41,6 +41,24 @@ namespace DPM_Api_VBETA.webService {
         
         private System.Threading.SendOrPostCallback UpdateConsuOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetConsultantOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateCvOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AddPresOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ListeConsultantPresenceOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AddCongeOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ListeCongeOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback RepCongOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback MescongesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AddAutoOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -96,6 +114,33 @@ namespace DPM_Api_VBETA.webService {
         
         /// <remarks/>
         public event UpdateConsuCompletedEventHandler UpdateConsuCompleted;
+        
+        /// <remarks/>
+        public event GetConsultantCompletedEventHandler GetConsultantCompleted;
+        
+        /// <remarks/>
+        public event UpdateCvCompletedEventHandler UpdateCvCompleted;
+        
+        /// <remarks/>
+        public event AddPresCompletedEventHandler AddPresCompleted;
+        
+        /// <remarks/>
+        public event ListeConsultantPresenceCompletedEventHandler ListeConsultantPresenceCompleted;
+        
+        /// <remarks/>
+        public event AddCongeCompletedEventHandler AddCongeCompleted;
+        
+        /// <remarks/>
+        public event ListeCongeCompletedEventHandler ListeCongeCompleted;
+        
+        /// <remarks/>
+        public event RepCongCompletedEventHandler RepCongCompleted;
+        
+        /// <remarks/>
+        public event MescongesCompletedEventHandler MescongesCompleted;
+        
+        /// <remarks/>
+        public event AddAutoCompletedEventHandler AddAutoCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeConsultant", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="ListeConsultant_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -189,23 +234,28 @@ namespace DPM_Api_VBETA.webService {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddConsultant", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="AddConsultant_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public bool AddConsultant(string cin, string nom, string prenom, string email, string role) {
+        public bool AddConsultant(string cin, string nom, string prenom, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime date_nais, string email, string role, string tele, string tele_urg, string titre, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime date_deb) {
             object[] results = this.Invoke("AddConsultant", new object[] {
                         cin,
                         nom,
                         prenom,
+                        date_nais,
                         email,
-                        role});
+                        role,
+                        tele,
+                        tele_urg,
+                        titre,
+                        date_deb});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void AddConsultantAsync(string cin, string nom, string prenom, string email, string role) {
-            this.AddConsultantAsync(cin, nom, prenom, email, role, null);
+        public void AddConsultantAsync(string cin, string nom, string prenom, System.DateTime date_nais, string email, string role, string tele, string tele_urg, string titre, System.DateTime date_deb) {
+            this.AddConsultantAsync(cin, nom, prenom, date_nais, email, role, tele, tele_urg, titre, date_deb, null);
         }
         
         /// <remarks/>
-        public void AddConsultantAsync(string cin, string nom, string prenom, string email, string role, object userState) {
+        public void AddConsultantAsync(string cin, string nom, string prenom, System.DateTime date_nais, string email, string role, string tele, string tele_urg, string titre, System.DateTime date_deb, object userState) {
             if ((this.AddConsultantOperationCompleted == null)) {
                 this.AddConsultantOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddConsultantOperationCompleted);
             }
@@ -213,8 +263,13 @@ namespace DPM_Api_VBETA.webService {
                         cin,
                         nom,
                         prenom,
+                        date_nais,
                         email,
-                        role}, this.AddConsultantOperationCompleted, userState);
+                        role,
+                        tele,
+                        tele_urg,
+                        titre,
+                        date_deb}, this.AddConsultantOperationCompleted, userState);
         }
         
         private void OnAddConsultantOperationCompleted(object arg) {
@@ -258,34 +313,347 @@ namespace DPM_Api_VBETA.webService {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:UpdateConsu", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="UpdateConsu_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public bool UpdateConsu(int idConsu, string nom, string prenom) {
+        public bool UpdateConsu(int idConsu, string nom, string prenom, string telephone, string telurg, string role, string titre) {
             object[] results = this.Invoke("UpdateConsu", new object[] {
                         idConsu,
                         nom,
-                        prenom});
+                        prenom,
+                        telephone,
+                        telurg,
+                        role,
+                        titre});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void UpdateConsuAsync(int idConsu, string nom, string prenom) {
-            this.UpdateConsuAsync(idConsu, nom, prenom, null);
+        public void UpdateConsuAsync(int idConsu, string nom, string prenom, string telephone, string telurg, string role, string titre) {
+            this.UpdateConsuAsync(idConsu, nom, prenom, telephone, telurg, role, titre, null);
         }
         
         /// <remarks/>
-        public void UpdateConsuAsync(int idConsu, string nom, string prenom, object userState) {
+        public void UpdateConsuAsync(int idConsu, string nom, string prenom, string telephone, string telurg, string role, string titre, object userState) {
             if ((this.UpdateConsuOperationCompleted == null)) {
                 this.UpdateConsuOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateConsuOperationCompleted);
             }
             this.InvokeAsync("UpdateConsu", new object[] {
                         idConsu,
                         nom,
-                        prenom}, this.UpdateConsuOperationCompleted, userState);
+                        prenom,
+                        telephone,
+                        telurg,
+                        role,
+                        titre}, this.UpdateConsuOperationCompleted, userState);
         }
         
         private void OnUpdateConsuOperationCompleted(object arg) {
             if ((this.UpdateConsuCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.UpdateConsuCompleted(this, new UpdateConsuCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:GetConsultant", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="GetConsultant_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void GetConsultant(ref RootCons consultant, string mail) {
+            object[] results = this.Invoke("GetConsultant", new object[] {
+                        consultant,
+                        mail});
+            consultant = ((RootCons)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetConsultantAsync(RootCons consultant, string mail) {
+            this.GetConsultantAsync(consultant, mail, null);
+        }
+        
+        /// <remarks/>
+        public void GetConsultantAsync(RootCons consultant, string mail, object userState) {
+            if ((this.GetConsultantOperationCompleted == null)) {
+                this.GetConsultantOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetConsultantOperationCompleted);
+            }
+            this.InvokeAsync("GetConsultant", new object[] {
+                        consultant,
+                        mail}, this.GetConsultantOperationCompleted, userState);
+        }
+        
+        private void OnGetConsultantOperationCompleted(object arg) {
+            if ((this.GetConsultantCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetConsultantCompleted(this, new GetConsultantCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:UpdateCv", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="UpdateCv_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public bool UpdateCv(int idCon, string path) {
+            object[] results = this.Invoke("UpdateCv", new object[] {
+                        idCon,
+                        path});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdateCvAsync(int idCon, string path) {
+            this.UpdateCvAsync(idCon, path, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateCvAsync(int idCon, string path, object userState) {
+            if ((this.UpdateCvOperationCompleted == null)) {
+                this.UpdateCvOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateCvOperationCompleted);
+            }
+            this.InvokeAsync("UpdateCv", new object[] {
+                        idCon,
+                        path}, this.UpdateCvOperationCompleted, userState);
+        }
+        
+        private void OnUpdateCvOperationCompleted(object arg) {
+            if ((this.UpdateCvCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateCvCompleted(this, new UpdateCvCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddPres", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="AddPres_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public bool AddPres(string cin, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime date, string status) {
+            object[] results = this.Invoke("AddPres", new object[] {
+                        cin,
+                        date,
+                        status});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddPresAsync(string cin, System.DateTime date, string status) {
+            this.AddPresAsync(cin, date, status, null);
+        }
+        
+        /// <remarks/>
+        public void AddPresAsync(string cin, System.DateTime date, string status, object userState) {
+            if ((this.AddPresOperationCompleted == null)) {
+                this.AddPresOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddPresOperationCompleted);
+            }
+            this.InvokeAsync("AddPres", new object[] {
+                        cin,
+                        date,
+                        status}, this.AddPresOperationCompleted, userState);
+        }
+        
+        private void OnAddPresOperationCompleted(object arg) {
+            if ((this.AddPresCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddPresCompleted(this, new AddPresCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeConsultantPresen" +
+            "ce", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="ListeConsultantPresence_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void ListeConsultantPresence(ref RootCons consultant) {
+            object[] results = this.Invoke("ListeConsultantPresence", new object[] {
+                        consultant});
+            consultant = ((RootCons)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListeConsultantPresenceAsync(RootCons consultant) {
+            this.ListeConsultantPresenceAsync(consultant, null);
+        }
+        
+        /// <remarks/>
+        public void ListeConsultantPresenceAsync(RootCons consultant, object userState) {
+            if ((this.ListeConsultantPresenceOperationCompleted == null)) {
+                this.ListeConsultantPresenceOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListeConsultantPresenceOperationCompleted);
+            }
+            this.InvokeAsync("ListeConsultantPresence", new object[] {
+                        consultant}, this.ListeConsultantPresenceOperationCompleted, userState);
+        }
+        
+        private void OnListeConsultantPresenceOperationCompleted(object arg) {
+            if ((this.ListeConsultantPresenceCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListeConsultantPresenceCompleted(this, new ListeConsultantPresenceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddConge", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="AddConge_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public bool AddConge(string nomPrenom, string motif, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime datedeb, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime datefin, int nbjours, string type, string status, string cin) {
+            object[] results = this.Invoke("AddConge", new object[] {
+                        nomPrenom,
+                        motif,
+                        datedeb,
+                        datefin,
+                        nbjours,
+                        type,
+                        status,
+                        cin});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddCongeAsync(string nomPrenom, string motif, System.DateTime datedeb, System.DateTime datefin, int nbjours, string type, string status, string cin) {
+            this.AddCongeAsync(nomPrenom, motif, datedeb, datefin, nbjours, type, status, cin, null);
+        }
+        
+        /// <remarks/>
+        public void AddCongeAsync(string nomPrenom, string motif, System.DateTime datedeb, System.DateTime datefin, int nbjours, string type, string status, string cin, object userState) {
+            if ((this.AddCongeOperationCompleted == null)) {
+                this.AddCongeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddCongeOperationCompleted);
+            }
+            this.InvokeAsync("AddConge", new object[] {
+                        nomPrenom,
+                        motif,
+                        datedeb,
+                        datefin,
+                        nbjours,
+                        type,
+                        status,
+                        cin}, this.AddCongeOperationCompleted, userState);
+        }
+        
+        private void OnAddCongeOperationCompleted(object arg) {
+            if ((this.AddCongeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddCongeCompleted(this, new AddCongeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeConge", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="ListeConge_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void ListeConge(ref RootCong conge) {
+            object[] results = this.Invoke("ListeConge", new object[] {
+                        conge});
+            conge = ((RootCong)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListeCongeAsync(RootCong conge) {
+            this.ListeCongeAsync(conge, null);
+        }
+        
+        /// <remarks/>
+        public void ListeCongeAsync(RootCong conge, object userState) {
+            if ((this.ListeCongeOperationCompleted == null)) {
+                this.ListeCongeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListeCongeOperationCompleted);
+            }
+            this.InvokeAsync("ListeConge", new object[] {
+                        conge}, this.ListeCongeOperationCompleted, userState);
+        }
+        
+        private void OnListeCongeOperationCompleted(object arg) {
+            if ((this.ListeCongeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListeCongeCompleted(this, new ListeCongeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:RepCong", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="RepCong_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public bool RepCong(int id, string status) {
+            object[] results = this.Invoke("RepCong", new object[] {
+                        id,
+                        status});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void RepCongAsync(int id, string status) {
+            this.RepCongAsync(id, status, null);
+        }
+        
+        /// <remarks/>
+        public void RepCongAsync(int id, string status, object userState) {
+            if ((this.RepCongOperationCompleted == null)) {
+                this.RepCongOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRepCongOperationCompleted);
+            }
+            this.InvokeAsync("RepCong", new object[] {
+                        id,
+                        status}, this.RepCongOperationCompleted, userState);
+        }
+        
+        private void OnRepCongOperationCompleted(object arg) {
+            if ((this.RepCongCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.RepCongCompleted(this, new RepCongCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:Mesconges", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="Mesconges_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void Mesconges(ref RootCong conge, string cin) {
+            object[] results = this.Invoke("Mesconges", new object[] {
+                        conge,
+                        cin});
+            conge = ((RootCong)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void MescongesAsync(RootCong conge, string cin) {
+            this.MescongesAsync(conge, cin, null);
+        }
+        
+        /// <remarks/>
+        public void MescongesAsync(RootCong conge, string cin, object userState) {
+            if ((this.MescongesOperationCompleted == null)) {
+                this.MescongesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnMescongesOperationCompleted);
+            }
+            this.InvokeAsync("Mesconges", new object[] {
+                        conge,
+                        cin}, this.MescongesOperationCompleted, userState);
+        }
+        
+        private void OnMescongesOperationCompleted(object arg) {
+            if ((this.MescongesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.MescongesCompleted(this, new MescongesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddAuto", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="AddAuto_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public bool AddAuto(string cin, string nom, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime date, string heuredu, string heureau, string type, string status) {
+            object[] results = this.Invoke("AddAuto", new object[] {
+                        cin,
+                        nom,
+                        date,
+                        heuredu,
+                        heureau,
+                        type,
+                        status});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddAutoAsync(string cin, string nom, System.DateTime date, string heuredu, string heureau, string type, string status) {
+            this.AddAutoAsync(cin, nom, date, heuredu, heureau, type, status, null);
+        }
+        
+        /// <remarks/>
+        public void AddAutoAsync(string cin, string nom, System.DateTime date, string heuredu, string heureau, string type, string status, object userState) {
+            if ((this.AddAutoOperationCompleted == null)) {
+                this.AddAutoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddAutoOperationCompleted);
+            }
+            this.InvokeAsync("AddAuto", new object[] {
+                        cin,
+                        nom,
+                        date,
+                        heuredu,
+                        heureau,
+                        type,
+                        status}, this.AddAutoOperationCompleted, userState);
+        }
+        
+        private void OnAddAutoOperationCompleted(object arg) {
+            if ((this.AddAutoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddAutoCompleted(this, new AddAutoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -357,7 +725,31 @@ namespace DPM_Api_VBETA.webService {
         
         private string prenomField;
         
+        private string roleField;
+        
         private int idField;
+        
+        private string emailField;
+        
+        private string roleField1;
+        
+        private string datenaisField;
+        
+        private string telephoneField;
+        
+        private string telephoneurgField;
+        
+        private string titreField;
+        
+        private string datedebField;
+        
+        private string imageField;
+        
+        private string cur_vitField;
+        
+        private string presenceField;
+        
+        private string derdatField;
         
         public RecCons() {
             this.idField = 0;
@@ -394,12 +786,313 @@ namespace DPM_Api_VBETA.webService {
         }
         
         /// <remarks/>
+        public string Role {
+            get {
+                return this.roleField;
+            }
+            set {
+                this.roleField = value;
+            }
+        }
+        
+        /// <remarks/>
         public int id {
             get {
                 return this.idField;
             }
             set {
                 this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string email {
+            get {
+                return this.emailField;
+            }
+            set {
+                this.emailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string role {
+            get {
+                return this.roleField1;
+            }
+            set {
+                this.roleField1 = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string datenais {
+            get {
+                return this.datenaisField;
+            }
+            set {
+                this.datenaisField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string telephone {
+            get {
+                return this.telephoneField;
+            }
+            set {
+                this.telephoneField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string telephoneurg {
+            get {
+                return this.telephoneurgField;
+            }
+            set {
+                this.telephoneurgField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string titre {
+            get {
+                return this.titreField;
+            }
+            set {
+                this.titreField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string datedeb {
+            get {
+                return this.datedebField;
+            }
+            set {
+                this.datedebField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string image {
+            get {
+                return this.imageField;
+            }
+            set {
+                this.imageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string cur_vit {
+            get {
+                return this.cur_vitField;
+            }
+            set {
+                this.cur_vitField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string presence {
+            get {
+                return this.presenceField;
+            }
+            set {
+                this.presenceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string derdat {
+            get {
+                return this.derdatField;
+            }
+            set {
+                this.derdatField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:microsoft-dynamics-nav/xmlports/x50005")]
+    public partial class RecCong {
+        
+        private int idField;
+        
+        private string nomField;
+        
+        private string motifField;
+        
+        private string datedebField;
+        
+        private string datefinField;
+        
+        private int nbjourField;
+        
+        private string typeField;
+        
+        private string statusField;
+        
+        private string heuredebField;
+        
+        private string heurefinField;
+        
+        private string cinField;
+        
+        public RecCong() {
+            this.idField = 0;
+            this.nbjourField = 0;
+        }
+        
+        /// <remarks/>
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string nom {
+            get {
+                return this.nomField;
+            }
+            set {
+                this.nomField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string motif {
+            get {
+                return this.motifField;
+            }
+            set {
+                this.motifField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string datedeb {
+            get {
+                return this.datedebField;
+            }
+            set {
+                this.datedebField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string datefin {
+            get {
+                return this.datefinField;
+            }
+            set {
+                this.datefinField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int nbjour {
+            get {
+                return this.nbjourField;
+            }
+            set {
+                this.nbjourField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string type {
+            get {
+                return this.typeField;
+            }
+            set {
+                this.typeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string status {
+            get {
+                return this.statusField;
+            }
+            set {
+                this.statusField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string heuredeb {
+            get {
+                return this.heuredebField;
+            }
+            set {
+                this.heuredebField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string heurefin {
+            get {
+                return this.heurefinField;
+            }
+            set {
+                this.heurefinField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string cin {
+            get {
+                return this.cinField;
+            }
+            set {
+                this.cinField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:microsoft-dynamics-nav/xmlports/x50005")]
+    public partial class RootCong {
+        
+        private RecCong[] recCongField;
+        
+        private string[] textField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("RecCong")]
+        public RecCong[] RecCong {
+            get {
+                return this.recCongField;
+            }
+            set {
+                this.recCongField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public string[] Text {
+            get {
+                return this.textField;
+            }
+            set {
+                this.textField = value;
             }
         }
     }
@@ -659,6 +1352,240 @@ namespace DPM_Api_VBETA.webService {
         private object[] results;
         
         internal UpdateConsuCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void GetConsultantCompletedEventHandler(object sender, GetConsultantCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetConsultantCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetConsultantCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public RootCons consultant {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((RootCons)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void UpdateCvCompletedEventHandler(object sender, UpdateCvCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateCvCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateCvCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void AddPresCompletedEventHandler(object sender, AddPresCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddPresCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddPresCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void ListeConsultantPresenceCompletedEventHandler(object sender, ListeConsultantPresenceCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListeConsultantPresenceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListeConsultantPresenceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public RootCons consultant {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((RootCons)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void AddCongeCompletedEventHandler(object sender, AddCongeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddCongeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddCongeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void ListeCongeCompletedEventHandler(object sender, ListeCongeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListeCongeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListeCongeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public RootCong conge {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((RootCong)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void RepCongCompletedEventHandler(object sender, RepCongCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class RepCongCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal RepCongCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void MescongesCompletedEventHandler(object sender, MescongesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class MescongesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal MescongesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public RootCong conge {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((RootCong)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void AddAutoCompletedEventHandler(object sender, AddAutoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddAutoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddAutoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
