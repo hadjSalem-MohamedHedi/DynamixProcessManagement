@@ -1,0 +1,88 @@
+<div class="container conge">
+
+    <div class="header">
+        <h6>Note de frais</h6>
+    </div>
+    <div class="body">
+
+        <span *ngFor="let response of response">
+            <div class="alert alert-success" role="alert" *ngIf="response.res === 'true'">
+                <strong>Well done!</strong> votre demande à été envoyé .
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="response.res === 'false'">
+                <strong>Oh snap!</strong> Modifiez certaines choses et essayez de rendre à nouveau.
+            </div>
+        </span>
+
+        <span *ngFor="let item of itemArray">
+            <span *ngIf="item.email === myemail">
+<form [formGroup]="NoteForm" (ngSubmit)="onSubmit()">
+        <div *ngFor="let getuser of getuser">         
+            <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Cin :</span>
+    </div>
+    <select class="form-control" required formControlName="consultant">
+            <optgroup label="Créé Par :">
+            <option value="{{getuser.cin}}">{{item.nom}} {{item.prenom}}</option>
+        </select>
+</div>
+</div>
+
+
+<hr>
+
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text">Pour période du : </span>
+    </div>
+    <select class="form-control" formControlName="mois" required> 
+            <optgroup label="Mois :">
+            <option disabled>Veuillez choisir le mois du note de frais </option>
+            <option value="1">janvier</option>
+            <option value="2">février</option>
+            <option value="3">mars</option>
+            <option value="4">avril</option>
+            <option value="5">mai</option>
+            <option value="6">juin</option>
+            <option value="7">juillet</option>
+            <option value="8">août</option>
+            <option value="9">Septembre</option>
+            <option value="10">Octobre</option>
+            <option value="11">Novembre</option>
+            <option value="12">Décembre</option>
+               </optgroup>
+       </select>
+</div>
+
+<hr>
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text">Date : </span>
+    </div>
+    <input type="date" class="form-control" formControlName="date" required>
+</div>
+<hr>
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text">motif  : </span>
+    </div>
+    <input type="text" class="form-control" formControlName="motif" required placeholder="Motif Note de frais">
+</div>
+<hr>
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text">montant </span>
+    </div>
+    <input type="text" class="form-control" formControlName="montant" required>
+</div>
+<hr>
+
+<button type="submit" class="btn btn-outline-info btn-block valid" [disabled]='!NoteForm.valid'>Confirmer</button>
+
+</form>
+</span>
+
+</span>
+</div>
+</div>

@@ -39,10 +39,15 @@ export class CompteComponent implements OnInit {
     this.itemList = db.list('Comptes');
     this.itemList1 = db.list('Comptes');
 
+    this.fire.authState.subscribe(auth=>{
+      if(auth){
+        this.myemail = auth.email;
+      }
+     });
+
   }
 
   ngOnInit() {
-    this.myemail = localStorage.getItem('myemail')
 
      this.itemList.snapshotChanges().subscribe(actions=>{
       actions.forEach(action=>{

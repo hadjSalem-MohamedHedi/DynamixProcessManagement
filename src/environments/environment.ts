@@ -6,7 +6,9 @@
 export const environment = {
   production: false,
   apiUrl: 'http://41.230.21.20:8080/api/DPM/',
-
+ // apiUrl: 'http://192.168.100.100:8080/api/DPM/',
+  
+  
   firebase :{
     apiKey: "AIzaSyBJDxx9Rr9eVWpTZCgJaUF4r7zpzBqsXM0",
     authDomain: "dynamicprocessmanagement.firebaseapp.com",

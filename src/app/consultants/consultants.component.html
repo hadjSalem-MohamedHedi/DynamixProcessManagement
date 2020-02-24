@@ -1,43 +1,55 @@
-<div class="container">
+<div *ngFor="let item of itemArray">
+    <div *ngIf="item.email === myemail">
+        <div *ngIf="item.role === 'Direction' ">
 
-    <button type="button" routerLink="/AddConsultants" id="conftbtn"> <i class="fas fa-user-plus"></i> Ajouter Consultants</button>
+            <div class="container">
 
-    <table class="table table-hover table-xl-responsive">
-        <thead class="thead-light">
-            <tr>
-                <th># N°</th>
-                <th>CIN</th>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Birth date</th>
-                <th>Numéro</th>
-                <th>Numéro Urgence</th>
-                <th>curriculum vitae</th>
-                <th></th>
-                <th></th>
+                <button type="button" routerLink="/AddConsultants" id="conftbtn"> <i class="fas fa-user-plus"></i> Ajouter Consultants</button>
 
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let response of response">
-                <th scope="row">{{response.id}}</th>
-                <td>{{response.cin}}</td>
-                <td><a routerLink="/UpdateConsultant/{{response.id}}">{{response.nom}}</a> </td>
-                <td>{{response.prenom}}</td>
-                <td>{{response.datenais}}</td>
-                <td>{{response.tele}}</td>
-                <td>{{response.tele2}}</td>
-                <td><button type="button" class="btn btn-outline-primary" id="cvtbtn"><i class="fas fa-cloud-download-alt"></i> Download</button></td>
-                <td>
-                    <button class="btn btn-danger" mwlConfirmationPopover [popoverTitle]="test" [popoverMessage]="test" placement="top" (confirm)="onDelete(response.id)" (cancel)=" cancelClicked=true " id="delettbtn">
+                <table class="table table-hover table-xl-responsive">
+                    <thead class="thead-light">
+                        <tr>
+                            <th># N°</th>
+                            <th>CIN</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Birth date</th>
+                            <th>Numéro</th>
+                            <th>Numéro Urgence</th>
+                            <th>curriculum vitae</th>
+                            <th></th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let response of response">
+                            <th scope="row">{{response.id}}</th>
+                            <td>{{response.cin}}</td>
+                            <td><a routerLink="/UpdateConsultant/{{response.id}}">{{response.nom}}</a> </td>
+                            <td>{{response.prenom}}</td>
+                            <td>{{response.datenais}}</td>
+                            <td>{{response.tele}}</td>
+                            <td>{{response.tele2}}</td>
+                            <td><button type="button" class="btn btn-outline-primary" id="cvtbtn"><i class="fas fa-cloud-download-alt"></i> Download</button></td>
+                            <td>
+                                <button class="btn btn-danger" mwlConfirmationPopover [popoverTitle]="test" [popoverMessage]="test" placement="top" (confirm)="onDelete(response.id)" (cancel)=" cancelClicked=true " id="delettbtn">
          <i class="fab fa-xing"></i> Delete
                       </button></td>
-                <td><button type="button " class="btn btn-info" routerLink="/UpdateConsultant/{{response.id}}" id="resettbtn"><i class="far fa-edit"></i> Update</button></td>
+                            <td><button type="button " class="btn btn-info" routerLink="/UpdateConsultant/{{response.id}}" id="resettbtn"><i class="far fa-edit"></i> Update</button></td>
 
-            </tr>
+                        </tr>
 
 
-        </tbody>
-    </table>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+        <div *ngIf="item.role != 'Direction' ">
+            <app-forbidden *ngIf="item.role != 'Direction' "></app-forbidden>
+        </div>
+    </div>
 
 </div>

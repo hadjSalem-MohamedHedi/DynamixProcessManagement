@@ -21,6 +21,7 @@
                         <a routerLink="/Claims" *ngIf="item.role === 'Direction' "><i class="fas fa-exclamation-triangle"></i><span class="nav-label"> Réclammations</span></a>
                         <a routerLink="/Task" *ngIf="item.role === 'Direction' "><i class="fas fa-tasks"></i><span class="nav-label"> Taches</span></a>
                         <a *ngIf="item.role === 'Direction' " routerLink="/Compte"><i class="fas fa-award"></i><span class="nav-label"> Compte</span></a>
+                        <a *ngIf="item.role === 'Direction' " routerLink="/Notefrais"><i class="fas fa-money-check-alt"></i><span class="nav-label"> Note de frais</span></a>
 
 
 
@@ -31,6 +32,7 @@
                         <a routerLink="/DemandCong" *ngIf="item.role === 'Consultant' "><i class="fas fa-glass-cheers"></i><span class="nav-label"> Demande Congées</span></a>
                         <a routerLink="/DemandAuto" *ngIf="item.role === 'Consultant' "><i class="fab fa-autoprefixer"></i><span class="nav-label"> Autorisation</span></a>
                         <a routerLink="/Claims" *ngIf="item.role === 'Consultant' "><i class="fas fa-exclamation-triangle"></i><span class="nav-label"> Réclammations</span></a>
+                        <a routerLink="/Notefrais" *ngIf="item.role === 'Consultant' "><i class="fas fa-money-check-alt"></i><span class="nav-label"> Note de frais</span></a>
 
 
 
@@ -53,6 +55,7 @@
                         <a routerLink="/Autorisation" *ngIf="item.role === 'Administration' "><i class="fab fa-autoprefixer"></i><span class="nav-label"> Autorisation</span></a>
                         <a routerLink="/Maladie" *ngIf="item.role === 'Administration' "><i class="fas fa-file-medical"></i><span class="nav-label"> Maladie</span></a>
                         <a routerLink="/Claims" *ngIf="item.role === 'Administration' "><i class="fas fa-exclamation-triangle"></i><span class="nav-label"> Réclammations</span></a>
+                        <a routerLink="/Notefrais" *ngIf="item.role === 'Administration' "><i class="fas fa-money-check-alt"></i><span class="nav-label"> Note de frais</span></a>
 
 
                     </li>

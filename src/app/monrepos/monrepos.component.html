@@ -24,7 +24,9 @@
                         <td> {{responsemesCongs.datedeb | date:'dd-MM-yyyy'}}</td>
                         <td> {{responsemesCongs.heuredeb}}</td>
                         <td> {{responsemesCongs.heurefin}}</td>
-                        <td> {{responsemesCongs.status}}</td>
+                        <td *ngIf="responsemesCongs.status === 'accepter'"><span class="badge badge-success"> {{responsemesCongs.status}}</span></td>
+                        <td *ngIf="responsemesCongs.status === 'Refuser'"><span class="badge badge-danger"> {{responsemesCongs.status}}</span></td>
+                        <td *ngIf="responsemesCongs.status === 'EnAttente'"><span class="badge badge-warning"> {{responsemesCongs.status}}</span></td>
                         <td> <i class="fab fa-xing-square"></i></td>
 
                     </tr>
@@ -63,7 +65,10 @@
                         <td> {{responsemesCongs.nbjours}}</td>
                         <td> {{responsemesCongs.datedeb | date:'dd-MM-yyyy'}}</td>
                         <td> {{responsemesCongs.datefin | date:'dd-MM-yyyy'}}</td>
-                        <td> {{responsemesCongs.status}}</td>
+                        <td *ngIf="responsemesCongs.status === 'accepter'"><span class="badge badge-success"> {{responsemesCongs.status}}</span></td>
+                        <td *ngIf="responsemesCongs.status === 'Refuser'"><span class="badge badge-danger"> {{responsemesCongs.status}}</span></td>
+                        <td *ngIf="responsemesCongs.status === 'EnAttente'"><span class="badge badge-warning"> {{responsemesCongs.status}}</span></td>
+                        <td> <i class="fab fa-xing-square"></i></td>
                     </tr>
 
                 </tbody>

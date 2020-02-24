@@ -64,6 +64,8 @@ import { PartieProjComponent } from './partie-proj/partie-proj.component';
 import { AccountComponent } from './account/account.component';
 import { HistoryComponent } from './history/history.component';
 import { MonreposComponent } from './monrepos/monrepos.component';
+import { NotefraisComponent } from './notefrais/notefrais.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 
 const routes: Routes=[
@@ -76,6 +78,8 @@ const routes: Routes=[
   {path: 'Account',component:AccountComponent},
   {path: 'History',component:HistoryComponent},
   {path: 'Monrepos',component:MonreposComponent},
+  {path: 'Notefrais',component:NotefraisComponent},
+  {path: 'Forbidden',component:ForbiddenComponent},
 
   
 
@@ -177,6 +181,8 @@ const routes: Routes=[
     AccountComponent,
     HistoryComponent,
     MonreposComponent,
+    NotefraisComponent,
+    ForbiddenComponent,
   ],
   imports: [
     BrowserModule,

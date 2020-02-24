@@ -5,6 +5,9 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase , AngularFireList} from 'angularfire2/database';
+import 'firebase/database';
 
 @Component({
   selector: 'app-add',
@@ -33,9 +36,29 @@ export class AddComponent implements OnInit {
     datecon:'',
     titre:'',
      }
-  constructor(private httpClient: HttpClient,public router: Router , private toastr: ToastrService) { }
+     myemail: string;
+     itemList: AngularFireList<any>;
+     itemArray = [] ;
+  constructor(public fire: AngularFireAuth,public db: AngularFireDatabase ,private httpClient: HttpClient,public router: Router , private toastr: ToastrService) {
+    this.itemList = db.list('Comptes');
+
+    this.fire.authState.subscribe(auth=>{
+      if(auth){
+        this.myemail = auth.email;
+      }
+     });
+
+   }
 
   ngOnInit() {
+    this.itemList.snapshotChanges().subscribe(actions=>{
+      actions.forEach(action=>{
+       let y =action.payload.toJSON()
+       this.itemArray.push(y as ListItemClass)
+ 
+     })
+    })
+   
   }
 
 
@@ -55,4 +78,9 @@ export class AddComponent implements OnInit {
 
 }
 
+}
+
+export class ListItemClass{
+  email: string;
+  role: string;
 }

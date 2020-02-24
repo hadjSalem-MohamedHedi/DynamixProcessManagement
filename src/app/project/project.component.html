@@ -1,44 +1,58 @@
-<div class="container">
-    <div class="row">
+<div *ngFor="let item of itemArray">
+    <div *ngIf="item.email === myemail">
+        <div *ngIf="item.role === 'Direction' ">
 
 
-        <div class="col-sm-4">
-            <div class="card">
-                <img class="card-img-top" src="../../assets/img/Customer/haco_logo.png" alt="Card image cap" class="img-fluid">
-                <div class="card-body">
-                    <h4 class="card-title">Haco Group</h4>
-                    <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                    </p>
-                    <button type="button" class="btn btn-outline-primary btn-block" routerLink="/Detaitsprojects/{id}">Let's GO</button>
+
+            <div class="container">
+                <div class="row">
+
+
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <img class="card-img-top" src="../../assets/img/Customer/haco_logo.png" alt="Card image cap" class="img-fluid">
+                            <div class="card-body">
+                                <h4 class="card-title">Haco Group</h4>
+                                <p class="card-text">
+                                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                                </p>
+                                <button type="button" class="btn btn-outline-primary btn-block" routerLink="/Detaitsprojects/{id}">Let's GO</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <img class="card-img-top" src="../../assets/img/Customer/airliquide_logo.jpg" alt="Card image cap" class="img-fluid">
+                            <div class=" card-body ">
+                                <h4 class="card-title ">Air Liquide</h4>
+                                <p class="card-text ">
+                                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                                </p>
+                                <button type="button" class="btn btn-outline-primary btn-block" routerLink="/Detaitsprojects/{id}">Let's GO</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <img class="card-img-top " src="../../assets/img/Customer/asa_logo.png " alt="Card image cap " class="img-fluid ">
+                            <div class="card-body ">
+                                <h4 class="card-title ">ALL Seas Shipping</h4>
+                                <p class="card-text ">
+                                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                                </p>
+                                <button type="button" class="btn btn-outline-primary btn-block" routerLink="/Detaitsprojects/{id}">Let's GO</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
+        <div *ngIf="item.role != 'Direction' ">
+            <app-forbidden *ngIf="item.role != 'Direction' "></app-forbidden>
 
-
-        <div class="col-sm-4">
-            <div class="card">
-                <img class="card-img-top" src="../../assets/img/Customer/airliquide_logo.jpg" alt="Card image cap" class="img-fluid">
-                <div class=" card-body ">
-                    <h4 class="card-title ">Air Liquide</h4>
-                    <p class="card-text ">
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                    </p>
-                    <button type="button" class="btn btn-outline-primary btn-block" routerLink="/Detaitsprojects/{id}">Let's GO</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <img class="card-img-top " src="../../assets/img/Customer/asa_logo.png " alt="Card image cap " class="img-fluid ">
-                <div class="card-body ">
-                    <h4 class="card-title ">ALL Seas Shipping</h4>
-                    <p class="card-text ">
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                    </p>
-                    <button type="button" class="btn btn-outline-primary btn-block" routerLink="/Detaitsprojects/{id}">Let's GO</button>
-                </div>
-            </div>
         </div>
     </div>
 </div>

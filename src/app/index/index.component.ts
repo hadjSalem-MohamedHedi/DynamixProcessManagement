@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase , AngularFireList} from 'angularfire2/database';
 import 'firebase/database';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-index',
@@ -11,12 +12,24 @@ export class IndexComponent implements OnInit {
   itemList: AngularFireList<any>;
   itemArray = [] ;
   myemail: string;
-  constructor(public db: AngularFireDatabase ) {
+
+  constructor(public db: AngularFireDatabase ,public fire: AngularFireAuth ) {
     this.itemList = db.list('Comptes');
   }
 
   ngOnInit() {
-    this.myemail = localStorage.getItem('myemail');
+
+
+      this.fire.authState.subscribe(auth=>{
+        if(auth){
+          this.myemail = auth.email;
+        }
+       });
+
+
+  
+
+
 
     this.itemList.snapshotChanges().subscribe(actions=>{
      actions.forEach(action=>{

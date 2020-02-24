@@ -1,68 +1,85 @@
-<div class="container">
-    <h1>Dynamix'S Customer</h1>
+<div *ngFor="let item of itemArray">
+    <div *ngIf="item.email === myemail">
+        <div *ngIf="item.role === 'Direction' ">
 
-    <div class="dash-cust">
-        <div class="card-dash shadow p-3 mb-5 bg-light rounded">
-            <h3>27</h3>
-            <h4>Clients</h4>
+            <div class="container">
+                <h1>Dynamix'S Customer</h1>
+
+                <div class="dash-cust">
+                    <div class="card-dash shadow p-3 mb-5 bg-light rounded">
+                        <h3>27</h3>
+                        <h4>Clients</h4>
+                    </div>
+
+                    <div class="card-dash shadow p-3 mb-5 bg-light rounded">
+                        <h3>17</h3>
+                        <h4>Actif</h4>
+                    </div>
+
+
+                    <div class="card-dash shadow p-3 mb-5 bg-light rounded">
+                        <h3>27</h3>
+                        <h4>satisfied</h4>
+                    </div>
+
+                    <div class="card-dash shadow p-3 mb-5 bg-light rounded">
+                        <h3>0</h3>
+                        <h4>not satisfied</h4>
+                    </div>
+                </div>
+
+
+
+
+
+                <button type="button" class="btn btn-success"> <i class="fas fa-user-plus"></i> New Customer</button>
+
+
+
+
+                <div *ngIf="response">
+                    <table class="table table-hover table-striped table-xl-responsive">
+                        <thead class="thead-light">
+                            <tr>
+                                <th># ID </th>
+                                <th>Name</th>
+                                <th>adresse</th>
+                                <th>Phone</th>
+                                <th>Last Date Modified </th>
+                                <th></th>
+                                <th></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr *ngFor="let response of response">
+                                <th scope="row">{{response.no}}</th>
+                                <td>{{response.name}}</td>
+                                <td>{{response.adresse}}</td>
+                                <td>{{response.phone}}</td>
+                                <td>{{response.lastdatemode}}</td>
+                                <td><button type="button" class="btn btn-danger"><i class="fas fa-user-minus"></i> Delete</button></td>
+                                <td><button type="button" class="btn btn-info"><i class="fas fa-user-cog"></i> Update</button></td>
+
+                            </tr>
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
         </div>
+        <div *ngIf="item.role != 'Direction' ">
+            <div class="alert alert-danger" role="alert">
+                <strong>403 Forbidden : </strong>vous n'avez pas l’autorisation pour afficher cette page .
 
-        <div class="card-dash shadow p-3 mb-5 bg-light rounded">
-            <h3>17</h3>
-            <h4>Actif</h4>
+            </div>
+
         </div>
-
-
-        <div class="card-dash shadow p-3 mb-5 bg-light rounded">
-            <h3>27</h3>
-            <h4>satisfied</h4>
-        </div>
-
-        <div class="card-dash shadow p-3 mb-5 bg-light rounded">
-            <h3>0</h3>
-            <h4>not satisfied</h4>
-        </div>
-    </div>
-
-
-
-
-
-    <button type="button" class="btn btn-success"> <i class="fas fa-user-plus"></i> New Customer</button>
-
-
-
-
-    <div *ngIf="response">
-        <table class="table table-hover table-striped table-xl-responsive">
-            <thead class="thead-light">
-                <tr>
-                    <th># ID </th>
-                    <th>Name</th>
-                    <th>adresse</th>
-                    <th>Phone</th>
-                    <th>Last Date Modified </th>
-                    <th></th>
-                    <th></th>
-
-                </tr>
-            </thead>
-            <tbody>
-
-                <tr *ngFor="let response of response">
-                    <th scope="row">{{response.no}}</th>
-                    <td>{{response.name}}</td>
-                    <td>{{response.adresse}}</td>
-                    <td>{{response.phone}}</td>
-                    <td>{{response.lastdatemode}}</td>
-                    <td><button type="button" class="btn btn-danger"><i class="fas fa-user-minus"></i> Delete</button></td>
-                    <td><button type="button" class="btn btn-info"><i class="fas fa-user-cog"></i> Update</button></td>
-
-                </tr>
-
-
-
-            </tbody>
-        </table>
     </div>
 </div>

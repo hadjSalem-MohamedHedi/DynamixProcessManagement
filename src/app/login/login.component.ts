@@ -57,6 +57,7 @@ export class LoginComponent implements OnInit {
         if(auth){
           localStorage.setItem('isLoggedIn', 'true');
           localStorage.setItem('myemail', this.mail);
+          console.log("auth .mailll ::: "+auth.email)
           location.reload();
           this.router.navigate(['/Customer']);
         }

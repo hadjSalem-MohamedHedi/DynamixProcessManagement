@@ -18,10 +18,15 @@ export class NavbarComponent implements OnInit {
   constructor(public afAuth: AngularFireAuth , public router: Router ,public db: AngularFireDatabase ) {
     this.itemList = db.list('Comptes');
 
+    this.afAuth.authState.subscribe(auth=>{
+      if(auth){
+        this.myemail = auth.email;
+      }
+     });
+
   }
 
   ngOnInit() {
-    this.myemail = localStorage.getItem('myemail');
 
     this.itemList.snapshotChanges().subscribe(actions=>{
      actions.forEach(action=>{

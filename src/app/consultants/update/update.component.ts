@@ -5,6 +5,9 @@ import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import {FormGroup , FormControl} from '@angular/forms'
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase , AngularFireList} from 'angularfire2/database';
+import 'firebase/database';
 @Component({
   selector: 'app-update',
   templateUrl: './update.component.html',
@@ -22,7 +25,6 @@ export class UpdateComponent implements OnInit {
 
   consultant: Consultant[];
   consultants=[];
-  itemArray=[];
 
   msj: '';
   path: '';
@@ -44,8 +46,19 @@ export class UpdateComponent implements OnInit {
     role : '',
     titre : '',
   }
+  myemail: string;
+  itemList: AngularFireList<any>;
+  itemArray = [] ;
+  constructor(public fire: AngularFireAuth,public db: AngularFireDatabase  ,private httpClient: HttpClient,public route:ActivatedRoute,public router:Router) {
+    
+	this.itemList = db.list('Comptes');
 
-  constructor(private httpClient: HttpClient,public route:ActivatedRoute,public router:Router) {
+  this.fire.authState.subscribe(auth=>{
+    if(auth){
+      this.myemail = auth.email;
+    }
+   });
+
     this.route.params.subscribe(params=>{
       this.id=params
         console.log("id mel rouer"+this.id.id)
@@ -54,6 +67,14 @@ export class UpdateComponent implements OnInit {
 
   ngOnInit() {
 
+    this.itemList.snapshotChanges().subscribe(actions=>{
+      actions.forEach(action=>{
+       let y =action.payload.toJSON()
+       this.itemArray.push(y as ListItemClass)
+ 
+     })
+    })
+   
       $(document).ready(function(){
         $("#Dashboard").click(function(){
           $("#dashboard").fadeIn("slow");
@@ -157,3 +178,4 @@ export class ListItemClass{
   datenais:string;
 
 }
+

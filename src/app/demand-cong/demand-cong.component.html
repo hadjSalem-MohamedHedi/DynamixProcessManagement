@@ -22,7 +22,12 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Cin :</span>
     </div>
-    <input type="text" class="form-control" placeholder="{{getuser.cin}} " required formControlName="cin">
+
+
+    <select class="form-control" required formControlName="cin">
+        <optgroup label="Créé Par :">
+        <option value="{{getuser.cin}}">{{item.nom}} {{item.prenom}}</option>
+    </select>
 </div>
 </div>
 <hr>
@@ -30,7 +35,10 @@
     <div class="input-group-prepend">
         <span class="input-group-text">Nom & Prénom </span>
     </div>
-    <input type="text" class="form-control" placeholder=" {{item.nom}} {{item.prenom}}" required formControlName="nom">
+    <select class="form-control" required formControlName="nom">
+        <optgroup label="Créé Par :">
+        <option value="{{item.nom}} {{item.prenom}}">{{item.nom}} {{item.prenom}}</option>
+    </select>
 </div>
 
 <hr>

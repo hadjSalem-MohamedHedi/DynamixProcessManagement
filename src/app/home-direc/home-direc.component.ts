@@ -6,7 +6,8 @@ import * as firebase from 'firebase/app';
 
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-
+import { AngularFireDatabase , AngularFireList} from 'angularfire2/database';
+import 'firebase/database';
 @Component({
   selector: 'app-home-direc',
   templateUrl: './home-direc.component.html',
@@ -15,18 +16,28 @@ import { Observable } from 'rxjs';
 export class HomeDirecComponent implements OnInit {
   private isLoggedIn: boolean=true;
   user: Observable<firebase.User>;
-  constructor(public afAuth: AngularFireAuth ,  public router: Router) {
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        this.isLoggedIn=true;
-        localStorage.setItem('isLoggedIn','true')
-        console.log("user connecter ");
+  itemList: AngularFireList<any>;
+  itemArray = [] ;
+  myemail: string;
+
+  constructor(public afAuth: AngularFireAuth ,public db: AngularFireDatabase ) {
+    this.itemList = db.list('Comptes');
+
+    this.afAuth.authState.subscribe(auth=>{
+      if(auth){
+        this.myemail = auth.email;
       }
-      else {
-      this.isLoggedIn=false
-      console.log("user non connecter ");
-    }
-    });
+     });
+
+
+     this.itemList.snapshotChanges().subscribe(actions=>{
+      actions.forEach(action=>{
+       let y =action.payload.toJSON()
+       this.itemArray.push(y as ListItemClass)
+ 
+     })
+    })
+
   }
 
   ngOnInit() {
@@ -65,4 +76,10 @@ export class HomeDirecComponent implements OnInit {
     });
   }
 
+}
+
+
+export class ListItemClass{
+  email: string;
+  role: string;
 }

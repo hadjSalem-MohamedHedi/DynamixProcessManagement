@@ -43,6 +43,13 @@
                 <button class="btn btn-outline-primary" id="loginbtn" (click)="Registre()">Login</button>
             </div>
 
+
+
+
+        </div>
+        <div *ngIf="item.role != 'Direction' ">
+            <app-forbidden *ngIf="item.role != 'Direction' "></app-forbidden>
+
         </div>
     </div>
 </div>

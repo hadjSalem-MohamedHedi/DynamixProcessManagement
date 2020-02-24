@@ -1,137 +1,218 @@
-<div class="body_home">
-    <div class="nav_home">
-        <ul class="nav justify-content-center">
-            <li class="nav-item">
-                <a class="nav-link" id="Dashboard">Présence</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="Plan">Note de frais</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="Today">Congés</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="Journal">Autorisation</a>
-            </li>
-        </ul>
+<div *ngFor="let item of itemArray">
+    <div *ngIf="item.email === myemail">
+        <div *ngIf="item.role === 'Direction' ">
+
+
+            <div class="body_home">
+                <div class="nav_home">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link" id="Dashboard">Présence</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="Plan">Note de frais</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="Today">Congés</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="Journal">Autorisation</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="contenue" id="content">
+
+                    <div id="dashboard">
+                        <h4> {{myDate | date:'dd-MM-yyyy'}} </h4>
+
+                        <table class="table table-hover">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>der date</th>
+
+                                    <th></th>
+                                    <th></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let response of response">
+                                    <th scope="row">{{response.id}}</th>
+
+                                    <td>{{response.nom}}</td>
+                                    <td>{{response.prenom}}</td>
+                                    <td>{{response.derdate}}</td>
+                                    <td *ngIf="response.pres != 'Yes'">
+                                        <button *ngIf="response.derdate != myDate" type="button" class="btn btn-danger" id="presbtn" (click)="present(response.cin,myDate,'P')"><i class="far fa-thumbs-up"></i>  Présent</button>
+                                    </td>
+
+                                    <td>
+                                        <button type="button" class="btn btn-danger" id="absbtn" (click)="absent(response.cin,myDate,'A')"><i class="far fa-thumbs-down"></i>  Absent</button>
+                                    </td>
+
+
+
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
+
+
+
+
+
+                    <div id="plan">
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Pour période du : </span>
+                            </div>
+                            <form [formGroup]="NoteForm" (ngSubmit)="selectnote()">
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <select class="form-control" formControlName="mois" required> 
+                                                        <optgroup label="Mois :">
+                                                        <option disabled>Veuillez choisir le mois du note de frais </option>
+                                                        <option value="1">janvier</option>
+                                                        <option value="2">février</option>
+                                                        <option value="3">mars</option>
+                                                        <option value="4">avril</option>
+                                                        <option value="5">mai</option>
+                                                        <option value="6">juin</option>
+                                                        <option value="7">juillet</option>
+                                                        <option value="8">août</option>
+                                                        <option value="9">Septembre</option>
+                                                        <option value="10">Octobre</option>
+                                                        <option value="11">Novembre</option>
+                                                        <option value="12">Décembre</option>
+                                                           </optgroup>
+                                                   </select>
+                                    </div>
+
+                                    <div class="col-sm-5">
+                                        <button type="submit" class="btn btn-block btn-outline-info" [disabled]='!NoteForm.valid'>Search</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+
+                        <hr>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th># Date</th>
+                                    <th>Motif</th>
+                                    <th>Montant</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of responseListeNote">
+                                    <th scope="row">{{item.date}} </th>
+                                    <td>{{item.motif}}</td>
+                                    <td>{{item.montant}} DT</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <div id="today">
+
+
+                        <table class="table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Consultant</th>
+                                    <th>date début</th>
+                                    <th>date Fin</th>
+                                    <th>Motif</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let response of responseConge">
+                                <tr *ngIf="response.status === 'EnAttente'">
+                                    <th scope="row" *ngIf="response.type === 'Long' ">{{response.id}}</th>
+                                    <td *ngIf="response.type === 'Long' ">{{response.nom}}</td>
+                                    <td *ngIf="response.type === 'Long' ">{{response.datedeb | date:'dd-MM-yyyy'}}</td>
+                                    <td *ngIf="response.type === 'Long' ">{{response.datefin | date:'dd-MM-yyyy'}}</td>
+                                    <td *ngIf="response.type === 'Long' ">{{response.motif}}</td>
+                                    <td *ngIf="response.type === 'Long' ">{{response.status}}</td>
+                                    <td *ngIf="response.type === 'Long' ">{{response.type}}</td>
+                                    <td *ngIf="response.type === 'Long' "><button href="#!" class="card-link" class="btn btn-danger" id="presbtn" (click)="accepter(response.id,'accepter')">accepter</button></td>
+                                    <td *ngIf="response.type === 'Long' "><button href="#!" class="card-link" class="btn btn-danger" id="absbtn" (click)="Refuser(response.id,'Refuser')">Refuser</button></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+
+
+                    </div>
+
+
+
+
+
+
+                    <div id="journal">
+                        <table class="table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Consultant</th>
+                                    <th>date</th>
+                                    <th>DU </th>
+                                    <th>Au </th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let response of responseConge">
+                                <tr *ngIf="response.status === 'EnAttente'">
+                                    <th scope="row" *ngIf="response.type === 'Court' ">{{response.id}}</th>
+                                    <td *ngIf="response.type === 'Court' ">{{response.nom}}</td>
+                                    <td *ngIf="response.type === 'Court' ">{{response.datedeb | date:'dd-MM-yyyy'}}</td>
+                                    <td *ngIf="response.type === 'Court' ">{{response.heuredeb}}</td>
+                                    <td *ngIf="response.type === 'Court' ">{{response.heurefin}}</td>
+                                    <td *ngIf="response.type === 'Court' ">{{response.status}}</td>
+                                    <td *ngIf="response.type === 'Court' "><button href="#!" class="card-link" class="btn btn-danger" id="presbtn" (click)="accepter(response.id,'accepter')">accepter</button></td>
+                                    <td *ngIf="response.type === 'Court' "><button href="#!" class="card-link" class="btn btn-danger" id="absbtn" (click)="Refuser(response.id,'Refuser')">Refuser</button></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div *ngIf="item.role != 'Direction' ">
+            <app-forbidden *ngIf="item.role != 'Direction' "></app-forbidden>
+        </div>
     </div>
-
-    <div class="contenue">
-
-        <div id="dashboard">
-            <h4> {{myDate | date:'dd-MM-yyyy'}} </h4>
-
-            <table class="table table-hover">
-                <thead class="thead-light">
-                    <tr>
-                        <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>der date</th>
-
-                        <th></th>
-                        <th></th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let response of response">
-                        <th scope="row">{{response.id}}</th>
-
-                        <td>{{response.nom}}</td>
-                        <td>{{response.prenom}}</td>
-                        <td>{{response.derdate}}</td>
-                        <td *ngIf="response.pres != 'Yes'">
-                            <button *ngIf="response.derdate != myDate" type="button" class="btn btn-danger" id="presbtn" (click)="present(response.cin,myDate,'P')"><i class="far fa-thumbs-up"></i>  Présent</button>
-                        </td>
-
-                        <td>
-                            <button type="button" class="btn btn-danger" id="absbtn" (click)="absent(response.cin,myDate,'A')"><i class="far fa-thumbs-down"></i>  Absent</button>
-                        </td>
-
-
-
-
-                    </tr>
-
-                </tbody>
-            </table>
-        </div>
-
-
-
-
-        <div id="plan">Note De frais</div>
-
-
-
-
-        <div id="today">
-
-
-            <table class="table">
-                <thead class="thead-light">
-                    <tr>
-                        <th>#</th>
-                        <th>Consultant</th>
-                        <th>date début</th>
-                        <th>date Fin</th>
-                        <th>Motif</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody *ngFor="let response of responseConge">
-                    <tr *ngIf="response.status === 'EnAttente'">
-                        <th scope="row" *ngIf="response.type === 'Long' ">{{response.id}}</th>
-                        <td *ngIf="response.type === 'Long' ">{{response.nom}}</td>
-                        <td *ngIf="response.type === 'Long' ">{{response.datedeb | date:'dd-MM-yyyy'}}</td>
-                        <td *ngIf="response.type === 'Long' ">{{response.datefin | date:'dd-MM-yyyy'}}</td>
-                        <td *ngIf="response.type === 'Long' ">{{response.motif}}</td>
-                        <td *ngIf="response.type === 'Long' ">{{response.status}}</td>
-                        <td *ngIf="response.type === 'Long' ">{{response.type}}</td>
-                        <td *ngIf="response.type === 'Long' "><button href="#!" class="card-link" class="btn btn-danger" id="presbtn" (click)="accepter(response.id,'accepter')">accepter</button></td>
-                        <td *ngIf="response.type === 'Long' "><button href="#!" class="card-link" class="btn btn-danger" id="absbtn" (click)="Refuser(response.id,'Refuser')">Refuser</button></td>
-                    </tr>
-
-                </tbody>
-            </table>
-
-
-
-        </div>
-
-
-
-
-
-
-        <div id="journal">
-            <table class="table">
-                <thead class="thead-light">
-                    <tr>
-                        <th>#</th>
-                        <th>Consultant</th>
-                        <th>date</th>
-                        <th>DU </th>
-                        <th>Au </th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody *ngFor="let response of responseConge">
-                    <tr *ngIf="response.status === 'EnAttente'">
-                        <th scope="row" *ngIf="response.type === 'Court' ">{{response.id}}</th>
-                        <td *ngIf="response.type === 'Court' ">{{response.nom}}</td>
-                        <td *ngIf="response.type === 'Court' ">{{response.datedeb | date:'dd-MM-yyyy'}}</td>
-                        <td *ngIf="response.type === 'Court' ">{{response.heuredeb}}</td>
-                        <td *ngIf="response.type === 'Court' ">{{response.heurefin}}</td>
-                        <td *ngIf="response.type === 'Court' ">{{response.status}}</td>
-                        <td *ngIf="response.type === 'Court' "><button href="#!" class="card-link" class="btn btn-danger" id="presbtn" (click)="accepter(response.id,'accepter')">accepter</button></td>
-                        <td *ngIf="response.type === 'Court' "><button href="#!" class="card-link" class="btn btn-danger" id="absbtn" (click)="Refuser(response.id,'Refuser')">Refuser</button></td>
-                    </tr>
-
-                </tbody>
-            </table>
-        </div>
-    </div>
-
 </div>

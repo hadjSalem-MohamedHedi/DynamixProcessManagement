@@ -1,33 +1,37 @@
-<div class="row">
-    <div class="col-sm-5">
-        <h6>Cin : </h6>
-        <input type="text" class="form-control" placeholder="cin" name="cin" [(ngModel)]="data.cin">
-    </div>
+<div *ngFor="let item of itemArray">
+    <div *ngIf="item.email === myemail">
+        <div *ngIf="item.role === 'Direction' ">
 
-    <div class="col-sm-5">
-        <h6>Nom : </h6>
-        <input type="text" class="form-control" placeholder="nom" name="nom" [(ngModel)]="data.nom">
-    </div>
+            <div class="row">
+                <div class="col-sm-5">
+                    <h6>Cin : </h6>
+                    <input type="text" class="form-control" placeholder="cin" name="cin" [(ngModel)]="data.cin">
+                </div>
 
-    <div class="col-sm-5">
-        <h6>Prénom : </h6>
-        <input type="text" class="form-control" placeholder="prenom" name="prenom" [(ngModel)]="data.prenom">
-    </div>
-    <div class="col-sm-5">
-        <h6>Date de naissance : </h6>
-        <input type="date" class="form-control form-control btn-outline-info" placeholder="Date de naissance " name="datenais" [(ngModel)]="data.datenais">
-    </div>
-</div>
-<hr>
-<div class="row">
-    <div class="col-sm-5">
-        <h6>E-mail : </h6>
-        <input type="text" class="form-control" placeholder="email" name="email" [(ngModel)]="data.email">
-    </div>
+                <div class="col-sm-5">
+                    <h6>Nom : </h6>
+                    <input type="text" class="form-control" placeholder="nom" name="nom" [(ngModel)]="data.nom">
+                </div>
 
-    <div class="col-sm-5">
-        <h6>Role Dans Dpm : </h6>
-        <select name="role" [(ngModel)]="data.role" class="btn-outline-info form-control">
+                <div class="col-sm-5">
+                    <h6>Prénom : </h6>
+                    <input type="text" class="form-control" placeholder="prenom" name="prenom" [(ngModel)]="data.prenom">
+                </div>
+                <div class="col-sm-5">
+                    <h6>Date de naissance : </h6>
+                    <input type="date" class="form-control form-control btn-outline-info" placeholder="Date de naissance " name="datenais" [(ngModel)]="data.datenais">
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-5">
+                    <h6>E-mail : </h6>
+                    <input type="text" class="form-control" placeholder="email" name="email" [(ngModel)]="data.email">
+                </div>
+
+                <div class="col-sm-5">
+                    <h6>Role Dans Dpm : </h6>
+                    <select name="role" [(ngModel)]="data.role" class="btn-outline-info form-control">
         <option value="" selected>Role du compte : </option>
         <option value="Direction">Direction</option>
         <option value="Consultant">Consultant</option>
@@ -35,47 +39,55 @@
         <option value="Administration">Administration</option>
         <option value="Visiteur">Visiteur</option>
       </select>
+                </div>
+
+
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-5">
+                    <h6>N° Téléphone : </h6>
+                    <input type="text" class="form-control" placeholder="tel" name="tel" [(ngModel)]="data.tel">
+                </div>
+
+
+
+
+                <div class="col-sm-5">
+                    <h6>N° Téléphone en cas d'urgence : </h6>
+                    <input type="text" class="form-control" placeholder="N° Téléphone en cas d'urgence :" name="tell" [(ngModel)]="data.tell">
+                </div>
+            </div>
+            <hr>
+
+            <div class="row">
+                <div class="col-sm-5">
+                    <h6>Date début Contrat : </h6>
+                    <input type="date" class="form-control btn-outline-info" placeholder="datenais" name="datecon" [(ngModel)]="data.datecon">
+                </div>
+
+
+
+                <div class="col-sm-5">
+                    <h6>titre : </h6>
+                    <input type="text" class="form-control" placeholder="titre" name="titre" [(ngModel)]="data.titre">
+                </div>
+
+
+
+                <div class="col-sm-5">
+                    <h6></h6>
+                    <button class="btn btn-outline-success" (click)="InsertCons()" id="conftbtn"> <i class="fas fa-check"></i> Confimer </button>
+                    <button class="btn btn-outline-primary" id="resetbtn" routerLink="/Consultants"><i class="fas fa-reply-all"></i> Reset</button>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div *ngIf="item.role != 'Direction' ">
+            <app-forbidden *ngIf="item.role != 'Direction' "></app-forbidden>
+
+        </div>
     </div>
-
-
-</div>
-<hr>
-<div class="row">
-    <div class="col-sm-5">
-        <h6>N° Téléphone : </h6>
-        <input type="text" class="form-control" placeholder="tel" name="tel" [(ngModel)]="data.tel">
-    </div>
-
-
-
-
-    <div class="col-sm-5">
-        <h6>N° Téléphone en cas d'urgence : </h6>
-        <input type="text" class="form-control" placeholder="N° Téléphone en cas d'urgence :" name="tell" [(ngModel)]="data.tell">
-    </div>
-</div>
-<hr>
-
-<div class="row">
-    <div class="col-sm-5">
-        <h6>Date début Contrat : </h6>
-        <input type="date" class="form-control btn-outline-info" placeholder="datenais" name="datecon" [(ngModel)]="data.datecon">
-    </div>
-
-
-
-    <div class="col-sm-5">
-        <h6>titre : </h6>
-        <input type="text" class="form-control" placeholder="titre" name="titre" [(ngModel)]="data.titre">
-    </div>
-
-
-
-    <div class="col-sm-5">
-        <h6></h6>
-        <button class="btn btn-outline-success" (click)="InsertCons()" id="conftbtn"> <i class="fas fa-check"></i> Confimer </button>
-        <button class="btn btn-outline-primary" id="resetbtn" routerLink="/Consultants"><i class="fas fa-reply-all"></i> Reset</button>
-
-    </div>
-
 </div>
