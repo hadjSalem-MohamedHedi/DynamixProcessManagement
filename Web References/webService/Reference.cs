@@ -59,6 +59,12 @@ namespace DPM_Api_VBETA.webService {
         
         private System.Threading.SendOrPostCallback AddAutoOperationCompleted;
         
+        private System.Threading.SendOrPostCallback AddNoteFraisOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ListeNoteOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AddPresDOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -141,6 +147,15 @@ namespace DPM_Api_VBETA.webService {
         
         /// <remarks/>
         public event AddAutoCompletedEventHandler AddAutoCompleted;
+        
+        /// <remarks/>
+        public event AddNoteFraisCompletedEventHandler AddNoteFraisCompleted;
+        
+        /// <remarks/>
+        public event ListeNoteCompletedEventHandler ListeNoteCompleted;
+        
+        /// <remarks/>
+        public event AddPresDCompletedEventHandler AddPresDCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeConsultant", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="ListeConsultant_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -658,6 +673,107 @@ namespace DPM_Api_VBETA.webService {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddNoteFrais", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="AddNoteFrais_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public bool AddNoteFrais(string consultant, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime date, string motif, decimal montant, int mois) {
+            object[] results = this.Invoke("AddNoteFrais", new object[] {
+                        consultant,
+                        date,
+                        motif,
+                        montant,
+                        mois});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddNoteFraisAsync(string consultant, System.DateTime date, string motif, decimal montant, int mois) {
+            this.AddNoteFraisAsync(consultant, date, motif, montant, mois, null);
+        }
+        
+        /// <remarks/>
+        public void AddNoteFraisAsync(string consultant, System.DateTime date, string motif, decimal montant, int mois, object userState) {
+            if ((this.AddNoteFraisOperationCompleted == null)) {
+                this.AddNoteFraisOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddNoteFraisOperationCompleted);
+            }
+            this.InvokeAsync("AddNoteFrais", new object[] {
+                        consultant,
+                        date,
+                        motif,
+                        montant,
+                        mois}, this.AddNoteFraisOperationCompleted, userState);
+        }
+        
+        private void OnAddNoteFraisOperationCompleted(object arg) {
+            if ((this.AddNoteFraisCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddNoteFraisCompleted(this, new AddNoteFraisCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeNote", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="ListeNote_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void ListeNote(ref RootNote noteFr, int mois) {
+            object[] results = this.Invoke("ListeNote", new object[] {
+                        noteFr,
+                        mois});
+            noteFr = ((RootNote)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListeNoteAsync(RootNote noteFr, int mois) {
+            this.ListeNoteAsync(noteFr, mois, null);
+        }
+        
+        /// <remarks/>
+        public void ListeNoteAsync(RootNote noteFr, int mois, object userState) {
+            if ((this.ListeNoteOperationCompleted == null)) {
+                this.ListeNoteOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListeNoteOperationCompleted);
+            }
+            this.InvokeAsync("ListeNote", new object[] {
+                        noteFr,
+                        mois}, this.ListeNoteOperationCompleted, userState);
+        }
+        
+        private void OnListeNoteOperationCompleted(object arg) {
+            if ((this.ListeNoteCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListeNoteCompleted(this, new ListeNoteCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddPresD", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="AddPresD_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public bool AddPresD(string cin, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime date) {
+            object[] results = this.Invoke("AddPresD", new object[] {
+                        cin,
+                        date});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddPresDAsync(string cin, System.DateTime date) {
+            this.AddPresDAsync(cin, date, null);
+        }
+        
+        /// <remarks/>
+        public void AddPresDAsync(string cin, System.DateTime date, object userState) {
+            if ((this.AddPresDOperationCompleted == null)) {
+                this.AddPresDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddPresDOperationCompleted);
+            }
+            this.InvokeAsync("AddPresD", new object[] {
+                        cin,
+                        date}, this.AddPresDOperationCompleted, userState);
+        }
+        
+        private void OnAddPresDOperationCompleted(object arg) {
+            if ((this.AddPresDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddPresDCompleted(this, new AddPresDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -912,6 +1028,127 @@ namespace DPM_Api_VBETA.webService {
             }
             set {
                 this.derdatField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:microsoft-dynamics-nav/xmlports/x50006")]
+    public partial class RecNoteFrais {
+        
+        private int idField;
+        
+        private string consultantField;
+        
+        private string dateField;
+        
+        private string motifField;
+        
+        private string montantField;
+        
+        private int moisField;
+        
+        public RecNoteFrais() {
+            this.idField = 0;
+            this.moisField = 0;
+        }
+        
+        /// <remarks/>
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string consultant {
+            get {
+                return this.consultantField;
+            }
+            set {
+                this.consultantField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string date {
+            get {
+                return this.dateField;
+            }
+            set {
+                this.dateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string motif {
+            get {
+                return this.motifField;
+            }
+            set {
+                this.motifField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string montant {
+            get {
+                return this.montantField;
+            }
+            set {
+                this.montantField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int mois {
+            get {
+                return this.moisField;
+            }
+            set {
+                this.moisField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:microsoft-dynamics-nav/xmlports/x50006")]
+    public partial class RootNote {
+        
+        private RecNoteFrais[] recNoteFraisField;
+        
+        private string[] textField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("RecNoteFrais")]
+        public RecNoteFrais[] RecNoteFrais {
+            get {
+                return this.recNoteFraisField;
+            }
+            set {
+                this.recNoteFraisField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public string[] Text {
+            get {
+                return this.textField;
+            }
+            set {
+                this.textField = value;
             }
         }
     }
@@ -1586,6 +1823,84 @@ namespace DPM_Api_VBETA.webService {
         private object[] results;
         
         internal AddAutoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void AddNoteFraisCompletedEventHandler(object sender, AddNoteFraisCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddNoteFraisCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddNoteFraisCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void ListeNoteCompletedEventHandler(object sender, ListeNoteCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListeNoteCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListeNoteCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public RootNote noteFr {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((RootNote)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void AddPresDCompletedEventHandler(object sender, AddPresDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddPresDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddPresDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -390,6 +390,40 @@ namespace DPM_Api_VBETA.Controllers
 
 
 
+        [HttpGet]
+        [Route("AddPresD/{cin}/{date}")]
+        public HttpResponseMessage AddPresD(string cin, DateTime date)
+        {
+            string res;
+
+            try
+            {
+                webService.DynmixProcessMangWS services = new DynmixProcessMangWS();
+                //webService.RootAddCons Consultant = new RootAddCons();
+                services.Credentials = new System.Net.NetworkCredential("administrator", "Dynamix@10", "DYS");
+                //string text = services.ListeConsultant(ref Consultant); 
+
+                var response = new HttpResponseMessage(HttpStatusCode.OK);
+                if (services.AddPresD(cin, date))
+
+                { res = "true"; }
+                else { res = "false"; }
+
+                allJson += "{ \"res\": " + "\"" + res +
+                        "\"}";
+
+                allJson += " ]";
+                response.Content = new StringContent(allJson);
+                return response;
+            }
+            catch (Exception e)
+            {
+                var responce = new HttpResponseMessage(HttpStatusCode.OK);
+                responce.Content = new StringContent("{'Error machekell':'" + e.Message.Replace('\'', '"') + "'}");
+                return responce;
+            }
+        }
+
 
 
 
@@ -795,6 +829,103 @@ namespace DPM_Api_VBETA.Controllers
                          "\"," + "\"datecont\": " + "\"" + datecont +
 
                         "\"}";
+                    if (i != j - 1)
+                    {
+                        allJson += ",";
+                    }
+                    i = i + 1;
+
+                }
+                allJson += " ]";
+                response.Content = new StringContent(allJson);
+                //responce.Content= new str
+                return response;
+            }
+            catch (Exception e)
+            {
+                var responce = new HttpResponseMessage(HttpStatusCode.OK);
+                responce.Content = new StringContent("{'Error machekell':'" + e.Message.Replace('\'', '"') + "'}");
+                return responce;
+            }
+        }
+
+
+        //Note DE frais 
+
+        [HttpGet]
+        [Route("AddNoteFrais/{consultant}/{date}/{motif}/{monatnt}/{mois}")]
+        public HttpResponseMessage AddNoteFrais(string consultant, DateTime date, string motif, decimal monatnt,int mois)
+        {
+            string res;
+            string allJson = "[";
+            try
+            {
+                webService.DynmixProcessMangWS services = new DynmixProcessMangWS();
+                services.Credentials = new System.Net.NetworkCredential("administrator", "Dynamix@10", "DYS");
+                var response = new HttpResponseMessage(HttpStatusCode.OK);
+                if (services.AddNoteFrais(consultant, date, motif, monatnt,mois))
+
+                { res = "true"; }
+                else { res = "false"; }
+
+                allJson += "{ \"res\": " + "\"" + res +
+                        "\"}";
+
+                allJson += " ]";
+                response.Content = new StringContent(allJson);
+                return response;
+            }
+            catch (Exception e)
+            {
+                var responce = new HttpResponseMessage(HttpStatusCode.OK);
+                responce.Content = new StringContent("{'Error machekell':'" + e.Message.Replace('\'', '"') + "'}");
+                return responce;
+            }
+        }
+
+
+
+
+        [HttpGet]
+        [Route("ListeNote/{nbmois}")]
+        public HttpResponseMessage ListeNote(int nbmois)
+        {
+            try
+            {
+                webService.DynmixProcessMangWS services = new DynmixProcessMangWS();
+                webService.RootNote note = new RootNote();
+                services.Credentials = new System.Net.NetworkCredential("administrator", "Dynamix@10", "DYS");
+                //string text = services.ListeConsultant(); 
+
+                var response = new HttpResponseMessage(HttpStatusCode.OK);
+
+                services.ListeNote(ref note, nbmois);
+                int i = 0;
+                string id;
+                string consultant;
+                string date;
+                string motif;
+                string montant;
+                string mois;
+                string allJson = "[";
+                int j = note.RecNoteFrais.Length;
+                while (i < j)
+                {
+                    id = note.RecNoteFrais[i].id.ToString();
+                    consultant = note.RecNoteFrais[i].consultant.ToString();
+                    date = note.RecNoteFrais[i].date.ToString();
+                    motif = note.RecNoteFrais[i].motif.ToString();
+                    montant = note.RecNoteFrais[i].montant.ToString();
+                    mois = note.RecNoteFrais[i].mois.ToString();
+
+
+                    allJson += "{ \"id\": " + "\"" + id +
+                         "\"," + "\"consultant\": " + "\"" + consultant +
+                         "\"," + "\"date\": " + "\"" + date +
+                         "\"," + "\"motif\": " + "\"" + motif +
+                         "\"," + "\"montant\": " + "\"" + montant +
+                         "\"," + "\"mois\": " + "\"" + mois +
+                                     "\"}";
                     if (i != j - 1)
                     {
                         allJson += ",";

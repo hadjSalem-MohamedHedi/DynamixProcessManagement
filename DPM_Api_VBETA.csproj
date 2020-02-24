@@ -573,6 +573,9 @@
     <Content Include="Web References\webService\RootCong.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
+    <Content Include="Web References\webService\RootNote.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
