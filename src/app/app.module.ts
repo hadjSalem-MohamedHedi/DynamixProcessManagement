@@ -66,6 +66,11 @@ import { HistoryComponent } from './history/history.component';
 import { MonreposComponent } from './monrepos/monrepos.component';
 import { NotefraisComponent } from './notefrais/notefrais.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { AddPComponent } from './project/add-p/add-p.component';
+import { AddbesoinComponent } from './detaitsprojects/addbesoin/addbesoin.component';
+import { DetailreleaseComponent } from './detaitsprojects/detailrelease/detailrelease.component';
+import { DetailSprintComponent } from './detaitsprojects/detailrelease/detail-sprint/detail-sprint.component';
+import { DetalTacheComponent } from './detaitsprojects/detailrelease/detailSprint/detal-tache/detal-tache.component';
 
 
 const routes: Routes=[
@@ -92,15 +97,19 @@ const routes: Routes=[
   {path: 'Compte',component:CompteComponent},
   {path: 'Customer',component:CustomerComponent},
   {path: 'Project',component:ProjectComponent},
+  {path: 'AddP',component:AddPComponent},
   {path: 'Administration',component:AdministrationComponent},
   {path: 'Task',component:TaskComponent},
   {path: 'TableDyn',component:TableDynComponent},
   {path: 'Dashboard',component:DashboardComponent},
   {path: 'DetailsTask/{id}',component:DetailsTaskComponent},
-  {path: 'Detaitsprojects/{id}',component:DetaitsprojectsComponent},
+  {path: 'Detaitsprojects/:id',component:DetaitsprojectsComponent},
+  {path: 'Addbesoin',component:AddbesoinComponent},
+  {path: 'Detailrelease/:id',component:DetailreleaseComponent},
+  {path: 'DetailSprint/:id',component:DetailSprintComponent},
 
-
-
+  
+  
         //*****    Path Administration   ******* ///
   {path: 'HomeAdmin',component:HomeAdminComponent},
   {path: 'StatAdmin',component:StatAdminComponent},
@@ -183,6 +192,11 @@ const routes: Routes=[
     MonreposComponent,
     NotefraisComponent,
     ForbiddenComponent,
+    AddPComponent,
+    AddbesoinComponent,
+    DetailreleaseComponent,
+    DetailSprintComponent,
+    DetalTacheComponent,
   ],
   imports: [
     BrowserModule,

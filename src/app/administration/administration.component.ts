@@ -161,6 +161,8 @@ export class AdministrationComponent implements OnInit {
       .subscribe((response) => {
         this.responseP = response;
         });
+
+        
   }
 
   absent(cin,date,status){

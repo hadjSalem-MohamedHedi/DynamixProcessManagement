@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Project } from '../entities/Project';
+
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase , AngularFireList} from 'angularfire2/database';
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import 'firebase/database';
 @Component({
   selector: 'app-project',
@@ -8,11 +14,14 @@ import 'firebase/database';
   styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent implements OnInit {
+  private ListeProject = environment.apiUrl + 'ListeProject/';
+  Project: Project[];
 
   myemail: string;
   itemList: AngularFireList<any>;
   itemArray = [] ;
-  constructor(public fire: AngularFireAuth,public db: AngularFireDatabase  ,){	
+  listeResponse: any;
+  constructor(public fire: AngularFireAuth,public db: AngularFireDatabase ,private httpClient: HttpClient){	
 
 	this.itemList = db.list('Comptes');
 
@@ -26,6 +35,10 @@ export class ProjectComponent implements OnInit {
 
 
   ngOnInit() {
+    this.httpClient.get<Project[]>(this.ListeProject)
+    .subscribe((response) => {
+      this.listeResponse = response;
+      });
     
  this.itemList.snapshotChanges().subscribe(actions=>{
   actions.forEach(action=>{

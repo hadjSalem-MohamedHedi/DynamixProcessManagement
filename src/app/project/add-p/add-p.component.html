@@ -1,0 +1,50 @@
+<div *ngFor="let item of itemArray">
+    <div *ngIf="item.email === myemail">
+        <div *ngIf="item.role === 'Direction' ">
+
+            <div class="row">
+                <div *ngFor="let rep of responseAddProject">
+                    <div *ngIf="rep.res === 'true' " class="alert alert-success" role="alert">
+                        <strong>Well done!</strong> Le Projet à été ajouté avec success !!! bon continuation 🤣
+                    </div>
+                    <div *ngIf="rep.res === 'false' " class="alert alert-danger" role="alert">
+                        <strong>Oh snap!</strong> une probléme survenue .
+                    </div>
+
+                </div>
+                <div class="col-sm-5">
+                    <h6>Titre Project : </h6>
+                    <input type="text" class="form-control" placeholder="Titre " name="titre" [(ngModel)]="project.titre">
+                </div>
+
+                <div class="col-sm-5">
+                    <h6>description : </h6>
+                    <input type="text" class="form-control" placeholder="description" name="description" [(ngModel)]="project.description">
+                </div>
+
+                <div class="col-sm-5">
+                    <h6>date Création: </h6>
+                    <input type="date" class="form-control" name="datecre" [(ngModel)]="project.datecre">
+                </div>
+                <div class="col-sm-5">
+                    <h6>Date de début : </h6>
+                    <input type="date" class="form-control form-control btn-outline-info" name="datedeb" [(ngModel)]="project.datedeb">
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-5">
+                    <h6>Date fin : </h6>
+                    <input type="date" class="form-control" name="datefin" [(ngModel)]="project.datefin">
+                </div>
+            </div>
+            <hr>
+            <button class="btn btn-outline-success" (click)="InsertProject()" id="conftbtn"> <i class="fas fa-check"></i> Confimer </button>
+
+        </div>
+        <div *ngIf="item.role != 'Direction' ">
+            <app-forbidden *ngIf="item.role != 'Direction' "></app-forbidden>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css?family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Changa&display=swap');
+.releasedetails {
+    padding: 5%;
+    .sprintcreat {
+        font-weight: 800;
+        background: #82b1ff;
+        padding: 2%;
+        border-radius: 10px;
+        color: #fff;
+        font-size: 20px;
+        letter-spacing: 1px;
+        border: 0!important;
+    }
+}
+
+.sprint {
+    background-attachment: #ddd;
+    padding: 2%;
+    border: 2px solid #ccc;
+    transition: ease-in 0.1s;
+    border-radius: 5%;
+    -webkit-transition: ease-in 0.1s;
+    -moz-transition: ease-in 0.1s;
+    -ms-transition: ease-in 0.1s;
+    -o-transition: ease-in 0.1s;
+    margin: 2%;
+    h5 {
+        text-align: center;
+        font-weight: 700;
+        font-size: 3em;
+        color: #d82c2e;
+    }
+    h6 {
+        font-weight: 700;
+        font-size: 1.5em;
+        letter-spacing: 2px;
+        text-align: center;
+        color: #123;
+        font-family: 'Bangers', cursive;
+    }
+    h3 {
+        font-family: 'Changa', sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        border-bottom: 2px dashed #d82c2e;
+        text-align: center;
+        color: #000;
+    }
+    #desc-besoin {
+        color: #d82c2e;
+        font-weight: 500;
+    }
+}
+
+.sprint:hover {
+    background: #fff;
+    border: 2px solid #d82c2e;
+}

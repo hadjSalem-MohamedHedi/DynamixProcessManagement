@@ -2,6 +2,14 @@ body {
     background: #fbfbfb;
 }
 
+[aria-label][data-balloon-pos],
+.input-group,
+.input-group-prepend,
+.form-control {
+    position: initial!important;
+    cursor: pointer;
+}
+
 .card,
 .col,
 .col-1,
