@@ -114,7 +114,7 @@ namespace DPM_Api_VBETA.Controllers
                     tele2 = Consultant.RecCons[i].telephoneurg.ToString();
                     titre = Consultant.RecCons[i].titre.ToString();
                     curc = Consultant.RecCons[i].cur_vit.ToString();
-                    image = Consultant.RecCons[i].cur_vit.ToString();
+                    image = Consultant.RecCons[i].image.ToString();
                     datenais = Consultant.RecCons[i].datenais.ToString();
                     datecont = Consultant.RecCons[i].datedeb.ToString();
 
@@ -899,7 +899,7 @@ namespace DPM_Api_VBETA.Controllers
 
                 var response = new HttpResponseMessage(HttpStatusCode.OK);
 
-                services.ListeNote(ref note, nbmois);
+                services.ListeNote(nbmois, ref note);
                 int i = 0;
                 string id;
                 string consultant;

@@ -65,6 +65,32 @@ namespace DPM_Api_VBETA.webService {
         
         private System.Threading.SendOrPostCallback AddPresDOperationCompleted;
         
+        private System.Threading.SendOrPostCallback AddProjectOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ListeProjectOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AddBesoinOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ListeBesoinOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AddConProjOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ListeConstInProjOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback DeletConsProjOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AddReleaseToProjectOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ListeReleaseProjOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AddSprintToRleaseOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ListeSprintReleaseOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AddTachToSprintOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ListeTachSprintOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -156,6 +182,45 @@ namespace DPM_Api_VBETA.webService {
         
         /// <remarks/>
         public event AddPresDCompletedEventHandler AddPresDCompleted;
+        
+        /// <remarks/>
+        public event AddProjectCompletedEventHandler AddProjectCompleted;
+        
+        /// <remarks/>
+        public event ListeProjectCompletedEventHandler ListeProjectCompleted;
+        
+        /// <remarks/>
+        public event AddBesoinCompletedEventHandler AddBesoinCompleted;
+        
+        /// <remarks/>
+        public event ListeBesoinCompletedEventHandler ListeBesoinCompleted;
+        
+        /// <remarks/>
+        public event AddConProjCompletedEventHandler AddConProjCompleted;
+        
+        /// <remarks/>
+        public event ListeConstInProjCompletedEventHandler ListeConstInProjCompleted;
+        
+        /// <remarks/>
+        public event DeletConsProjCompletedEventHandler DeletConsProjCompleted;
+        
+        /// <remarks/>
+        public event AddReleaseToProjectCompletedEventHandler AddReleaseToProjectCompleted;
+        
+        /// <remarks/>
+        public event ListeReleaseProjCompletedEventHandler ListeReleaseProjCompleted;
+        
+        /// <remarks/>
+        public event AddSprintToRleaseCompletedEventHandler AddSprintToRleaseCompleted;
+        
+        /// <remarks/>
+        public event ListeSprintReleaseCompletedEventHandler ListeSprintReleaseCompleted;
+        
+        /// <remarks/>
+        public event AddTachToSprintCompletedEventHandler AddTachToSprintCompleted;
+        
+        /// <remarks/>
+        public event ListeTachSprintCompletedEventHandler ListeTachSprintCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeConsultant", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="ListeConsultant_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -712,26 +777,26 @@ namespace DPM_Api_VBETA.webService {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeNote", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="ListeNote_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void ListeNote(ref RootNote noteFr, int mois) {
+        public void ListeNote(int mois, ref RootNote noteFr) {
             object[] results = this.Invoke("ListeNote", new object[] {
-                        noteFr,
-                        mois});
+                        mois,
+                        noteFr});
             noteFr = ((RootNote)(results[0]));
         }
         
         /// <remarks/>
-        public void ListeNoteAsync(RootNote noteFr, int mois) {
-            this.ListeNoteAsync(noteFr, mois, null);
+        public void ListeNoteAsync(int mois, RootNote noteFr) {
+            this.ListeNoteAsync(mois, noteFr, null);
         }
         
         /// <remarks/>
-        public void ListeNoteAsync(RootNote noteFr, int mois, object userState) {
+        public void ListeNoteAsync(int mois, RootNote noteFr, object userState) {
             if ((this.ListeNoteOperationCompleted == null)) {
                 this.ListeNoteOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListeNoteOperationCompleted);
             }
             this.InvokeAsync("ListeNote", new object[] {
-                        noteFr,
-                        mois}, this.ListeNoteOperationCompleted, userState);
+                        mois,
+                        noteFr}, this.ListeNoteOperationCompleted, userState);
         }
         
         private void OnListeNoteOperationCompleted(object arg) {
@@ -770,6 +835,444 @@ namespace DPM_Api_VBETA.webService {
             if ((this.AddPresDCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.AddPresDCompleted(this, new AddPresDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddProject", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="AddProject_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public bool AddProject(string titre, string description, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime datecreation, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime datedeb, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime datefin) {
+            object[] results = this.Invoke("AddProject", new object[] {
+                        titre,
+                        description,
+                        datecreation,
+                        datedeb,
+                        datefin});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddProjectAsync(string titre, string description, System.DateTime datecreation, System.DateTime datedeb, System.DateTime datefin) {
+            this.AddProjectAsync(titre, description, datecreation, datedeb, datefin, null);
+        }
+        
+        /// <remarks/>
+        public void AddProjectAsync(string titre, string description, System.DateTime datecreation, System.DateTime datedeb, System.DateTime datefin, object userState) {
+            if ((this.AddProjectOperationCompleted == null)) {
+                this.AddProjectOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddProjectOperationCompleted);
+            }
+            this.InvokeAsync("AddProject", new object[] {
+                        titre,
+                        description,
+                        datecreation,
+                        datedeb,
+                        datefin}, this.AddProjectOperationCompleted, userState);
+        }
+        
+        private void OnAddProjectOperationCompleted(object arg) {
+            if ((this.AddProjectCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddProjectCompleted(this, new AddProjectCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeProject", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="ListeProject_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void ListeProject(ref RootProject projet) {
+            object[] results = this.Invoke("ListeProject", new object[] {
+                        projet});
+            projet = ((RootProject)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListeProjectAsync(RootProject projet) {
+            this.ListeProjectAsync(projet, null);
+        }
+        
+        /// <remarks/>
+        public void ListeProjectAsync(RootProject projet, object userState) {
+            if ((this.ListeProjectOperationCompleted == null)) {
+                this.ListeProjectOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListeProjectOperationCompleted);
+            }
+            this.InvokeAsync("ListeProject", new object[] {
+                        projet}, this.ListeProjectOperationCompleted, userState);
+        }
+        
+        private void OnListeProjectOperationCompleted(object arg) {
+            if ((this.ListeProjectCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListeProjectCompleted(this, new ListeProjectCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddBesoin", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="AddBesoin_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public bool AddBesoin(string titre, string desc, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime dateCreation, int idProject) {
+            object[] results = this.Invoke("AddBesoin", new object[] {
+                        titre,
+                        desc,
+                        dateCreation,
+                        idProject});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddBesoinAsync(string titre, string desc, System.DateTime dateCreation, int idProject) {
+            this.AddBesoinAsync(titre, desc, dateCreation, idProject, null);
+        }
+        
+        /// <remarks/>
+        public void AddBesoinAsync(string titre, string desc, System.DateTime dateCreation, int idProject, object userState) {
+            if ((this.AddBesoinOperationCompleted == null)) {
+                this.AddBesoinOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddBesoinOperationCompleted);
+            }
+            this.InvokeAsync("AddBesoin", new object[] {
+                        titre,
+                        desc,
+                        dateCreation,
+                        idProject}, this.AddBesoinOperationCompleted, userState);
+        }
+        
+        private void OnAddBesoinOperationCompleted(object arg) {
+            if ((this.AddBesoinCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddBesoinCompleted(this, new AddBesoinCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeBesoin", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="ListeBesoin_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void ListeBesoin(ref RootBesoin besoin, int idProject) {
+            object[] results = this.Invoke("ListeBesoin", new object[] {
+                        besoin,
+                        idProject});
+            besoin = ((RootBesoin)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListeBesoinAsync(RootBesoin besoin, int idProject) {
+            this.ListeBesoinAsync(besoin, idProject, null);
+        }
+        
+        /// <remarks/>
+        public void ListeBesoinAsync(RootBesoin besoin, int idProject, object userState) {
+            if ((this.ListeBesoinOperationCompleted == null)) {
+                this.ListeBesoinOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListeBesoinOperationCompleted);
+            }
+            this.InvokeAsync("ListeBesoin", new object[] {
+                        besoin,
+                        idProject}, this.ListeBesoinOperationCompleted, userState);
+        }
+        
+        private void OnListeBesoinOperationCompleted(object arg) {
+            if ((this.ListeBesoinCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListeBesoinCompleted(this, new ListeBesoinCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddConProj", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="AddConProj_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public bool AddConProj(int codecons, int codeproj) {
+            object[] results = this.Invoke("AddConProj", new object[] {
+                        codecons,
+                        codeproj});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddConProjAsync(int codecons, int codeproj) {
+            this.AddConProjAsync(codecons, codeproj, null);
+        }
+        
+        /// <remarks/>
+        public void AddConProjAsync(int codecons, int codeproj, object userState) {
+            if ((this.AddConProjOperationCompleted == null)) {
+                this.AddConProjOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddConProjOperationCompleted);
+            }
+            this.InvokeAsync("AddConProj", new object[] {
+                        codecons,
+                        codeproj}, this.AddConProjOperationCompleted, userState);
+        }
+        
+        private void OnAddConProjOperationCompleted(object arg) {
+            if ((this.AddConProjCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddConProjCompleted(this, new AddConProjCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeConstInProj", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="ListeConstInProj_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void ListeConstInProj(int codeProjet, ref RootConsProj liste) {
+            object[] results = this.Invoke("ListeConstInProj", new object[] {
+                        codeProjet,
+                        liste});
+            liste = ((RootConsProj)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListeConstInProjAsync(int codeProjet, RootConsProj liste) {
+            this.ListeConstInProjAsync(codeProjet, liste, null);
+        }
+        
+        /// <remarks/>
+        public void ListeConstInProjAsync(int codeProjet, RootConsProj liste, object userState) {
+            if ((this.ListeConstInProjOperationCompleted == null)) {
+                this.ListeConstInProjOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListeConstInProjOperationCompleted);
+            }
+            this.InvokeAsync("ListeConstInProj", new object[] {
+                        codeProjet,
+                        liste}, this.ListeConstInProjOperationCompleted, userState);
+        }
+        
+        private void OnListeConstInProjOperationCompleted(object arg) {
+            if ((this.ListeConstInProjCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListeConstInProjCompleted(this, new ListeConstInProjCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:DeletConsProj", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="DeletConsProj_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public bool DeletConsProj(int codeCons, int codeProj) {
+            object[] results = this.Invoke("DeletConsProj", new object[] {
+                        codeCons,
+                        codeProj});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void DeletConsProjAsync(int codeCons, int codeProj) {
+            this.DeletConsProjAsync(codeCons, codeProj, null);
+        }
+        
+        /// <remarks/>
+        public void DeletConsProjAsync(int codeCons, int codeProj, object userState) {
+            if ((this.DeletConsProjOperationCompleted == null)) {
+                this.DeletConsProjOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeletConsProjOperationCompleted);
+            }
+            this.InvokeAsync("DeletConsProj", new object[] {
+                        codeCons,
+                        codeProj}, this.DeletConsProjOperationCompleted, userState);
+        }
+        
+        private void OnDeletConsProjOperationCompleted(object arg) {
+            if ((this.DeletConsProjCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DeletConsProjCompleted(this, new DeletConsProjCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddReleaseToProject", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="AddReleaseToProject_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public bool AddReleaseToProject(int idProjet, string titre, string desc, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime datedeb, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime datefin) {
+            object[] results = this.Invoke("AddReleaseToProject", new object[] {
+                        idProjet,
+                        titre,
+                        desc,
+                        datedeb,
+                        datefin});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddReleaseToProjectAsync(int idProjet, string titre, string desc, System.DateTime datedeb, System.DateTime datefin) {
+            this.AddReleaseToProjectAsync(idProjet, titre, desc, datedeb, datefin, null);
+        }
+        
+        /// <remarks/>
+        public void AddReleaseToProjectAsync(int idProjet, string titre, string desc, System.DateTime datedeb, System.DateTime datefin, object userState) {
+            if ((this.AddReleaseToProjectOperationCompleted == null)) {
+                this.AddReleaseToProjectOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddReleaseToProjectOperationCompleted);
+            }
+            this.InvokeAsync("AddReleaseToProject", new object[] {
+                        idProjet,
+                        titre,
+                        desc,
+                        datedeb,
+                        datefin}, this.AddReleaseToProjectOperationCompleted, userState);
+        }
+        
+        private void OnAddReleaseToProjectOperationCompleted(object arg) {
+            if ((this.AddReleaseToProjectCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddReleaseToProjectCompleted(this, new AddReleaseToProjectCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeReleaseProj", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="ListeReleaseProj_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void ListeReleaseProj(ref RootRelaseProj release, int idProject) {
+            object[] results = this.Invoke("ListeReleaseProj", new object[] {
+                        release,
+                        idProject});
+            release = ((RootRelaseProj)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListeReleaseProjAsync(RootRelaseProj release, int idProject) {
+            this.ListeReleaseProjAsync(release, idProject, null);
+        }
+        
+        /// <remarks/>
+        public void ListeReleaseProjAsync(RootRelaseProj release, int idProject, object userState) {
+            if ((this.ListeReleaseProjOperationCompleted == null)) {
+                this.ListeReleaseProjOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListeReleaseProjOperationCompleted);
+            }
+            this.InvokeAsync("ListeReleaseProj", new object[] {
+                        release,
+                        idProject}, this.ListeReleaseProjOperationCompleted, userState);
+        }
+        
+        private void OnListeReleaseProjOperationCompleted(object arg) {
+            if ((this.ListeReleaseProjCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListeReleaseProjCompleted(this, new ListeReleaseProjCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddSprintToRlease", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="AddSprintToRlease_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public bool AddSprintToRlease(int idRelease, string titre, string desc, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime datedeb, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime datefin) {
+            object[] results = this.Invoke("AddSprintToRlease", new object[] {
+                        idRelease,
+                        titre,
+                        desc,
+                        datedeb,
+                        datefin});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddSprintToRleaseAsync(int idRelease, string titre, string desc, System.DateTime datedeb, System.DateTime datefin) {
+            this.AddSprintToRleaseAsync(idRelease, titre, desc, datedeb, datefin, null);
+        }
+        
+        /// <remarks/>
+        public void AddSprintToRleaseAsync(int idRelease, string titre, string desc, System.DateTime datedeb, System.DateTime datefin, object userState) {
+            if ((this.AddSprintToRleaseOperationCompleted == null)) {
+                this.AddSprintToRleaseOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddSprintToRleaseOperationCompleted);
+            }
+            this.InvokeAsync("AddSprintToRlease", new object[] {
+                        idRelease,
+                        titre,
+                        desc,
+                        datedeb,
+                        datefin}, this.AddSprintToRleaseOperationCompleted, userState);
+        }
+        
+        private void OnAddSprintToRleaseOperationCompleted(object arg) {
+            if ((this.AddSprintToRleaseCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddSprintToRleaseCompleted(this, new AddSprintToRleaseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeSprintRelease", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="ListeSprintRelease_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void ListeSprintRelease(ref RootSprintRelase sprint, int idRelease) {
+            object[] results = this.Invoke("ListeSprintRelease", new object[] {
+                        sprint,
+                        idRelease});
+            sprint = ((RootSprintRelase)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListeSprintReleaseAsync(RootSprintRelase sprint, int idRelease) {
+            this.ListeSprintReleaseAsync(sprint, idRelease, null);
+        }
+        
+        /// <remarks/>
+        public void ListeSprintReleaseAsync(RootSprintRelase sprint, int idRelease, object userState) {
+            if ((this.ListeSprintReleaseOperationCompleted == null)) {
+                this.ListeSprintReleaseOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListeSprintReleaseOperationCompleted);
+            }
+            this.InvokeAsync("ListeSprintRelease", new object[] {
+                        sprint,
+                        idRelease}, this.ListeSprintReleaseOperationCompleted, userState);
+        }
+        
+        private void OnListeSprintReleaseOperationCompleted(object arg) {
+            if ((this.ListeSprintReleaseCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListeSprintReleaseCompleted(this, new ListeSprintReleaseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddTachToSprint", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="AddTachToSprint_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public bool AddTachToSprint(int idSprint, string titre, string desc, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime datedeb, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime datefin, int idCons) {
+            object[] results = this.Invoke("AddTachToSprint", new object[] {
+                        idSprint,
+                        titre,
+                        desc,
+                        datedeb,
+                        datefin,
+                        idCons});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddTachToSprintAsync(int idSprint, string titre, string desc, System.DateTime datedeb, System.DateTime datefin, int idCons) {
+            this.AddTachToSprintAsync(idSprint, titre, desc, datedeb, datefin, idCons, null);
+        }
+        
+        /// <remarks/>
+        public void AddTachToSprintAsync(int idSprint, string titre, string desc, System.DateTime datedeb, System.DateTime datefin, int idCons, object userState) {
+            if ((this.AddTachToSprintOperationCompleted == null)) {
+                this.AddTachToSprintOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddTachToSprintOperationCompleted);
+            }
+            this.InvokeAsync("AddTachToSprint", new object[] {
+                        idSprint,
+                        titre,
+                        desc,
+                        datedeb,
+                        datefin,
+                        idCons}, this.AddTachToSprintOperationCompleted, userState);
+        }
+        
+        private void OnAddTachToSprintOperationCompleted(object arg) {
+            if ((this.AddTachToSprintCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddTachToSprintCompleted(this, new AddTachToSprintCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeTachSprint", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="ListeTachSprint_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void ListeTachSprint(ref RootTachSprint tache, int idSprint) {
+            object[] results = this.Invoke("ListeTachSprint", new object[] {
+                        tache,
+                        idSprint});
+            tache = ((RootTachSprint)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListeTachSprintAsync(RootTachSprint tache, int idSprint) {
+            this.ListeTachSprintAsync(tache, idSprint, null);
+        }
+        
+        /// <remarks/>
+        public void ListeTachSprintAsync(RootTachSprint tache, int idSprint, object userState) {
+            if ((this.ListeTachSprintOperationCompleted == null)) {
+                this.ListeTachSprintOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListeTachSprintOperationCompleted);
+            }
+            this.InvokeAsync("ListeTachSprint", new object[] {
+                        tache,
+                        idSprint}, this.ListeTachSprintOperationCompleted, userState);
+        }
+        
+        private void OnListeTachSprintOperationCompleted(object arg) {
+            if ((this.ListeTachSprintCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListeTachSprintCompleted(this, new ListeTachSprintCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1028,6 +1531,744 @@ namespace DPM_Api_VBETA.webService {
             }
             set {
                 this.derdatField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:microsoft-dynamics-nav/xmlports/x50012")]
+    public partial class RecTacheSprint {
+        
+        private int idField;
+        
+        private int codeSprintField;
+        
+        private string titreField;
+        
+        private string descField;
+        
+        private string datedebField;
+        
+        private string datefinField;
+        
+        private string datecreaField;
+        
+        private int consultantField;
+        
+        private string etatField;
+        
+        public RecTacheSprint() {
+            this.idField = 0;
+            this.codeSprintField = 0;
+            this.consultantField = 0;
+        }
+        
+        /// <remarks/>
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int CodeSprint {
+            get {
+                return this.codeSprintField;
+            }
+            set {
+                this.codeSprintField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string titre {
+            get {
+                return this.titreField;
+            }
+            set {
+                this.titreField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string desc {
+            get {
+                return this.descField;
+            }
+            set {
+                this.descField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string datedeb {
+            get {
+                return this.datedebField;
+            }
+            set {
+                this.datedebField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string datefin {
+            get {
+                return this.datefinField;
+            }
+            set {
+                this.datefinField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string datecrea {
+            get {
+                return this.datecreaField;
+            }
+            set {
+                this.datecreaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int consultant {
+            get {
+                return this.consultantField;
+            }
+            set {
+                this.consultantField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string etat {
+            get {
+                return this.etatField;
+            }
+            set {
+                this.etatField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:microsoft-dynamics-nav/xmlports/x50012")]
+    public partial class RootTachSprint {
+        
+        private RecTacheSprint[] recTacheSprintField;
+        
+        private string[] textField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("RecTacheSprint")]
+        public RecTacheSprint[] RecTacheSprint {
+            get {
+                return this.recTacheSprintField;
+            }
+            set {
+                this.recTacheSprintField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public string[] Text {
+            get {
+                return this.textField;
+            }
+            set {
+                this.textField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:microsoft-dynamics-nav/xmlports/x50011")]
+    public partial class RecSprintRelease {
+        
+        private int idField;
+        
+        private int codeReleaseField;
+        
+        private string titreField;
+        
+        private string descField;
+        
+        private string datedebField;
+        
+        private string datefinField;
+        
+        private string datecreaField;
+        
+        public RecSprintRelease() {
+            this.idField = 0;
+            this.codeReleaseField = 0;
+        }
+        
+        /// <remarks/>
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int CodeRelease {
+            get {
+                return this.codeReleaseField;
+            }
+            set {
+                this.codeReleaseField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string titre {
+            get {
+                return this.titreField;
+            }
+            set {
+                this.titreField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string desc {
+            get {
+                return this.descField;
+            }
+            set {
+                this.descField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string datedeb {
+            get {
+                return this.datedebField;
+            }
+            set {
+                this.datedebField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string datefin {
+            get {
+                return this.datefinField;
+            }
+            set {
+                this.datefinField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string datecrea {
+            get {
+                return this.datecreaField;
+            }
+            set {
+                this.datecreaField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:microsoft-dynamics-nav/xmlports/x50011")]
+    public partial class RootSprintRelase {
+        
+        private RecSprintRelease[] recSprintReleaseField;
+        
+        private string[] textField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("RecSprintRelease")]
+        public RecSprintRelease[] RecSprintRelease {
+            get {
+                return this.recSprintReleaseField;
+            }
+            set {
+                this.recSprintReleaseField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public string[] Text {
+            get {
+                return this.textField;
+            }
+            set {
+                this.textField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:microsoft-dynamics-nav/xmlports/x50010")]
+    public partial class RecReleaseProjet {
+        
+        private int idField;
+        
+        private int codeProjetField;
+        
+        private string titreField;
+        
+        private string descField;
+        
+        private string datedebField;
+        
+        private string datefinField;
+        
+        private string datecreaField;
+        
+        public RecReleaseProjet() {
+            this.idField = 0;
+            this.codeProjetField = 0;
+        }
+        
+        /// <remarks/>
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int CodeProjet {
+            get {
+                return this.codeProjetField;
+            }
+            set {
+                this.codeProjetField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string titre {
+            get {
+                return this.titreField;
+            }
+            set {
+                this.titreField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string desc {
+            get {
+                return this.descField;
+            }
+            set {
+                this.descField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string datedeb {
+            get {
+                return this.datedebField;
+            }
+            set {
+                this.datedebField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string datefin {
+            get {
+                return this.datefinField;
+            }
+            set {
+                this.datefinField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string datecrea {
+            get {
+                return this.datecreaField;
+            }
+            set {
+                this.datecreaField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:microsoft-dynamics-nav/xmlports/x50010")]
+    public partial class RootRelaseProj {
+        
+        private RecReleaseProjet[] recReleaseProjetField;
+        
+        private string[] textField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("RecReleaseProjet")]
+        public RecReleaseProjet[] RecReleaseProjet {
+            get {
+                return this.recReleaseProjetField;
+            }
+            set {
+                this.recReleaseProjetField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public string[] Text {
+            get {
+                return this.textField;
+            }
+            set {
+                this.textField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:microsoft-dynamics-nav/xmlports/x50009")]
+    public partial class RecConProj {
+        
+        private int idField;
+        
+        private int codeConsultantField;
+        
+        private int codeProjetField;
+        
+        private string dateAfectationField;
+        
+        public RecConProj() {
+            this.idField = 0;
+            this.codeConsultantField = 0;
+            this.codeProjetField = 0;
+        }
+        
+        /// <remarks/>
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int codeConsultant {
+            get {
+                return this.codeConsultantField;
+            }
+            set {
+                this.codeConsultantField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int CodeProjet {
+            get {
+                return this.codeProjetField;
+            }
+            set {
+                this.codeProjetField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string DateAfectation {
+            get {
+                return this.dateAfectationField;
+            }
+            set {
+                this.dateAfectationField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:microsoft-dynamics-nav/xmlports/x50009")]
+    public partial class RootConsProj {
+        
+        private RecConProj[] recConProjField;
+        
+        private string[] textField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("RecConProj")]
+        public RecConProj[] RecConProj {
+            get {
+                return this.recConProjField;
+            }
+            set {
+                this.recConProjField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public string[] Text {
+            get {
+                return this.textField;
+            }
+            set {
+                this.textField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:microsoft-dynamics-nav/xmlports/x50008")]
+    public partial class RecBesoin {
+        
+        private int idField;
+        
+        private string titreField;
+        
+        private string descriptionField;
+        
+        private string datecreationField;
+        
+        public RecBesoin() {
+            this.idField = 0;
+        }
+        
+        /// <remarks/>
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string titre {
+            get {
+                return this.titreField;
+            }
+            set {
+                this.titreField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string datecreation {
+            get {
+                return this.datecreationField;
+            }
+            set {
+                this.datecreationField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:microsoft-dynamics-nav/xmlports/x50008")]
+    public partial class RootBesoin {
+        
+        private RecBesoin[] recBesoinField;
+        
+        private string[] textField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("RecBesoin")]
+        public RecBesoin[] RecBesoin {
+            get {
+                return this.recBesoinField;
+            }
+            set {
+                this.recBesoinField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public string[] Text {
+            get {
+                return this.textField;
+            }
+            set {
+                this.textField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:microsoft-dynamics-nav/xmlports/x50007")]
+    public partial class RecProject {
+        
+        private int idField;
+        
+        private string titreField;
+        
+        private string descriptionField;
+        
+        private string datecreationField;
+        
+        private string datedebutField;
+        
+        private string datefinField;
+        
+        public RecProject() {
+            this.idField = 0;
+        }
+        
+        /// <remarks/>
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string titre {
+            get {
+                return this.titreField;
+            }
+            set {
+                this.titreField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string datecreation {
+            get {
+                return this.datecreationField;
+            }
+            set {
+                this.datecreationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string datedebut {
+            get {
+                return this.datedebutField;
+            }
+            set {
+                this.datedebutField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string datefin {
+            get {
+                return this.datefinField;
+            }
+            set {
+                this.datefinField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:microsoft-dynamics-nav/xmlports/x50007")]
+    public partial class RootProject {
+        
+        private RecProject[] recProjectField;
+        
+        private string[] textField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("RecProject")]
+        public RecProject[] RecProject {
+            get {
+                return this.recProjectField;
+            }
+            set {
+                this.recProjectField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public string[] Text {
+            get {
+                return this.textField;
+            }
+            set {
+                this.textField = value;
             }
         }
     }
@@ -1910,6 +3151,344 @@ namespace DPM_Api_VBETA.webService {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void AddProjectCompletedEventHandler(object sender, AddProjectCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddProjectCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddProjectCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void ListeProjectCompletedEventHandler(object sender, ListeProjectCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListeProjectCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListeProjectCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public RootProject projet {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((RootProject)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void AddBesoinCompletedEventHandler(object sender, AddBesoinCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddBesoinCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddBesoinCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void ListeBesoinCompletedEventHandler(object sender, ListeBesoinCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListeBesoinCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListeBesoinCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public RootBesoin besoin {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((RootBesoin)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void AddConProjCompletedEventHandler(object sender, AddConProjCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddConProjCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddConProjCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void ListeConstInProjCompletedEventHandler(object sender, ListeConstInProjCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListeConstInProjCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListeConstInProjCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public RootConsProj liste {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((RootConsProj)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void DeletConsProjCompletedEventHandler(object sender, DeletConsProjCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class DeletConsProjCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal DeletConsProjCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void AddReleaseToProjectCompletedEventHandler(object sender, AddReleaseToProjectCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddReleaseToProjectCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddReleaseToProjectCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void ListeReleaseProjCompletedEventHandler(object sender, ListeReleaseProjCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListeReleaseProjCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListeReleaseProjCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public RootRelaseProj release {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((RootRelaseProj)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void AddSprintToRleaseCompletedEventHandler(object sender, AddSprintToRleaseCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddSprintToRleaseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddSprintToRleaseCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void ListeSprintReleaseCompletedEventHandler(object sender, ListeSprintReleaseCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListeSprintReleaseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListeSprintReleaseCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public RootSprintRelase sprint {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((RootSprintRelase)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void AddTachToSprintCompletedEventHandler(object sender, AddTachToSprintCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddTachToSprintCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddTachToSprintCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void ListeTachSprintCompletedEventHandler(object sender, ListeTachSprintCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListeTachSprintCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListeTachSprintCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public RootTachSprint tache {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((RootTachSprint)(this.results[0]));
             }
         }
     }

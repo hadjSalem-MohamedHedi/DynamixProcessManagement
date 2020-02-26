@@ -87,6 +87,115 @@
       </complexType>
       <element name="RootNote" type="tns:RootNote" />
     </schema>
+    <schema xmlns:tns="urn:microsoft-dynamics-nav/xmlports/x50007" elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-nav/xmlports/x50007" xmlns="http://www.w3.org/2001/XMLSchema">
+      <complexType name="RecProject">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" default="0" name="id" type="int" />
+          <element minOccurs="1" maxOccurs="1" name="titre" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="description" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="datecreation" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="datedebut" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="datefin" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="RootProject" mixed="true">
+        <sequence>
+          <element minOccurs="1" maxOccurs="unbounded" name="RecProject" type="tns:RecProject" />
+        </sequence>
+      </complexType>
+      <element name="RootProject" type="tns:RootProject" />
+    </schema>
+    <schema xmlns:tns="urn:microsoft-dynamics-nav/xmlports/x50008" elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-nav/xmlports/x50008" xmlns="http://www.w3.org/2001/XMLSchema">
+      <complexType name="RecBesoin">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" default="0" name="id" type="int" />
+          <element minOccurs="1" maxOccurs="1" name="titre" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="description" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="datecreation" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="RootBesoin" mixed="true">
+        <sequence>
+          <element minOccurs="1" maxOccurs="unbounded" name="RecBesoin" type="tns:RecBesoin" />
+        </sequence>
+      </complexType>
+      <element name="RootBesoin" type="tns:RootBesoin" />
+    </schema>
+    <schema xmlns:tns="urn:microsoft-dynamics-nav/xmlports/x50009" elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-nav/xmlports/x50009" xmlns="http://www.w3.org/2001/XMLSchema">
+      <complexType name="RecConProj">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" default="0" name="id" type="int" />
+          <element minOccurs="1" maxOccurs="1" default="0" name="codeConsultant" type="int" />
+          <element minOccurs="1" maxOccurs="1" default="0" name="CodeProjet" type="int" />
+          <element minOccurs="1" maxOccurs="1" name="DateAfectation" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="RootConsProj" mixed="true">
+        <sequence>
+          <element minOccurs="1" maxOccurs="unbounded" name="RecConProj" type="tns:RecConProj" />
+        </sequence>
+      </complexType>
+      <element name="RootConsProj" type="tns:RootConsProj" />
+    </schema>
+    <schema xmlns:tns="urn:microsoft-dynamics-nav/xmlports/x50010" elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-nav/xmlports/x50010" xmlns="http://www.w3.org/2001/XMLSchema">
+      <complexType name="RecReleaseProjet">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" default="0" name="id" type="int" />
+          <element minOccurs="1" maxOccurs="1" default="0" name="CodeProjet" type="int" />
+          <element minOccurs="1" maxOccurs="1" name="titre" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="desc" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="datedeb" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="datefin" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="datecrea" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="RootRelaseProj" mixed="true">
+        <sequence>
+          <element minOccurs="1" maxOccurs="unbounded" name="RecReleaseProjet" type="tns:RecReleaseProjet" />
+        </sequence>
+      </complexType>
+      <element name="RootRelaseProj" type="tns:RootRelaseProj" />
+    </schema>
+    <schema xmlns:tns="urn:microsoft-dynamics-nav/xmlports/x50011" elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-nav/xmlports/x50011" xmlns="http://www.w3.org/2001/XMLSchema">
+      <complexType name="RecSprintRelease">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" default="0" name="id" type="int" />
+          <element minOccurs="1" maxOccurs="1" default="0" name="CodeRelease" type="int" />
+          <element minOccurs="1" maxOccurs="1" name="titre" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="desc" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="datedeb" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="datefin" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="datecrea" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="RootSprintRelase" mixed="true">
+        <sequence>
+          <element minOccurs="1" maxOccurs="unbounded" name="RecSprintRelease" type="tns:RecSprintRelease" />
+        </sequence>
+      </complexType>
+      <element name="RootSprintRelase" type="tns:RootSprintRelase" />
+    </schema>
+    <schema xmlns:tns="urn:microsoft-dynamics-nav/xmlports/x50012" elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-nav/xmlports/x50012" xmlns="http://www.w3.org/2001/XMLSchema">
+      <complexType name="RecTacheSprint">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" default="0" name="id" type="int" />
+          <element minOccurs="1" maxOccurs="1" default="0" name="CodeSprint" type="int" />
+          <element minOccurs="1" maxOccurs="1" name="titre" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="desc" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="datedeb" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="datefin" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="datecrea" type="string" />
+          <element minOccurs="1" maxOccurs="1" default="0" name="consultant" type="int" />
+          <element minOccurs="1" maxOccurs="1" name="etat" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="RootTachSprint" mixed="true">
+        <sequence>
+          <element minOccurs="1" maxOccurs="unbounded" name="RecTacheSprint" type="tns:RecTacheSprint" />
+        </sequence>
+      </complexType>
+      <element name="RootTachSprint" type="tns:RootTachSprint" />
+    </schema>
     <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS" xmlns="http://www.w3.org/2001/XMLSchema">
       <element name="ListeConsultant">
         <complexType>
@@ -355,8 +464,8 @@
       <element name="ListeNote">
         <complexType>
           <sequence>
-            <element xmlns:q15="urn:microsoft-dynamics-nav/xmlports/x50006" minOccurs="1" maxOccurs="1" name="noteFr" type="q15:RootNote" />
             <element minOccurs="1" maxOccurs="1" name="mois" type="int" />
+            <element xmlns:q15="urn:microsoft-dynamics-nav/xmlports/x50006" minOccurs="1" maxOccurs="1" name="noteFr" type="q15:RootNote" />
           </sequence>
         </complexType>
       </element>
@@ -379,6 +488,215 @@
         <complexType>
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AddProject">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="titre" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="description" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="datecreation" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="datedeb" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="datefin" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AddProject_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ListeProject">
+        <complexType>
+          <sequence>
+            <element xmlns:q17="urn:microsoft-dynamics-nav/xmlports/x50007" minOccurs="1" maxOccurs="1" name="projet" type="q17:RootProject" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ListeProject_Result">
+        <complexType>
+          <sequence>
+            <element xmlns:q18="urn:microsoft-dynamics-nav/xmlports/x50007" minOccurs="1" maxOccurs="1" name="projet" type="q18:RootProject" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AddBesoin">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="titre" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="desc" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="dateCreation" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="idProject" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AddBesoin_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ListeBesoin">
+        <complexType>
+          <sequence>
+            <element xmlns:q19="urn:microsoft-dynamics-nav/xmlports/x50008" minOccurs="1" maxOccurs="1" name="besoin" type="q19:RootBesoin" />
+            <element minOccurs="1" maxOccurs="1" name="idProject" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ListeBesoin_Result">
+        <complexType>
+          <sequence>
+            <element xmlns:q20="urn:microsoft-dynamics-nav/xmlports/x50008" minOccurs="1" maxOccurs="1" name="besoin" type="q20:RootBesoin" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AddConProj">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codecons" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="codeproj" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AddConProj_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ListeConstInProj">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codeProjet" type="int" />
+            <element xmlns:q21="urn:microsoft-dynamics-nav/xmlports/x50009" minOccurs="1" maxOccurs="1" name="liste" type="q21:RootConsProj" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ListeConstInProj_Result">
+        <complexType>
+          <sequence>
+            <element xmlns:q22="urn:microsoft-dynamics-nav/xmlports/x50009" minOccurs="1" maxOccurs="1" name="liste" type="q22:RootConsProj" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="DeletConsProj">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codeCons" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="codeProj" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="DeletConsProj_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AddReleaseToProject">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="idProjet" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="titre" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="desc" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="datedeb" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="datefin" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AddReleaseToProject_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ListeReleaseProj">
+        <complexType>
+          <sequence>
+            <element xmlns:q23="urn:microsoft-dynamics-nav/xmlports/x50010" minOccurs="1" maxOccurs="1" name="release" type="q23:RootRelaseProj" />
+            <element minOccurs="1" maxOccurs="1" name="idProject" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ListeReleaseProj_Result">
+        <complexType>
+          <sequence>
+            <element xmlns:q24="urn:microsoft-dynamics-nav/xmlports/x50010" minOccurs="1" maxOccurs="1" name="release" type="q24:RootRelaseProj" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AddSprintToRlease">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="idRelease" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="titre" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="desc" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="datedeb" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="datefin" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AddSprintToRlease_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ListeSprintRelease">
+        <complexType>
+          <sequence>
+            <element xmlns:q25="urn:microsoft-dynamics-nav/xmlports/x50011" minOccurs="1" maxOccurs="1" name="sprint" type="q25:RootSprintRelase" />
+            <element minOccurs="1" maxOccurs="1" name="idRelease" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ListeSprintRelease_Result">
+        <complexType>
+          <sequence>
+            <element xmlns:q26="urn:microsoft-dynamics-nav/xmlports/x50011" minOccurs="1" maxOccurs="1" name="sprint" type="q26:RootSprintRelase" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AddTachToSprint">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="idSprint" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="titre" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="desc" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="datedeb" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="datefin" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="idCons" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AddTachToSprint_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ListeTachSprint">
+        <complexType>
+          <sequence>
+            <element xmlns:q27="urn:microsoft-dynamics-nav/xmlports/x50012" minOccurs="1" maxOccurs="1" name="tache" type="q27:RootTachSprint" />
+            <element minOccurs="1" maxOccurs="1" name="idSprint" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ListeTachSprint_Result">
+        <complexType>
+          <sequence>
+            <element xmlns:q28="urn:microsoft-dynamics-nav/xmlports/x50012" minOccurs="1" maxOccurs="1" name="tache" type="q28:RootTachSprint" />
           </sequence>
         </complexType>
       </element>
@@ -492,6 +810,84 @@
   <message name="AddPresD_Result">
     <part name="parameters" element="tns:AddPresD_Result" />
   </message>
+  <message name="AddProject">
+    <part name="parameters" element="tns:AddProject" />
+  </message>
+  <message name="AddProject_Result">
+    <part name="parameters" element="tns:AddProject_Result" />
+  </message>
+  <message name="ListeProject">
+    <part name="parameters" element="tns:ListeProject" />
+  </message>
+  <message name="ListeProject_Result">
+    <part name="parameters" element="tns:ListeProject_Result" />
+  </message>
+  <message name="AddBesoin">
+    <part name="parameters" element="tns:AddBesoin" />
+  </message>
+  <message name="AddBesoin_Result">
+    <part name="parameters" element="tns:AddBesoin_Result" />
+  </message>
+  <message name="ListeBesoin">
+    <part name="parameters" element="tns:ListeBesoin" />
+  </message>
+  <message name="ListeBesoin_Result">
+    <part name="parameters" element="tns:ListeBesoin_Result" />
+  </message>
+  <message name="AddConProj">
+    <part name="parameters" element="tns:AddConProj" />
+  </message>
+  <message name="AddConProj_Result">
+    <part name="parameters" element="tns:AddConProj_Result" />
+  </message>
+  <message name="ListeConstInProj">
+    <part name="parameters" element="tns:ListeConstInProj" />
+  </message>
+  <message name="ListeConstInProj_Result">
+    <part name="parameters" element="tns:ListeConstInProj_Result" />
+  </message>
+  <message name="DeletConsProj">
+    <part name="parameters" element="tns:DeletConsProj" />
+  </message>
+  <message name="DeletConsProj_Result">
+    <part name="parameters" element="tns:DeletConsProj_Result" />
+  </message>
+  <message name="AddReleaseToProject">
+    <part name="parameters" element="tns:AddReleaseToProject" />
+  </message>
+  <message name="AddReleaseToProject_Result">
+    <part name="parameters" element="tns:AddReleaseToProject_Result" />
+  </message>
+  <message name="ListeReleaseProj">
+    <part name="parameters" element="tns:ListeReleaseProj" />
+  </message>
+  <message name="ListeReleaseProj_Result">
+    <part name="parameters" element="tns:ListeReleaseProj_Result" />
+  </message>
+  <message name="AddSprintToRlease">
+    <part name="parameters" element="tns:AddSprintToRlease" />
+  </message>
+  <message name="AddSprintToRlease_Result">
+    <part name="parameters" element="tns:AddSprintToRlease_Result" />
+  </message>
+  <message name="ListeSprintRelease">
+    <part name="parameters" element="tns:ListeSprintRelease" />
+  </message>
+  <message name="ListeSprintRelease_Result">
+    <part name="parameters" element="tns:ListeSprintRelease_Result" />
+  </message>
+  <message name="AddTachToSprint">
+    <part name="parameters" element="tns:AddTachToSprint" />
+  </message>
+  <message name="AddTachToSprint_Result">
+    <part name="parameters" element="tns:AddTachToSprint_Result" />
+  </message>
+  <message name="ListeTachSprint">
+    <part name="parameters" element="tns:ListeTachSprint" />
+  </message>
+  <message name="ListeTachSprint_Result">
+    <part name="parameters" element="tns:ListeTachSprint_Result" />
+  </message>
   <portType name="DynmixProcessMangWS_Port">
     <operation name="ListeConsultant">
       <input name="ListeConsultant" message="tns:ListeConsultant" />
@@ -564,6 +960,58 @@
     <operation name="AddPresD">
       <input name="AddPresD" message="tns:AddPresD" />
       <output name="AddPresD_Result" message="tns:AddPresD_Result" />
+    </operation>
+    <operation name="AddProject">
+      <input name="AddProject" message="tns:AddProject" />
+      <output name="AddProject_Result" message="tns:AddProject_Result" />
+    </operation>
+    <operation name="ListeProject">
+      <input name="ListeProject" message="tns:ListeProject" />
+      <output name="ListeProject_Result" message="tns:ListeProject_Result" />
+    </operation>
+    <operation name="AddBesoin">
+      <input name="AddBesoin" message="tns:AddBesoin" />
+      <output name="AddBesoin_Result" message="tns:AddBesoin_Result" />
+    </operation>
+    <operation name="ListeBesoin">
+      <input name="ListeBesoin" message="tns:ListeBesoin" />
+      <output name="ListeBesoin_Result" message="tns:ListeBesoin_Result" />
+    </operation>
+    <operation name="AddConProj">
+      <input name="AddConProj" message="tns:AddConProj" />
+      <output name="AddConProj_Result" message="tns:AddConProj_Result" />
+    </operation>
+    <operation name="ListeConstInProj">
+      <input name="ListeConstInProj" message="tns:ListeConstInProj" />
+      <output name="ListeConstInProj_Result" message="tns:ListeConstInProj_Result" />
+    </operation>
+    <operation name="DeletConsProj">
+      <input name="DeletConsProj" message="tns:DeletConsProj" />
+      <output name="DeletConsProj_Result" message="tns:DeletConsProj_Result" />
+    </operation>
+    <operation name="AddReleaseToProject">
+      <input name="AddReleaseToProject" message="tns:AddReleaseToProject" />
+      <output name="AddReleaseToProject_Result" message="tns:AddReleaseToProject_Result" />
+    </operation>
+    <operation name="ListeReleaseProj">
+      <input name="ListeReleaseProj" message="tns:ListeReleaseProj" />
+      <output name="ListeReleaseProj_Result" message="tns:ListeReleaseProj_Result" />
+    </operation>
+    <operation name="AddSprintToRlease">
+      <input name="AddSprintToRlease" message="tns:AddSprintToRlease" />
+      <output name="AddSprintToRlease_Result" message="tns:AddSprintToRlease_Result" />
+    </operation>
+    <operation name="ListeSprintRelease">
+      <input name="ListeSprintRelease" message="tns:ListeSprintRelease" />
+      <output name="ListeSprintRelease_Result" message="tns:ListeSprintRelease_Result" />
+    </operation>
+    <operation name="AddTachToSprint">
+      <input name="AddTachToSprint" message="tns:AddTachToSprint" />
+      <output name="AddTachToSprint_Result" message="tns:AddTachToSprint_Result" />
+    </operation>
+    <operation name="ListeTachSprint">
+      <input name="ListeTachSprint" message="tns:ListeTachSprint" />
+      <output name="ListeTachSprint_Result" message="tns:ListeTachSprint_Result" />
     </operation>
   </portType>
   <binding name="DynmixProcessMangWS_Binding" type="tns:DynmixProcessMangWS_Port">
@@ -727,6 +1175,123 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="AddPresD_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="AddProject">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddProject" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="AddProject">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="AddProject_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ListeProject">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeProject" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ListeProject">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ListeProject_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="AddBesoin">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddBesoin" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="AddBesoin">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="AddBesoin_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ListeBesoin">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeBesoin" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ListeBesoin">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ListeBesoin_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="AddConProj">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddConProj" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="AddConProj">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="AddConProj_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ListeConstInProj">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeConstInProj" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ListeConstInProj">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ListeConstInProj_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="DeletConsProj">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:DeletConsProj" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="DeletConsProj">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="DeletConsProj_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="AddReleaseToProject">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddReleaseToProject" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="AddReleaseToProject">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="AddReleaseToProject_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ListeReleaseProj">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeReleaseProj" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ListeReleaseProj">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ListeReleaseProj_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="AddSprintToRlease">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddSprintToRlease" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="AddSprintToRlease">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="AddSprintToRlease_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ListeSprintRelease">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeSprintRelease" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ListeSprintRelease">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ListeSprintRelease_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="AddTachToSprint">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddTachToSprint" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="AddTachToSprint">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="AddTachToSprint_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ListeTachSprint">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeTachSprint" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ListeTachSprint">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ListeTachSprint_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
