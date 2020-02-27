@@ -30,6 +30,7 @@ Release={
   private ListeConsinproj = environment.apiUrl + 'listeconstinproj/';
   private addreleaseUrl = environment.apiUrl + 'addreleasetoproject/';
   private listereleaseURL = environment.apiUrl + 'ListereleaseProj/';
+  private DetailProjURL = environment.apiUrl + 'DetailProject/';
 
   response: any;
   responselistebesoin: any;
@@ -39,6 +40,7 @@ Release={
   responsedeletprojcons: any;
   responseaddrelease: any;
   responselisterelease: any;
+  responseDetProj: any;
   id:any;
   titre:'';
   desc:'';
@@ -60,6 +62,11 @@ Release={
       datefin : new FormControl(),
          
     })
+
+    this.httpClient.get(this.DetailProjURL+this.id)
+    .subscribe((response) => {
+      this.responseDetProj = response;
+      });
 
     this.httpClient.get(this.ListeConsinproj+this.id)
     .subscribe((response) => {
@@ -148,8 +155,8 @@ Release={
   }
 
 
-  addconsproj(cin){
-    this.httpClient.get(this.addconproj+cin+"/"+this.id)
+  addconsproj(cin,nomproj){
+    this.httpClient.get(this.addconproj+cin+"/"+this.id+"/"+nomproj)
     .subscribe((response) => {
       this.responseaddconproj = response;
       });

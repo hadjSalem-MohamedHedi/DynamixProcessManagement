@@ -123,8 +123,9 @@
                                             <th>{{cons.nom}}</th>
                                             <td>{{cons.prenom}}</td>
                                             <td>
-                                                <button class="w3-button w3-block w3-dark-grey" (click)="addconsproj(cons.cin)"><i class="fas fa-thumbtack"></i> Add To Team Scrum</button>
-
+                                                <span *ngFor="let projet of responseDetProj"> 
+                                                <button class="w3-button w3-block w3-dark-grey" (click)="addconsproj(cons.cin,projet.nom)"><i class="fas fa-thumbtack"></i> Add To Team Scrum</button>
+                                            </span>
                                             </td>
                                         </tr>
 

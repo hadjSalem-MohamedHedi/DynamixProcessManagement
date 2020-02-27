@@ -1,1 +1,48 @@
-<p>mes-taches works!</p>
+<div *ngFor="let item of itemArray">
+    <div *ngIf="item.email === myemail">
+        <div *ngIf="item.role === 'Consultant' ">
+
+            <div *ngFor="let con of responseGetCons">
+                <button type="button" id="conftbtn" (click)="gettask(con.id)"><i class="far fa-eye"></i> Mes Projets</button>
+            </div>
+
+            <table class="table" *ngIf="responseListeTach">
+                <thead class="thead-light">
+                    <tr>
+                        <th>#</th>
+                        <th>Sprint Id </th>
+                        <th>Date Création</th>
+                        <th>Titre</th>
+                        <th>Date Début</th>
+                        <th>Date Fin</th>
+                        <th>Etat </th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let tache of responseListeTach">
+                    <tr>
+                        <th scope="row"> {{tache.id}} </th>
+                        <td> #{{tache.CodeSprint}} </td>
+                        <td> {{tache.datecre | date:'dd-MM-yyyy'}} </td>
+                        <td> {{tache.titre}} </td>
+                        <td> {{tache.datdeb | date:'dd-MM-yyyy'}} </td>
+                        <td> {{tache.datefin | date:'dd-MM-yyyy'}} </td>
+                        <td>
+                            <span class="badge badge-warning" *ngIf="tache.etat === 'En Attente'"> <i class="fas fa-clipboard-list"></i> {{tache.etat}}</span>
+                            <span class="badge badge-success" *ngIf="tache.etat === 'Terminée'"> <i class="fas fa-check"></i> {{tache.etat}}</span>
+                            <span class="badge badge-info" *ngIf="tache.etat === 'En Cours'"> <i class="far fa-clock"></i> {{tache.etat}}</span>
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+            </table>
+
+
+        </div>
+        <div *ngIf="item.role != 'Consultant' ">
+            <app-forbidden *ngIf="item.role != 'Consultant' "></app-forbidden>
+
+        </div>
+    </div>
+</div>

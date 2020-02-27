@@ -71,6 +71,7 @@ import { AddbesoinComponent } from './detaitsprojects/addbesoin/addbesoin.compon
 import { DetailreleaseComponent } from './detaitsprojects/detailrelease/detailrelease.component';
 import { DetailSprintComponent } from './detaitsprojects/detailrelease/detail-sprint/detail-sprint.component';
 import { DetalTacheComponent } from './detaitsprojects/detailrelease/detailSprint/detal-tache/detal-tache.component';
+import { MesprojetsComponent } from './mesprojets/mesprojets.component';
 
 
 const routes: Routes=[
@@ -138,7 +139,9 @@ const routes: Routes=[
           {path: 'DemandCong',component:DemandCongComponent},
           {path: 'DemandAuto',component:DemandAutoComponent},
           {path: 'PartieProj',component:PartieProjComponent},
+          {path: 'Mesprojets',component:MesprojetsComponent},
 
+          
           
 ]
 
@@ -197,6 +200,7 @@ const routes: Routes=[
     DetailreleaseComponent,
     DetailSprintComponent,
     DetalTacheComponent,
+    MesprojetsComponent,
   ],
   imports: [
     BrowserModule,

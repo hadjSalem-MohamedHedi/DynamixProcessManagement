@@ -27,6 +27,7 @@
 
                         <a routerLink="/HomeCons" *ngIf="item.role === 'Consultant' "><i class="fas fa-home"></i><span class="nav-label"> Home</span></a>
                         <a routerLink="/DashCons" *ngIf="item.role === 'Consultant' "><i class="fas fa-tachometer-alt"></i><span class="nav-label"> Mes Statiques</span></a>
+                        <a routerLink="/Mesprojets" *ngIf="item.role === 'Consultant' "><i class="fas fa-project-diagram"></i><span class="nav-label"> Mes Projets</span></a>
                         <a routerLink="/MesTaches" *ngIf="item.role === 'Consultant' "><i class="fas fa-tasks"></i><span class="nav-label">Mes Taches</span></a>
                         <a routerLink="/PartieProj" *ngIf="item.role === 'Consultant' "><i class="fas fa-pencil-ruler"></i><span class="nav-label">Projets - Requettes</span></a>
                         <a routerLink="/DemandCong" *ngIf="item.role === 'Consultant' "><i class="fas fa-glass-cheers"></i><span class="nav-label"> Demande Congées</span></a>

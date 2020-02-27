@@ -51,7 +51,7 @@ export class AdministrationComponent implements OnInit {
   NoteForm: FormGroup;
 
   constructor(private datePipe: DatePipe ,public fire: AngularFireAuth,public db: AngularFireDatabase  ,private httpClient: HttpClient,public router: Router, private toastr: ToastrService ) {
-  this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+  //this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
 
 	this.itemList = db.list('Comptes');
 

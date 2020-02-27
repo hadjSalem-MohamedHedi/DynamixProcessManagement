@@ -1,0 +1,63 @@
+#conftbtn {
+    background: #4fda78;
+    color: #ffffff;
+    outline: 0;
+    display: inline-block;
+    text-align: center;
+    padding: .5rem 2rem;
+    font-size: 13px;
+    border: 1px solid transparent;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin: 4%;
+    border-radius: 5px;
+}
+
+.project {
+    #conftbtn {
+        background: #4fda78;
+        color: #ffffff;
+        outline: 0;
+        display: inline-block;
+        text-align: center;
+        padding: .5rem 2rem;
+        font-size: 13px;
+        border: 1px solid transparent;
+        letter-spacing: 1px;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-weight: 500;
+        margin: 4%;
+    }
+}
+
+.card {
+    transition: ease-in 0.1s;
+    -webkit-transition: ease-in 0.1s;
+    -moz-transition: ease-in 0.1s;
+    -ms-transition: ease-in 0.1s;
+    -o-transition: ease-in 0.1s;
+}
+
+.card:hover {
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15)!important;
+    transition: ease-out 0.2s;
+    -webkit-transition: ease-out 0.2s;
+    -moz-transition: ease-out 0.2s;
+    -ms-transition: ease-out 0.2s;
+    -o-transition: ease-out 0.2s;
+}
+
+.cardRealse {
+    background: #f5f5f5;
+    margin: 2%;
+}
+
+.cardSprint {
+    background: #123;
+    border: #ccc;
+    color: #eee;
+    margin: 2%;
+}

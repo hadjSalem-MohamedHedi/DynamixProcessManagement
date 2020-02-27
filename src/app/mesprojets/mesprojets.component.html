@@ -1,0 +1,129 @@
+<div *ngFor="let item of itemArray">
+    <div *ngIf="item.email === myemail">
+        <div *ngIf="item.role === 'Consultant' ">
+
+            <div *ngFor="let con of responseGetCons">
+                <button type="button" id="conftbtn" (click)="getproj(con.cin)"><i class="far fa-eye"></i> Mes Projets</button>
+            </div>
+
+
+
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="card" *ngFor="let projet of responseGetprojCons">
+                        <div class="card-body">
+                            <h4 class="card-title">{{projet.nomprojet}}</h4>
+                            <h5>Date affectation : {{projet.DateAfectation | date:'dd-MM-yyyy'}} </h5>
+                            <button type="button" class="btn btn-outline-primary btn-block" (click)="detail(projet.CodeProjet)">Let's GO</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-9" *ngFor="let item of responseDetProj">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">{{item.nom}}</h4>
+                            <p class="card-text">
+                                {{item.description}}
+                            </p>
+                            <h5>Date Création : {{item.datecre | date:'dd-MM-yyyy'}} </h5>
+                            <h5>Date affectation : {{item.datdeb | date:'dd-MM-yyyy'}} </h5>
+                            <h5> DeadLine : {{item.datefin | date:'dd-MM-yyyy'}} </h5>
+
+                            <button (click)="getrelease(item.id)" class="btn btn-primary btn-block">Voir Details</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="card cardRealse" *ngFor="let release of responselisterelease">
+                            <div class="card-body">
+                                <h4 class="card-title">Release N° :{{release.id}}</h4>
+                                <h4 class="card-title">{{release.titre}}</h4>
+                                <h5>Date début : {{release.datdeb | date:'dd-MM-yyyy'}} </h5>
+                                <h5>Date fin : {{release.datefin | date:'dd-MM-yyyy'}} </h5>
+                                <p>{{release.desc}}</p>
+                                <button type="button" class="btn btn-outline-primary btn-block" (click)="getsprint(release.id)">Plus</button>
+                            </div>
+                        </div>
+                        <hr>
+
+
+
+                        <div class="card cardSprint" *ngFor="let sprint of responseListeSprint">
+                            <div class="card-body">
+                                <h6>Release N° :{{sprint.CodeRelease}}</h6>
+                                <hr>
+                                <h4 class="card-title">Sprint N° :{{sprint.id}}</h4>
+                                <h4 class="card-title">{{sprint.titre}}</h4>
+                                <h5>Date début : {{sprint.datdeb | date:'dd-MM-yyyy'}} </h5>
+                                <h5>Date fin : {{sprint.datefin | date:'dd-MM-yyyy'}} </h5>
+                                <p>{{sprint.desc}}</p>
+                                <button type="button" class="btn btn-outline-primary btn-block" (click)="getTache(sprint.id)">Les Taches </button>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <table class="table" *ngIf="responseListeTach">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Sprint Id </th>
+                                    <th>Date Création</th>
+                                    <th>Titre</th>
+                                    <th>Date Début</th>
+                                    <th>Date Fin</th>
+                                    <th>Etat </th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let tache of responseListeTach">
+                                <tr>
+                                    <th scope="row"> {{tache.id}} </th>
+                                    <td> #{{tache.CodeSprint}} </td>
+                                    <td> {{tache.datecre | date:'dd-MM-yyyy'}} </td>
+                                    <td> {{tache.titre}} </td>
+                                    <td> {{tache.datdeb | date:'dd-MM-yyyy'}} </td>
+                                    <td> {{tache.datefin | date:'dd-MM-yyyy'}} </td>
+                                    <td>
+                                        <span class="badge badge-warning" *ngIf="tache.etat === 'En Attente'"> <i class="fas fa-clipboard-list"></i> {{tache.etat}}</span>
+                                        <span class="badge badge-success" *ngIf="tache.etat === 'Terminée'"> <i class="fas fa-check"></i> {{tache.etat}}</span>
+                                        <span class="badge badge-info" *ngIf="tache.etat === 'En Cours'"> <i class="far fa-clock"></i> {{tache.etat}}</span>
+                                    </td>
+                                    <td>
+
+
+                                        <form [formGroup]="TaskForm" (ngSubmit)="onSubmit(tache.id)">
+                                            <span *ngFor="let cons of responseGetCons">
+                                            <select class="custom-select"*ngIf="cons.id === tache.codeConsultant" formControlName="state" required>
+                                               
+                                                <option selected="" disabled>Choisir l'etat du tache</option>
+                                                <option  value="En Attente">En Attente</option>
+                                                    <option value="En Cours">En Cours</option>
+                                                    <option value="Terminée">Terminée</option>
+                                              </select>
+                                              <button class="btn btn-success  btn-block" *ngIf="cons.id === tache.codeConsultant"[disabled]='!TaskForm.valid'>Valider</button>
+                                      
+                                            </span>
+                                        </form>
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+        <div *ngIf="item.role != 'Consultant' ">
+            <app-forbidden *ngIf="item.role != 'Consultant' "></app-forbidden>
+
+        </div>
+    </div>
+</div>

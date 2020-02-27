@@ -14,7 +14,7 @@ import 'firebase/database';
   styleUrls: ['./compte.component.scss']
 })
 export class CompteComponent implements OnInit {
-  private AddCons = environment.apiUrl + 'AddConsultant/';
+  private AddCons = environment.apiUrl + 'AddCompte/';
   itemList: AngularFireList<any>;
   itemList1: AngularFireList<any>;
   itemArray = [] ;
