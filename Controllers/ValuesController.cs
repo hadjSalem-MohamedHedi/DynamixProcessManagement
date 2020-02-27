@@ -214,6 +214,37 @@ namespace DPM_Api_VBETA.Controllers
         }
 
 
+
+        [HttpGet]
+        [Route("AddCompte/{cin}/{nom}/{prenom}/{email}/{Role}")]
+        public HttpResponseMessage AddCompte(string cin, string nom, string prenom,string email, string Role)
+        {
+            Boolean res;
+
+            try
+            {
+                webService.DynmixProcessMangWS services = new DynmixProcessMangWS();
+                //webService.RootAddCons Consultant = new RootAddCons();
+                services.Credentials = new System.Net.NetworkCredential("administrator", "Dynamix@10", "DYS");
+                //string text = services.ListeConsultant(ref Consultant); 
+
+                var response = new HttpResponseMessage(HttpStatusCode.OK);
+                if (services.AddCompte(cin, nom, prenom, email, Role))
+
+                { res = true; }
+                else { res = false; }
+                response.Content = new StringContent(res.ToString());
+                //responce.Content= new str
+                return response;
+            }
+            catch (Exception e)
+            {
+                var responce = new HttpResponseMessage(HttpStatusCode.OK);
+                responce.Content = new StringContent("{'Error machekell':'" + e.Message.Replace('\'', '"') + "'}");
+                return responce;
+            }
+        }
+
         [HttpGet]
         [Route("SelectConsu/{id}")]
         public HttpResponseMessage SelectConsu(int id)

@@ -96,7 +96,6 @@ namespace DPM_Api_VBETA.Controllers
                     datecre = ListeTache.RecTacheSprint[i].datecrea.ToString();
                     etat = ListeTache.RecTacheSprint[i].etat.ToString();
 
-
                     allJson += "{ \"id\": " + "\"" + id +
                          "\"," + "\"CodeSprint\": " + "\"" + CodeSprint +
                          "\"," + "\"codeConsultant\": " + "\"" + codeConsultant +
@@ -127,6 +126,74 @@ namespace DPM_Api_VBETA.Controllers
             }
         }
 
+
+
+        [HttpGet]
+        [Route("ListeTachCons/{IdConsultant}")]
+        public HttpResponseMessage ListeTachCons(int IdConsultant)
+        {
+            try
+            {
+                webService.DynmixProcessMangWS services = new DynmixProcessMangWS();
+                webService.RootTachSprint ListeTache = new RootTachSprint();
+                services.Credentials = new System.Net.NetworkCredential("administrator", "Dynamix@10", "DYS");
+                var response = new HttpResponseMessage(HttpStatusCode.OK);
+                services.ListeTachCons(ref ListeTache, IdConsultant);
+                int i = 0;
+                string id;
+                string CodeSprint;
+                string codeConsultant;
+                string datecre;
+                string titre;
+                string desc;
+                string datdeb;
+                string datefin;
+                string etat;
+
+
+                string allJson = "[";
+                int j = ListeTache.RecTacheSprint.Length;
+                while (i < j)
+                {
+                    id = ListeTache.RecTacheSprint[i].id.ToString();
+                    CodeSprint = ListeTache.RecTacheSprint[i].CodeSprint.ToString();
+                    codeConsultant = ListeTache.RecTacheSprint[i].consultant.ToString();
+                    titre = ListeTache.RecTacheSprint[i].titre.ToString();
+                    desc = ListeTache.RecTacheSprint[i].desc.ToString();
+                    datdeb = ListeTache.RecTacheSprint[i].datedeb.ToString();
+                    datefin = ListeTache.RecTacheSprint[i].datefin.ToString();
+                    datecre = ListeTache.RecTacheSprint[i].datecrea.ToString();
+                    etat = ListeTache.RecTacheSprint[i].etat.ToString();
+
+                    allJson += "{ \"id\": " + "\"" + id +
+                         "\"," + "\"CodeSprint\": " + "\"" + CodeSprint +
+                         "\"," + "\"codeConsultant\": " + "\"" + codeConsultant +
+                         "\"," + "\"titre\": " + "\"" + titre +
+                         "\"," + "\"desc\": " + "\"" + desc +
+                         "\"," + "\"datdeb\": " + "\"" + datdeb +
+                         "\"," + "\"datefin\": " + "\"" + datefin +
+                         "\"," + "\"datecre\": " + "\"" + datecre +
+                         "\"," + "\"etat\": " + "\"" + etat +
+
+                        "\"}";
+                    if (i != j - 1)
+                    {
+                        allJson += ",";
+                    }
+                    i = i + 1;
+
+                }
+                allJson += " ]";
+                response.Content = new StringContent(allJson);
+                return response;
+            }
+            catch (Exception e)
+            {
+                var responce = new HttpResponseMessage(HttpStatusCode.OK);
+                responce.Content = new StringContent("{'Error machekell':'" + e.Message.Replace('\'', '"') + "'}");
+                return responce;
+            }
+        }
 
 
     }

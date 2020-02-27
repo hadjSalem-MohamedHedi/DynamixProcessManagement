@@ -91,6 +91,16 @@ namespace DPM_Api_VBETA.webService {
         
         private System.Threading.SendOrPostCallback ListeTachSprintOperationCompleted;
         
+        private System.Threading.SendOrPostCallback ListeProjDuConsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AddCompteOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback DetailProjectOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateStatTaskOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ListeTachConsOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -221,6 +231,21 @@ namespace DPM_Api_VBETA.webService {
         
         /// <remarks/>
         public event ListeTachSprintCompletedEventHandler ListeTachSprintCompleted;
+        
+        /// <remarks/>
+        public event ListeProjDuConsCompletedEventHandler ListeProjDuConsCompleted;
+        
+        /// <remarks/>
+        public event AddCompteCompletedEventHandler AddCompteCompleted;
+        
+        /// <remarks/>
+        public event DetailProjectCompletedEventHandler DetailProjectCompleted;
+        
+        /// <remarks/>
+        public event UpdateStatTaskCompletedEventHandler UpdateStatTaskCompleted;
+        
+        /// <remarks/>
+        public event ListeTachConsCompletedEventHandler ListeTachConsCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeConsultant", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="ListeConsultant_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -975,26 +1000,28 @@ namespace DPM_Api_VBETA.webService {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddConProj", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="AddConProj_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public bool AddConProj(int codecons, int codeproj) {
+        public bool AddConProj(int codecons, int codeproj, string nomproj) {
             object[] results = this.Invoke("AddConProj", new object[] {
                         codecons,
-                        codeproj});
+                        codeproj,
+                        nomproj});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void AddConProjAsync(int codecons, int codeproj) {
-            this.AddConProjAsync(codecons, codeproj, null);
+        public void AddConProjAsync(int codecons, int codeproj, string nomproj) {
+            this.AddConProjAsync(codecons, codeproj, nomproj, null);
         }
         
         /// <remarks/>
-        public void AddConProjAsync(int codecons, int codeproj, object userState) {
+        public void AddConProjAsync(int codecons, int codeproj, string nomproj, object userState) {
             if ((this.AddConProjOperationCompleted == null)) {
                 this.AddConProjOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddConProjOperationCompleted);
             }
             this.InvokeAsync("AddConProj", new object[] {
                         codecons,
-                        codeproj}, this.AddConProjOperationCompleted, userState);
+                        codeproj,
+                        nomproj}, this.AddConProjOperationCompleted, userState);
         }
         
         private void OnAddConProjOperationCompleted(object arg) {
@@ -1273,6 +1300,169 @@ namespace DPM_Api_VBETA.webService {
             if ((this.ListeTachSprintCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.ListeTachSprintCompleted(this, new ListeTachSprintCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeProjDuCons", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="ListeProjDuCons_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void ListeProjDuCons(int codeconsu, ref RootConsProj liste) {
+            object[] results = this.Invoke("ListeProjDuCons", new object[] {
+                        codeconsu,
+                        liste});
+            liste = ((RootConsProj)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListeProjDuConsAsync(int codeconsu, RootConsProj liste) {
+            this.ListeProjDuConsAsync(codeconsu, liste, null);
+        }
+        
+        /// <remarks/>
+        public void ListeProjDuConsAsync(int codeconsu, RootConsProj liste, object userState) {
+            if ((this.ListeProjDuConsOperationCompleted == null)) {
+                this.ListeProjDuConsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListeProjDuConsOperationCompleted);
+            }
+            this.InvokeAsync("ListeProjDuCons", new object[] {
+                        codeconsu,
+                        liste}, this.ListeProjDuConsOperationCompleted, userState);
+        }
+        
+        private void OnListeProjDuConsOperationCompleted(object arg) {
+            if ((this.ListeProjDuConsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListeProjDuConsCompleted(this, new ListeProjDuConsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddCompte", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="AddCompte_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public bool AddCompte(string cin, string nom, string prenom, string email, string role) {
+            object[] results = this.Invoke("AddCompte", new object[] {
+                        cin,
+                        nom,
+                        prenom,
+                        email,
+                        role});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddCompteAsync(string cin, string nom, string prenom, string email, string role) {
+            this.AddCompteAsync(cin, nom, prenom, email, role, null);
+        }
+        
+        /// <remarks/>
+        public void AddCompteAsync(string cin, string nom, string prenom, string email, string role, object userState) {
+            if ((this.AddCompteOperationCompleted == null)) {
+                this.AddCompteOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddCompteOperationCompleted);
+            }
+            this.InvokeAsync("AddCompte", new object[] {
+                        cin,
+                        nom,
+                        prenom,
+                        email,
+                        role}, this.AddCompteOperationCompleted, userState);
+        }
+        
+        private void OnAddCompteOperationCompleted(object arg) {
+            if ((this.AddCompteCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddCompteCompleted(this, new AddCompteCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:DetailProject", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="DetailProject_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void DetailProject(ref RootProject projet, int idProject) {
+            object[] results = this.Invoke("DetailProject", new object[] {
+                        projet,
+                        idProject});
+            projet = ((RootProject)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void DetailProjectAsync(RootProject projet, int idProject) {
+            this.DetailProjectAsync(projet, idProject, null);
+        }
+        
+        /// <remarks/>
+        public void DetailProjectAsync(RootProject projet, int idProject, object userState) {
+            if ((this.DetailProjectOperationCompleted == null)) {
+                this.DetailProjectOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDetailProjectOperationCompleted);
+            }
+            this.InvokeAsync("DetailProject", new object[] {
+                        projet,
+                        idProject}, this.DetailProjectOperationCompleted, userState);
+        }
+        
+        private void OnDetailProjectOperationCompleted(object arg) {
+            if ((this.DetailProjectCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DetailProjectCompleted(this, new DetailProjectCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:UpdateStatTask", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="UpdateStatTask_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public bool UpdateStatTask(int idTask, string status) {
+            object[] results = this.Invoke("UpdateStatTask", new object[] {
+                        idTask,
+                        status});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdateStatTaskAsync(int idTask, string status) {
+            this.UpdateStatTaskAsync(idTask, status, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateStatTaskAsync(int idTask, string status, object userState) {
+            if ((this.UpdateStatTaskOperationCompleted == null)) {
+                this.UpdateStatTaskOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateStatTaskOperationCompleted);
+            }
+            this.InvokeAsync("UpdateStatTask", new object[] {
+                        idTask,
+                        status}, this.UpdateStatTaskOperationCompleted, userState);
+        }
+        
+        private void OnUpdateStatTaskOperationCompleted(object arg) {
+            if ((this.UpdateStatTaskCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateStatTaskCompleted(this, new UpdateStatTaskCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeTachCons", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", ResponseElementName="ListeTachCons_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void ListeTachCons(ref RootTachSprint tache, int idCons) {
+            object[] results = this.Invoke("ListeTachCons", new object[] {
+                        tache,
+                        idCons});
+            tache = ((RootTachSprint)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListeTachConsAsync(RootTachSprint tache, int idCons) {
+            this.ListeTachConsAsync(tache, idCons, null);
+        }
+        
+        /// <remarks/>
+        public void ListeTachConsAsync(RootTachSprint tache, int idCons, object userState) {
+            if ((this.ListeTachConsOperationCompleted == null)) {
+                this.ListeTachConsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListeTachConsOperationCompleted);
+            }
+            this.InvokeAsync("ListeTachCons", new object[] {
+                        tache,
+                        idCons}, this.ListeTachConsOperationCompleted, userState);
+        }
+        
+        private void OnListeTachConsOperationCompleted(object arg) {
+            if ((this.ListeTachConsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListeTachConsCompleted(this, new ListeTachConsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1975,6 +2165,8 @@ namespace DPM_Api_VBETA.webService {
         
         private string dateAfectationField;
         
+        private string nomprojetField;
+        
         public RecConProj() {
             this.idField = 0;
             this.codeConsultantField = 0;
@@ -2018,6 +2210,16 @@ namespace DPM_Api_VBETA.webService {
             }
             set {
                 this.dateAfectationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string nomprojet {
+            get {
+                return this.nomprojetField;
+            }
+            set {
+                this.nomprojetField = value;
             }
         }
     }
@@ -3480,6 +3682,136 @@ namespace DPM_Api_VBETA.webService {
         private object[] results;
         
         internal ListeTachSprintCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public RootTachSprint tache {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((RootTachSprint)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void ListeProjDuConsCompletedEventHandler(object sender, ListeProjDuConsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListeProjDuConsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListeProjDuConsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public RootConsProj liste {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((RootConsProj)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void AddCompteCompletedEventHandler(object sender, AddCompteCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddCompteCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddCompteCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void DetailProjectCompletedEventHandler(object sender, DetailProjectCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class DetailProjectCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal DetailProjectCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public RootProject projet {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((RootProject)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void UpdateStatTaskCompletedEventHandler(object sender, UpdateStatTaskCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateStatTaskCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateStatTaskCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void ListeTachConsCompletedEventHandler(object sender, ListeTachConsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListeTachConsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListeTachConsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

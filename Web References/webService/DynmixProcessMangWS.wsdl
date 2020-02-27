@@ -128,6 +128,7 @@
           <element minOccurs="1" maxOccurs="1" default="0" name="codeConsultant" type="int" />
           <element minOccurs="1" maxOccurs="1" default="0" name="CodeProjet" type="int" />
           <element minOccurs="1" maxOccurs="1" name="DateAfectation" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="nomprojet" type="string" />
         </sequence>
       </complexType>
       <complexType name="RootConsProj" mixed="true">
@@ -560,6 +561,7 @@
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="codecons" type="int" />
             <element minOccurs="1" maxOccurs="1" name="codeproj" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="nomproj" type="string" />
           </sequence>
         </complexType>
       </element>
@@ -697,6 +699,84 @@
         <complexType>
           <sequence>
             <element xmlns:q28="urn:microsoft-dynamics-nav/xmlports/x50012" minOccurs="1" maxOccurs="1" name="tache" type="q28:RootTachSprint" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ListeProjDuCons">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codeconsu" type="int" />
+            <element xmlns:q29="urn:microsoft-dynamics-nav/xmlports/x50009" minOccurs="1" maxOccurs="1" name="liste" type="q29:RootConsProj" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ListeProjDuCons_Result">
+        <complexType>
+          <sequence>
+            <element xmlns:q30="urn:microsoft-dynamics-nav/xmlports/x50009" minOccurs="1" maxOccurs="1" name="liste" type="q30:RootConsProj" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AddCompte">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="cin" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="nom" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="prenom" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="email" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="role" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AddCompte_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="DetailProject">
+        <complexType>
+          <sequence>
+            <element xmlns:q31="urn:microsoft-dynamics-nav/xmlports/x50007" minOccurs="1" maxOccurs="1" name="projet" type="q31:RootProject" />
+            <element minOccurs="1" maxOccurs="1" name="idProject" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="DetailProject_Result">
+        <complexType>
+          <sequence>
+            <element xmlns:q32="urn:microsoft-dynamics-nav/xmlports/x50007" minOccurs="1" maxOccurs="1" name="projet" type="q32:RootProject" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateStatTask">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="idTask" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="status" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateStatTask_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ListeTachCons">
+        <complexType>
+          <sequence>
+            <element xmlns:q33="urn:microsoft-dynamics-nav/xmlports/x50012" minOccurs="1" maxOccurs="1" name="tache" type="q33:RootTachSprint" />
+            <element minOccurs="1" maxOccurs="1" name="idCons" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ListeTachCons_Result">
+        <complexType>
+          <sequence>
+            <element xmlns:q34="urn:microsoft-dynamics-nav/xmlports/x50012" minOccurs="1" maxOccurs="1" name="tache" type="q34:RootTachSprint" />
           </sequence>
         </complexType>
       </element>
@@ -888,6 +968,36 @@
   <message name="ListeTachSprint_Result">
     <part name="parameters" element="tns:ListeTachSprint_Result" />
   </message>
+  <message name="ListeProjDuCons">
+    <part name="parameters" element="tns:ListeProjDuCons" />
+  </message>
+  <message name="ListeProjDuCons_Result">
+    <part name="parameters" element="tns:ListeProjDuCons_Result" />
+  </message>
+  <message name="AddCompte">
+    <part name="parameters" element="tns:AddCompte" />
+  </message>
+  <message name="AddCompte_Result">
+    <part name="parameters" element="tns:AddCompte_Result" />
+  </message>
+  <message name="DetailProject">
+    <part name="parameters" element="tns:DetailProject" />
+  </message>
+  <message name="DetailProject_Result">
+    <part name="parameters" element="tns:DetailProject_Result" />
+  </message>
+  <message name="UpdateStatTask">
+    <part name="parameters" element="tns:UpdateStatTask" />
+  </message>
+  <message name="UpdateStatTask_Result">
+    <part name="parameters" element="tns:UpdateStatTask_Result" />
+  </message>
+  <message name="ListeTachCons">
+    <part name="parameters" element="tns:ListeTachCons" />
+  </message>
+  <message name="ListeTachCons_Result">
+    <part name="parameters" element="tns:ListeTachCons_Result" />
+  </message>
   <portType name="DynmixProcessMangWS_Port">
     <operation name="ListeConsultant">
       <input name="ListeConsultant" message="tns:ListeConsultant" />
@@ -1012,6 +1122,26 @@
     <operation name="ListeTachSprint">
       <input name="ListeTachSprint" message="tns:ListeTachSprint" />
       <output name="ListeTachSprint_Result" message="tns:ListeTachSprint_Result" />
+    </operation>
+    <operation name="ListeProjDuCons">
+      <input name="ListeProjDuCons" message="tns:ListeProjDuCons" />
+      <output name="ListeProjDuCons_Result" message="tns:ListeProjDuCons_Result" />
+    </operation>
+    <operation name="AddCompte">
+      <input name="AddCompte" message="tns:AddCompte" />
+      <output name="AddCompte_Result" message="tns:AddCompte_Result" />
+    </operation>
+    <operation name="DetailProject">
+      <input name="DetailProject" message="tns:DetailProject" />
+      <output name="DetailProject_Result" message="tns:DetailProject_Result" />
+    </operation>
+    <operation name="UpdateStatTask">
+      <input name="UpdateStatTask" message="tns:UpdateStatTask" />
+      <output name="UpdateStatTask_Result" message="tns:UpdateStatTask_Result" />
+    </operation>
+    <operation name="ListeTachCons">
+      <input name="ListeTachCons" message="tns:ListeTachCons" />
+      <output name="ListeTachCons_Result" message="tns:ListeTachCons_Result" />
     </operation>
   </portType>
   <binding name="DynmixProcessMangWS_Binding" type="tns:DynmixProcessMangWS_Port">
@@ -1292,6 +1422,51 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="ListeTachSprint_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ListeProjDuCons">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeProjDuCons" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ListeProjDuCons">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ListeProjDuCons_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="AddCompte">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:AddCompte" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="AddCompte">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="AddCompte_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="DetailProject">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:DetailProject" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="DetailProject">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="DetailProject_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UpdateStatTask">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:UpdateStatTask" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UpdateStatTask">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UpdateStatTask_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ListeTachCons">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/DynmixProcessMangWS:ListeTachCons" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ListeTachCons">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ListeTachCons_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

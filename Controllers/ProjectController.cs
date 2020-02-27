@@ -209,8 +209,8 @@ namespace DPM_Api_VBETA.Controllers
 
 
         [HttpGet]
-        [Route("AddConProj/{codecons}/{codeproj}")]
-        public HttpResponseMessage AddConProj(int codecons, int codeproj)
+        [Route("AddConProj/{codecons}/{codeproj}/{NomProj}")]
+        public HttpResponseMessage AddConProj(int codecons, int codeproj,string NomProj)
         {
             string res;
             string allJson = "[";
@@ -223,7 +223,7 @@ namespace DPM_Api_VBETA.Controllers
                 //string text = services.ListeConsultant(ref Consultant); 
 
                 var response = new HttpResponseMessage(HttpStatusCode.OK);
-                if (services.AddConProj(codecons, codeproj))
+                if (services.AddConProj(codecons, codeproj,NomProj))
                 { res = "true"; }
                 else { res = "false"; }
 
